@@ -34,45 +34,64 @@ Todo:
    http://google.github.io/styleguide/pyguide.html
 '''
 
-class Animal :
-    def __init__(self, x, y, dir):
-        self._coords = x,y
-        self._direction = dir
+
+class Animal:
+    def __init__(self, x, y, dir, map):
+        self.__coords = x,y
+        self.__direction = dir
+        self._car = 'A'
 
     @property
-    def coords (self):
-        return self._coords
+    def coords(self):
+        return self.__coords
 
     @coords.setter
-    def coords(self, nx,ny):
-        if (nx<5 and ny<5) :
-            self._coords = nx,ny
+    def coords(self, ncoords):
+        nx,ny=ncoords
+        if nx < 5 and ny < 5 :
+            self.__coords = nx,ny
 
     @property
     def direction(self):
-        return self._direction
+        return self.__direction
 
     @direction.setter
     def direction(self, ndir):
-        if (ndir%90==0):
-            self._direction = ndir
+        if ndir % 90 == 0:
+            self.__direction = ndir
 
     def move(self, nx, ny):
-        if (nx < 5 and ny < 5):
-            self._coords = nx,ny
-            return True
-        else:
-            return None
+        self.coords = (nx,ny)
 
     def rotate(self, dir):
-        self._direction = dir
+        self.direction = dir
+
+
+class Elephant(Animal):
+    def __init__(self, x, y, dir, map):
+        super().__init__(x, y, dir, map)
+        self._car = 'E'
 
     def __str__(self):
-        return 'Animal : [Position = (' + str(self._coords[0]) + ',' + str(self._coords[1]) + ') ; Direction = '+ str(self._direction) + ']\n'
+        return 'Elephant : [Position = (' + str(self.coords[0]) + \
+               ',' + str(self.coords[1]) + ') ; Direction = '+ \
+               str(self.direction) + ']\n'
 
 
-if __name__=='__main__' :
-    a=Animal(0,2,90)
-    z=a.move(0,1)
-    print(z)
-    print('\n',a)
+class Rhinoceros(Animal):
+    def __init__(self, x, y, dir, map):
+        super().__init__(x, y, dir, map)
+        self.car = 'R'
+
+    def __str__(self):
+        return 'Rhinoceros : [Position = (' + str(self.coords[0]) + \
+               ',' + str(self.coords[1]) + ') ; Direction = '+ \
+               str(self.direction) + ']\n'
+
+
+if __name__ == '__main__':
+    a = Elephant(0, 2, 90, 10)
+    b = Rhinoceros(0, 2, 90, 10)
+    b.move(1,5)
+    a.rotate(180)
+    print(a, b)
