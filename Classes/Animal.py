@@ -39,7 +39,6 @@ class Animal:
     def __init__(self, x, y, dir, map):
         self.__coords = x,y
         self.__direction = dir
-        self._car = 'A'
 
     @property
     def coords(self):
