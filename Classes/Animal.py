@@ -92,5 +92,6 @@ if __name__ == '__main__':
     a = Elephant(0, 2, 90, 10)
     b = Rhinoceros(0, 2, 90, 10)
     b.move(1,5)
+
     a.rotate(180)
     print(a, b)
