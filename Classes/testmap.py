@@ -3,7 +3,7 @@
 
 import unittest
 import map
-from animaux import *
+from animaux import Elephant, Rhinoceros
 
 
 class testmap(unittest):
