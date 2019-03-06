@@ -1,6 +1,6 @@
 import unittest
 import map
-import animal
+import animaux
 
 class testmap(unittest):
     def testSize(self):
