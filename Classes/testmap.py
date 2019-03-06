@@ -1,6 +1,6 @@
 import unittest
 import map
-import animaux
+from animaux import *
 
 
 class testmap(unittest):
