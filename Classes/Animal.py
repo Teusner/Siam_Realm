@@ -23,7 +23,25 @@
 '''
 
 
-class Animal:
+class animal:
+    """
+            Creating an animal.
+
+            This create an animal with a position and a direction on a map.
+
+            :param x: int
+            :param y: int
+            :param dir: int
+            :param map: map.map
+            :type car: car
+
+            :Example:
+
+            >>> a = animal(0,1,180,M)
+
+            .. seealso:: elephant(), rhinoceros()
+            .. warning:: This class is abstract and can not be instanciated.
+    """
     def __init__(self, x, y, dir, map):
         self.__coords = x,y
         self.__direction = dir
@@ -54,7 +72,7 @@ class Animal:
         self.direction = dir
 
 
-class Elephant(Animal):
+class elephant(animal):
     """
             Creating an elephant.
 
@@ -72,31 +90,61 @@ class Elephant(Animal):
 
             .. seealso:: move(), rotate()
             .. warning:: You should create an Elephant on a map.
-"""
+    """
     def __init__(self, x, y, dir, map):
         super().__init__(x, y, dir, map)
         self._car = 'E'
 
     def __str__(self):
+        """
+            Show the current state of an elephant
+
+            :return: the string with all
+            :rtype: str
+        """
         return 'Elephant : [Position = (' + str(self.coords[0]) + \
                ',' + str(self.coords[1]) + ') ; Direction = '+ \
                str(self.direction) + ']\n'
 
 
-class Rhinoceros(Animal):
+class rhinoceros(animal):
+    """
+            Creating a rhinoceros.
+
+            This create a rhinoceros with a position and a direction on a map.
+
+            :param x: int
+            :param y: int
+            :param dir: int
+            :param map: map.map
+            :type car: car
+
+            :Example:
+
+            >>> r = rhinoceros(0,1,180,M)
+
+            .. seealso:: move(), rotate()
+            .. warning:: You should create a rhinoceros on a map.
+    """
     def __init__(self, x, y, dir, map):
         super().__init__(x, y, dir, map)
         self.car = 'R'
 
     def __str__(self):
+        """
+            Show the current state of an elephant
+
+            :return: the string with all
+            :rtype: str
+        """
         return 'Rhinoceros : [Position = (' + str(self.coords[0]) + \
                ',' + str(self.coords[1]) + ') ; Direction = '+ \
                str(self.direction) + ']\n'
 
 
 if __name__ == '__main__':
-    a = Elephant(0, 2, 90, 10)
-    b = Rhinoceros(0, 2, 90, 10)
+    a = elephant(0, 2, 90, 10)
+    b = rhinoceros(0, 2, 90, 10)
     b.move(1,4)
     a.rotate(180)
     print(a, b)
