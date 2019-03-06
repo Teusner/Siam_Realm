@@ -58,7 +58,7 @@ class Elephant(Animal):
     """
             Creating an elephant.
 
-            This create an elephant with a position, a direction on a map.
+            This create an elephant with a position and a direction on a map.
 
             :param x: int
             :param y: int
