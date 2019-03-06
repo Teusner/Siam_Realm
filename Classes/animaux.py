@@ -23,7 +23,7 @@
 '''
 
 
-class animal:
+class Animal:
     """
             Creating an animal.
 
@@ -72,7 +72,7 @@ class animal:
         self.direction = dir
 
 
-class elephant(animal):
+class Elephant(animal):
     """
             Creating an elephant.
 
@@ -107,7 +107,7 @@ class elephant(animal):
                str(self.direction) + ']\n'
 
 
-class rhinoceros(animal):
+class Rhinoceros(animal):
     """
             Creating a rhinoceros.
 
@@ -143,8 +143,8 @@ class rhinoceros(animal):
 
 
 if __name__ == '__main__':
-    a = elephant(0, 2, 90, 10)
-    b = rhinoceros(0, 2, 90, 10)
+    a = Elephant(0, 2, 90, 10)
+    b = Rhinoceros(0, 2, 90, 10)
     b.move(1,4)
     a.rotate(180)
     print(a, b)
