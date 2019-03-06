@@ -1,37 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''Example Google style docstrings.
+'''
+    The ``Animal`` module
+    ======================
 
-This module demonstrates documentation as specified by the `Google Python
-Style Guide`_. Docstrings may extend over multiple lines. Sections are created
-with a section header and a colon followed by a block of indented text.
+    This module is creating animals for the Siam Realm game. Each animals has
+    a position on te map, a direction and an id.
 
-Example:
-    Examples can be given using either the ``Example`` or ``Examples``
-    sections. Sections support any reStructuredText formatting, including
-    literal blocks::
+    :Example:
 
-        $ python example_google.py
+    >>> import animal
+    >>> import map
+    >>> M = map()
+    >>> e = Elephant(0,1,180,M)
+    >>> r = Rhinoceros(1,4,0,M)
 
-Section breaks are created by resuming unindented text. Section breaks
-are also implicitly created anytime a new section starts.
+    Inheritance of the Animal class
+    -------------------------------
 
-Attributes:
-    module_level_variable1 (int): Module level variables may be documented in
-        either the ``Attributes`` section of the module docstring, or in an
-        inline docstring immediately following the variable.
-
-        Either form is acceptable, but the two should not be mixed. Choose
-        one convention to document module level variables and be consistent
-        with it.
-
-Todo:
-    * For module TODOs
-    * You have to also use ``sphinx.ext.todo`` extension
-
-.. _Google Python Style Guide:
-   http://google.github.io/styleguide/pyguide.html
+    Each animal (elephant, Rhinoceros) is inherited of the animal class. It's impossible to
 '''
 
 
@@ -67,6 +55,24 @@ class Animal:
 
 
 class Elephant(Animal):
+    """
+            Creating an elephant.
+
+            This create an elephant with a position, a direction on a map.
+
+            :param x: int
+            :param y: int
+            :param dir: int
+            :param map: map.map
+            :type car: car
+
+            :Example:
+
+            >>> e = Elephant(0,1,180,M)
+
+            .. seealso:: move(), rotate()
+            .. warning:: You should create an Elephant on a map.
+"""
     def __init__(self, x, y, dir, map):
         super().__init__(x, y, dir, map)
         self._car = 'E'
@@ -91,6 +97,6 @@ class Rhinoceros(Animal):
 if __name__ == '__main__':
     a = Elephant(0, 2, 90, 10)
     b = Rhinoceros(0, 2, 90, 10)
-    b.move(1,5)
+    b.move(1,4)
     a.rotate(180)
     print(a, b)
