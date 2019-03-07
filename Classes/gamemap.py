@@ -5,7 +5,7 @@
 import numpy as np
 from animaux import Elephant ,  Rhinoceros
 
-class Map:
+class GameMap:
     """
             Creating an animal.
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from map import Map, Boulder
+from gamemap import Map, Boulder
 from animaux import Elephant, Rhinoceros
 
 
