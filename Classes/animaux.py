@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from map import Map
+#from map import Map
 
 '''
     The ``Animal`` module
@@ -12,11 +12,11 @@ from map import Map
 
     :Example:
 
-    >>> import animal
-    >>> import map
-    >>> M = Map()
-    >>> e = Elephant(0,1,180,M)
-    >>> r = Rhinoceros(1,4,0,M)
+    #>>> import animal
+    #>>> import map
+    #>>> M = Map()
+    #>>> e = Elephant(0,1,180,M)
+    #>>> r = Rhinoceros(1,4,0,M)
 
     Inheritance of the Animal class
     -------------------------------
