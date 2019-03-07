@@ -1,34 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 import numpy as np
-from animaux import Elephant , Rhinoceros
+from animaux import Animal
 
-class GameMap:
-    """
-            Creating an animal.
 
-            This create an animal with a position and a direction on a map.
-
-            :param x: int
-            :param y: int
-            :param dir: int
-            :param map: map.map
-            :type car: car
-
-            :Example:
-
-            >>> a = animal(0,1,180,M)
-
-            .. seealso:: elephant(), rhinoceros()
-            .. warning:: This class is abstract and can not be instanciated.
-    """
-    def __init__(self, size, bouldercoords, nb_elephants, nb_rhinos):
-        self.__size = [5,5]
-        self.__bouldercoords = [[2,3],[3,3],[4,3]]
+class GameMap (np.ndarray):
+    def __init__(self):
+        self.resize((4, 4))
         self.__nb_elephants = 0
         self.__nb_rhinos = 0
+        for k in range(3):
+            self[1+k, 2]=Boulder()
 
     def add(self, car, x, y, dir):
         x, y = animal.coords
