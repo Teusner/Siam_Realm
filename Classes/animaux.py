@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-#from gamemap import Map
 import numpy as np
 
 '''
@@ -67,7 +65,7 @@ class Animal:
 
     @direction.setter
     def direction(self, ndir):
-        if ndir % 90 == 0:
+        if np.sqrt(ndir[0]**2+ndir[1]**2)==1 and (ndir[0]==0 or ndir[1]==0) :
             self.__direction = ndir
 
     def move(self, nx, ny):
@@ -76,80 +74,21 @@ class Animal:
     def rotate(self, dir):
         self.direction = dir
 
-
-class Elephant(Animal):
-    """
-            Creating an elephant.
-
-            This create an elephant with a position and a direction on a map.
-
-            :param x: int
-            :param y: int
-            :param dir: int
-            :param map: map.map
-            :type car: car
-
-            :Example:
-
-            # >>> e = Elephant(0,1,180,M)
-
-            .. seealso:: move(), rotate()
-            .. warning:: You should create an Elephant on a map.
-    """
-    def __init__(self, x, y, dir, map):
-        super().__init__(x, y, dir, map)
-        self._car = 'E'
-
     def __str__(self):
         """
-            Show the current state of an elephant
+            Show the current state of an animal
 
-            :return: the string with all
+            :return: the string with the characteristics of the animal
             :rtype: str
         """
-        return 'Elephant : [Position = (' + str(self.coords[0]) + \
-               ',' + str(self.coords[1]) + ') ; Direction = '+ \
-               str(self.direction) + ']\n'
-
-
-class Rhinoceros(Animal):
-    """
-            Creating a rhinoceros.
-
-            This create a rhinoceros with a position and a direction on a map.
-
-            :param x: int
-            :param y: int
-            :param dir: int
-            :param map: map.map
-            :type car: car
-
-            :Example:
-
-            # >>> r = rhinoceros(0,1,180,M)
-
-            .. seealso:: move(), rotate()
-            .. warning:: You should create a rhinoceros on a map.
-    """
-    def __init__(self, x, y, dir, map):
-        super().__init__(x, y, dir, map)
-        self.car = 'R'
-
-    def __str__(self):
-        """
-            Show the current state of an elephant
-
-            :return: the string with all
-            :rtype: str
-        """
-        return 'Rhinoceros : [Position = (' + str(self.coords[0]) + \
+        return self.__species + ' : [Position = (' + str(self.coords[0]) + \
                ',' + str(self.coords[1]) + ') ; Direction = '+ \
                str(self.direction) + ']\n'
 
 
 if __name__ == '__main__':
-    a = Elephant(0, 2, 90, 10)
-    b = Rhinoceros(0, 2, 90, 10)
-    b.move(1,5)
-    a.rotate(180)
+    a = Animal(0, 2, np.array([1,0]), 'Elephant')
+    b = Animal(1, 2, np.array([1,0]), 'Rhinoceros')
+    b.move(1,4)
+    a.rotate(np.array([0,1]))
     print(a, b)
