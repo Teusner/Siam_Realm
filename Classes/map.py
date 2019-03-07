@@ -51,16 +51,15 @@ class Map:
     def delete(self, car, x, y):
         if self[x, y] != 0 and (x == 0 or x == 4 or y == 0 or y == 4):
             if car == "Rhinoceros":
-                nb_rhinos-=1:
+                nb_rhinos-=1
                 self[x, y] = 0
             else:
                 return (False)
 
             if car == "Elephants":
-                nb_elephants-=1:0
+                nb_elephants-=1
                 Elephants(x, y, dir, self)
             else:
                 return (False)
-
-            else:
-                return (False)
+        else:
+            return (False)

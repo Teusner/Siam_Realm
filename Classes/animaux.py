@@ -39,8 +39,8 @@ class Animal:
 
             :Example:
 
-            >>> M = Map()
-            >>> a = Animal(0,1,180,M)
+            # >>> M = Map()
+            # >>> a = Animal(0,1,180,M)
 
             .. seealso:: elephant(), rhinoceros()
             .. warning:: This class is abstract and can not be instanciated.
@@ -89,7 +89,7 @@ class Elephant(Animal):
 
             :Example:
 
-            >>> e = Elephant(0,1,180,M)
+            # >>> e = Elephant(0,1,180,M)
 
             .. seealso:: move(), rotate()
             .. warning:: You should create an Elephant on a map.
@@ -124,7 +124,7 @@ class Rhinoceros(Animal):
 
             :Example:
 
-            >>> r = rhinoceros(0,1,180,M)
+            # >>> r = rhinoceros(0,1,180,M)
 
             .. seealso:: move(), rotate()
             .. warning:: You should create a rhinoceros on a map.
