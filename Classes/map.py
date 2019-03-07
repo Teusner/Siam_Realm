@@ -30,36 +30,34 @@ class Map:
         self.__nb_elephants = 0
         self.__nb_rhinos = 0
 
-
     def add(self, car, x, y, dir):
         if self[x,y]==0 and (x==0 or x==4 or y==0 or y==4):
             if car=="Rhinoceros":
-                if nb_rhinos < 5:
+                if self.nb_rhinos < 5:
                     self[x,y] = Rhinoceros(x, y, dir, self)
                 else:
                     return (False)
 
             if car=="Elephants":
-                if nb_elephants < 5:
+                if self.nb_elephants < 5:
                     self[x,y] = Elephants(x, y, dir, self)
                 else:
-                    return (False)
-
+                    return False
         else:
-            return(False)
+            return False
 
     def delete(self, car, x, y):
         if self[x, y] != 0 and (x == 0 or x == 4 or y == 0 or y == 4):
             if car == "Rhinoceros":
-                nb_rhinos-=1
+                self.nb_rhinos-=1
                 self[x, y] = 0
             else:
-                return (False)
+                return False
 
             if car == "Elephants":
-                nb_elephants-=1
-                Elephants(x, y, dir, self)
+                self.nb_elephants-=1
+                self.Elephants(x, y, dir, self)
             else:
-                return (False)
+                return False
         else:
-            return (False)
+            return False
