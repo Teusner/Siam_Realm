@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from map import Map
+
 '''
     The ``Animal`` module
     ======================
@@ -12,7 +14,7 @@
 
     >>> import animal
     >>> import map
-    >>> M = map()
+    >>> M = Map()
     >>> e = Elephant(0,1,180,M)
     >>> r = Rhinoceros(1,4,0,M)
 
@@ -37,7 +39,8 @@ class Animal:
 
             :Example:
 
-            >>> a = animal(0,1,180,M)
+            >>> M = Map()
+            >>> a = Animal(0,1,180,M)
 
             .. seealso:: elephant(), rhinoceros()
             .. warning:: This class is abstract and can not be instanciated.
@@ -72,7 +75,7 @@ class Animal:
         self.direction = dir
 
 
-class Elephant(animal):
+class Elephant(Animal):
     """
             Creating an elephant.
 
@@ -107,7 +110,7 @@ class Elephant(animal):
                str(self.direction) + ']\n'
 
 
-class Rhinoceros(animal):
+class Rhinoceros(Animal):
     """
             Creating a rhinoceros.
 
@@ -145,6 +148,6 @@ class Rhinoceros(animal):
 if __name__ == '__main__':
     a = Elephant(0, 2, 90, 10)
     b = Rhinoceros(0, 2, 90, 10)
-    b.move(1,4)
+    b.move(1,5)
     a.rotate(180)
     print(a, b)
