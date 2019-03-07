@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from gamemap import GameMap
+#from gamemap import Map
+import numpy as np
 
 '''
     The ``Animal`` module
