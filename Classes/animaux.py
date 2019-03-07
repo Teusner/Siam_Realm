@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #from gamemap import Map
+import numpy as np
 
 '''
     The ``Animal`` module
