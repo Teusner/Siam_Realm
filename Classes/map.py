@@ -3,8 +3,9 @@
 
 #import numpy as np
 import numpy as np
+from animaux import Elephant ,  Rhinoceros
 
-class Animal:
+class Map:
     """
             Creating an animal.
 
@@ -23,31 +24,43 @@ class Animal:
             .. seealso:: elephant(), rhinoceros()
             .. warning:: This class is abstract and can not be instanciated.
     """
-    def __init__(self, x, y, dir, map):
-        self.__coords = x,y
-        self.__direction = dir
+    def __init__(self, size, bouldercoords, nb_elephants, nb_rhinos):
+        self.__size = [5,5]
+        self.__bouldercoords = [[2,3],[3,3],[4,3]]
+        self.__nb_elephants = 0
+        self.__nb_rhinos = 0
 
-    @property
-    def coords(self):
-        return self.__coords
 
-    @coords.setter
-    def coords(self, ncoords):
-        nx,ny=ncoords
-        if nx < 5 and ny < 5 :
-            self.__coords = nx,ny
+    def add(self, car, x, y, dir):
+        if self[x,y]==0 and (x==0 or x==4 or y==0 or y==4):
+            if car=="Rhinoceros":
+                if nb_rhinos < 5:
+                    self[x,y] = Rhinoceros(x, y, dir, self)
+                else:
+                    return (False)
 
-    @property
-    def direction(self):
-        return self.__direction
+            if car=="Elephants":
+                if nb_elephants < 5:
+                    self[x,y] = Elephants(x, y, dir, self)
+                else:
+                    return (False)
 
-    @direction.setter
-    def direction(self, ndir):
-        if ndir % 90 == 0:
-            self.__direction = ndir
+        else:
+            return(False)
 
-    def move(self, nx, ny):
-        self.coords = (nx,ny)
+    def del(self, car, x, y):
+        if self[x, y] != 0 and (x == 0 or x == 4 or y == 0 or y == 4):
+            if car == "Rhinoceros":
+                nb_rhinos-=1:
+                self[x, y] = 0
+            else:
+                return (False)
 
-    def rotate(self, dir):
-        self.direction = dir
+            if car == "Elephants":
+                nb_elephants-=1:0
+                Elephants(x, y, dir, self)
+            else:
+                return (False)
+
+            else:
+                return (False)
