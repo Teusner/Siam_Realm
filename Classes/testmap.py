@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-import map
+from map import Map, Boulder
 from animaux import Elephant, Rhinoceros
 
 
 class testmap(unittest):
     def testSize(self):
-        m = map()
+        m = Map()
         self.assertEqual(m.xmax, 4)
         self.assertEqual(m.ymax, 4)
 
@@ -17,7 +17,7 @@ class testmap(unittest):
         self.assertEqual(m.nb_boulder,3)
 
     def testNbElephant(self):
-        m = map()
+        m = Map()
         for k in range (5) :
             m.add(Elephant(0,k))
         self.assertEqual(m.nb_elephant, 5)
@@ -25,7 +25,7 @@ class testmap(unittest):
         self.assertEqual(m.nb_elephant, 5)
 
     def testNbRhinoceros(self):
-        m = map()
+        m = Map()
         for k in range(5):
             m.add(Rhinoceros(0, k))
         self.assertEqual(m.nb_rhinoceros, 5)
