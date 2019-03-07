@@ -48,7 +48,7 @@ class Map:
         else:
             return(False)
 
-    def del(self, car, x, y):
+    def delete(self, car, x, y):
         if self[x, y] != 0 and (x == 0 or x == 4 or y == 0 or y == 4):
             if car == "Rhinoceros":
                 nb_rhinos-=1:
