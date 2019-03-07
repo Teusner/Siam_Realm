@@ -46,9 +46,10 @@ class Animal:
             .. seealso:: elephant(), rhinoceros()
             .. warning:: This class is abstract and can not be instanciated.
     """
-    def __init__(self, x, y, dir, map):
+    def __init__(self, x, y, dir, species):
         self.__coords = x,y
         self.__direction = dir
+        self.__species = species
 
     @property
     def coords(self):
