@@ -68,6 +68,15 @@ class Animal:
         if np.sqrt(ndir[0]**2+ndir[1]**2)==1 and (ndir[0]==0 or ndir[1]==0) :
             self.__direction = ndir
 
+    @property
+    def species(self):
+        return self.__species
+
+    @species.setter
+    def species(self, nspecies):
+        if nspecies is in ['Elephant','Rhinoceros']:
+            self.__species = nspecies
+
     def move(self, nx, ny):
         self.coords = (nx,ny)
 
