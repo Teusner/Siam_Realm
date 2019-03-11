@@ -74,7 +74,7 @@ class Animal:
 
     @species.setter
     def species(self, nspecies):
-        if nspecies is in ['Elephant','Rhinoceros']:
+        if nspecies in ['Elephant','Rhinoceros']:
             self.__species = nspecies
 
     def move(self, nx, ny):
