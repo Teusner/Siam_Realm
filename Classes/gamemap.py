@@ -7,19 +7,44 @@ from animaux import Animal
 
 class GameMap (list):
     def __init__(self):
-        for k in range(5):
-            self.append([0, 0, 0, 0, 0])
+        self.xmax = 5
+        self.ymax = 5
         self.__nb_elephants = 0
         self.__nb_rhinoceros = 0
-        #for k in range(3):          # Setting up the 3 Boulders
-        #    self[1+k][2]=Boulder()
+        self.nb_boulders = 0
+        for k in range(self.ymax):
+            y=[]
+            for i in range(self.ymax):
+                y.append(0)
+            self.append(y)
+        for k in range(3):          # Setting up the 3 Boulders
+            self[1+k][2]=Boulder()
+            self.nb_boulders += 1
+
+    @property
+    def nb_elephants(self):
+        return self.__nb_elephants
+
+    @nb_elephants.setter
+    def nb_elephants(self, x):
+        print('Warning ! Changing the number of Elephant is not possible!')
+
+    @property
+    def nb_rhinoceros(self):
+        return self.__nb_rhinoceros
+
+    @nb_rhinoceros.setter
+    def nb_rhinoceros(self, x):
+        print('Warning ! Changing the number of Rhinoceros is not possible!')
 
     def add(self, animal):
         x, y = animal.coords
         if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y]==0:
             self[x][y] = animal
+            self.__nb_elephants += 1
         elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y]==0:
             self[x][y] = animal
+            self.__nb_rhinoceros += 1
         else:
             return False
 
@@ -27,8 +52,19 @@ class GameMap (list):
         x, y = animal.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
             self[x][y] = 0
+            if animal.species == 'Elephant':
+                self.__nb_elephants -= 1
+            elif animal.species == 'Rhinoceros':
+                self.__nb_rhinoceros -= 1
         else:
             return False
+
+    def move(self, animal, ncoords):
+        x, y = animal.coords
+        nx, ny = ncoords
+        if self[nx][ny] == 0:
+            animal.coords = (nx,ny)
+            self[nx][ny] = animal
 
     def __str__(self):
         """
@@ -51,6 +87,9 @@ class GameMap (list):
             s+='\n '
         return s
 
+
+class Boulder:
+    pass
 
 if __name__ == '__main__':
     g=GameMap()
