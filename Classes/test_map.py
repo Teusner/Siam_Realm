@@ -19,11 +19,11 @@ class testGameMap(unittest.TestCase):
         self.assertIsInstance(m[2][2], Boulder)
         self.assertIsInstance(m[3][2], Boulder)
 
-    def testNbBoulder(self):
+    def testNbBoulders(self):
         m = GameMap()
         self.assertEqual(m.nb_boulders, 3)
 
-    def testNbElephant(self):
+    def testNbElephants(self):
         m = GameMap()
         for k in range(5):
             m.add(Animal(0, k, np.array([0,1]), 'Elephant'))
