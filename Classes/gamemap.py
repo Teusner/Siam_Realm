@@ -12,6 +12,7 @@ class GameMap (list):
         self.__nb_elephants = 0
         self.__nb_rhinoceros = 0
         self.nb_boulders = 0
+        self.nb_crosses = 0
         for k in range(self.ymax):
             y=[]
             for i in range(self.ymax):

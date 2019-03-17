@@ -83,6 +83,10 @@ class Animal:
     def rotate(self, dir):
         self.direction = dir
 
+    def bearing(self, animal):
+        dira, dirb = self.direction, animal.direction
+        return dira @ dirb
+
     def __str__(self):
         """
             Show the current state of an animal
@@ -90,14 +94,13 @@ class Animal:
             :return: the string with the characteristics of the animal
             :rtype: str
         """
-        return self.__species + ' : [Position = (' + str(self.coords[0]) + \
-               ',' + str(self.coords[1]) + ') ; Direction = '+ \
-               str(self.direction) + ']\n'
+        return self.__species + ' : [Position = ' + str(self.coords) + ' ; Direction = ' + str(self.direction) + ']\n'
 
 
 if __name__ == '__main__':
     a = Animal(0, 2, np.array([1,0]), 'Elephant')
     b = Animal(1, 2, np.array([1,0]), 'Rhinoceros')
     b.move(1,4)
-    a.rotate(np.array([0,1]))
+    a.rotate(np.array([-1, 0]))
+    print(a.bearing(b))
     print(a, b)
