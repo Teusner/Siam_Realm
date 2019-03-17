@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from animaux import Animal
+from animal import Animal
 
 
 class GameMap (list):

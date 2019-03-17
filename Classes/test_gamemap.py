@@ -3,7 +3,7 @@
 
 import unittest
 from gamemap import GameMap, Boulder
-from animaux import Animal
+from animal import Animal
 import numpy as np
 
 
