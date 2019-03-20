@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from SiamRealm.gamemap import GameMap
-from SiamRealm.animal import Animal
+from SRealm.gamemap import GameMap
+from SRealm.animal import Animal
 
 
 
@@ -57,3 +57,6 @@ while condSortie:
         d = input("Type the direction np.array([x,y]) : ")
         m[x][y].rotate(d)
     elif choice == 4:
+        c = input("Type the coords (x,y) : ")
+        x,y = c
+        m.delete(m[x][y])
