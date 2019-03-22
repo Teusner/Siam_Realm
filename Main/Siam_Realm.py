@@ -15,7 +15,7 @@ def turn(nbplayer):
     print("4 - Take an animal off the board")
     choice = input("Type your choice : ")
     print('\n')
-    return choice
+    return int(choice)
 
 
 ''' Initialisation du plateau de jeu '''
@@ -41,7 +41,9 @@ while not condSortie:
     # Processing the choice
     if choice == 1:
         c = input("Type the coords (x,y) : ")
+        c = c.split(',')
         d = input("Type the direction np.array([x,y]) : ")
+        x, y = int(c[0]), int(c[1])
         if Player1:
             a = Animal(x, y, dir, 'Elephant')
         else:
@@ -49,14 +51,22 @@ while not condSortie:
         m.add(a)
     elif choice == 2:
         c = input("Type the actual coords (x,y) : ")
+        c = c.split(',')
         nc = input("Type the new coords (nx,ny) : ")
-        x,y=c
+        nc = nc.split(',')
+        nc = int(nc[0]), int(nc[1])
+        x, y = int(c[0]), int(c[1])
         m.move(m[x][y], nc)
     elif choice == 3:
         c = input("Type the coords (x,y) : ")
+        c = c.split(',')
         d = input("Type the direction np.array([x,y]) : ")
+        x, y = int(c[0]), int(c[1])
         m[x][y].rotate(d)
     elif choice == 4:
         c = input("Type the coords (x,y) : ")
-        x,y = c
+        c = c.split(',')
+        x, y = int(c[0]), int(c[1])
         m.delete(m[x][y])
+
+    Player1 = not Player1

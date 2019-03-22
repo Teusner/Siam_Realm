@@ -74,18 +74,31 @@ class GameMap (list):
             :return: the string with the characteristics of the board
             :rtype: str
         """
-        s=' '
+        s=''
         for j in range(5):
             for i in range(5):
+                ani = False
                 if self[i][j] == 0:
-                   s+='0 '
+                   s+=' 0 '
                 elif self[i][j].species == 'Elephant' :
-                    s+='E '
+                    s+='E'
+                    ani = True
                 elif self[i][j].species == 'Rhinoceros':
-                    s+='R '
+                    s+='R'
+                    ani = True
                 else :
-                    s+='B '
-            s+='\n '
+                    s+=' B '
+                if ani :
+                    if ((self[i][j].direction == np.array([0, 1]))@np.array([[True],[True]]))[0] :
+                        d='> '
+                    elif ((self[i][j].direction == np.array([1, 0]))@np.array([[True],[True]]))[0] :
+                        d='∧ '
+                    elif ((self[i][j].direction == np.array([-1, 0]))@np.array([[True],[True]]))[0] :
+                        d='< '
+                    else :
+                        d='∨ '
+                    s+=d
+            s+='\n'
         return s
 
 
