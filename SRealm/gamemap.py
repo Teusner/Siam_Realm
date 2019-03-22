@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from animal import Animal
+#from animal import Animal
 
 
 class GameMap (list):
@@ -19,7 +19,7 @@ class GameMap (list):
                 y.append(0)
             self.append(y)
         for k in range(3):          # Setting up the 3 Boulders
-            self[1+k][2]=Boulder()
+            self[1+k][2]=Boulder((1+k, 2))
             self.nb_boulders += 1
 
     @property
@@ -90,10 +90,13 @@ class GameMap (list):
 
 
 class Boulder:
-    pass
+    def __init__(self, coords):
+        self.coords = coords
+        self.species = 'Boulder'
+
 
 if __name__ == '__main__':
     g=GameMap()
-    g.add(Animal(0, 0, np.array([1,0]), 'Rhinoceros'))
-    g.add(Animal(4, 2, np.array([1, 0]), 'Elephant'))
+    #g.add(Animal(0, 0, np.array([1,0]), 'Rhinoceros'))
+    #g.add(Animal(4, 2, np.array([1, 0]), 'Elephant'))
     print(g)

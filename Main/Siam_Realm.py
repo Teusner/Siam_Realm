@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from SRealm.gamemap import GameMap
+import SRealm.gamemap as gm
 from SRealm.animal import Animal
 
 
@@ -19,7 +19,7 @@ def turn(nbplayer):
 
 
 ''' Initialisation du plateau de jeu '''
-m=Gamemap()
+m = gm.GameMap()
 
 condSortie=False
 
@@ -27,7 +27,7 @@ condSortie=False
 Player1=True
 
 
-while condSortie:
+while not condSortie:
 
     # Show the board
     print(m)
