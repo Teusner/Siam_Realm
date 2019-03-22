@@ -79,15 +79,15 @@ class GameMap (list):
             for i in range(5):
                 ani = False
                 if self[i][j] == 0:
-                   s+=' 0 '
+                   s+=' 0  '
                 elif self[i][j].species == 'Elephant' :
-                    s+='E'
+                    s+=' E'
                     ani = True
                 elif self[i][j].species == 'Rhinoceros':
-                    s+='R'
+                    s+=' R'
                     ani = True
                 else :
-                    s+=' B '
+                    s+=' B  '
                 if ani :
                     if ((self[i][j].direction == np.array([0, 1]))@np.array([[True],[True]]))[0] :
                         d='> '
@@ -98,7 +98,7 @@ class GameMap (list):
                     else :
                         d='∨ '
                     s+=d
-            s+='\n'
+            s+='\n \n'
         return s
 
 
