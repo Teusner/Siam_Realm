@@ -40,10 +40,10 @@ class GameMap (list):
 
     def add(self, animal):
         x, y = animal.coords
-        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y]==0:
+        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
             self.__nb_elephants += 1
-        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y]==0:
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
             self.__nb_rhinoceros += 1
         else:
@@ -89,11 +89,11 @@ class GameMap (list):
                 else :
                     s+=' B  '
                 if ani :
-                    if ((self[i][j].direction == np.array([0, 1]))@np.array([[True],[True]]))[0] :
+                    if self[i][j].direction[0] == 1 and self[i][j].direction[1] == 0:
                         d='> '
-                    elif ((self[i][j].direction == np.array([1, 0]))@np.array([[True],[True]]))[0] :
+                    elif self[i][j].direction[0] == 0 and self[i][j].direction[1] == 1:
                         d='∧ '
-                    elif ((self[i][j].direction == np.array([-1, 0]))@np.array([[True],[True]]))[0] :
+                    elif self[i][j].direction[0] == -1 and self[i][j].direction[1] == 0:
                         d='< '
                     else :
                         d='∨ '

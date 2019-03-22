@@ -45,9 +45,9 @@ while not condSortie:
         d = input("Type the direction np.array([x,y]) : ")
         x, y = int(c[0]), int(c[1])
         if Player1:
-            a = Animal(x, y, dir, 'Elephant')
+            a = Animal(x, y, d, 'Elephant')
         else:
-            a = Animal(x, y, dir, 'Rhinoceros')
+            a = Animal(x, y, d, 'Rhinoceros')
         m.add(a)
     elif choice == 2:
         c = input("Type the actual coords (x,y) : ")
