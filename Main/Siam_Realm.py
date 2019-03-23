@@ -43,6 +43,8 @@ while not condSortie:
         c = input("Type the coords (x,y) : ")
         c = c.split(',')
         d = input("Type the direction np.array([x,y]) : ")
+        d = d.split(',')
+        d = np.array([int(d[0]), int(d[1])])
         x, y = int(c[0]), int(c[1])
         if Player1:
             a = Animal(x, y, d, 'Elephant')
@@ -61,6 +63,8 @@ while not condSortie:
         c = input("Type the coords (x,y) : ")
         c = c.split(',')
         d = input("Type the direction np.array([x,y]) : ")
+        d = d.split(',')
+        d = np.array([int(d[0]), int(d[1])])
         x, y = int(c[0]), int(c[1])
         m[x][y].rotate(d)
     elif choice == 4:

@@ -63,8 +63,10 @@ class GameMap (list):
     def move(self, animal, ncoords):
         x, y = animal.coords
         nx, ny = ncoords
-        if self[nx][ny] == 0 and (nx-x ==0 ^ ny-y ==0):
-            animal.coords = (nx,ny)
+        cx, cy = nx-x, ny-y
+        if self[nx][ny] == 0 and (cx == 0 and cy == 1 or cx == 1 and cy == 0):
+            animal.coords = (nx, ny)
+            self[x][y] = 0
             self[nx][ny] = animal
 
     def __str__(self):
@@ -97,7 +99,7 @@ class GameMap (list):
                         d='< '
                     else :
                         d='∨ '
-                    s+=d
+                    s += d
             s+='\n \n'
         return s
 
