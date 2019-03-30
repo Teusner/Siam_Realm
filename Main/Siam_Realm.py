@@ -24,7 +24,7 @@ m = gm.GameMap()
 condSortie=False
 
 # Player turn
-Player1=True
+Player1 = True
 
 
 while not condSortie:
