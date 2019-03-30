@@ -110,6 +110,12 @@ class Boulder:
         self.species = 'Boulder'
 
 
+class Crosses:
+    def __init__(self, coords):
+        self.coords = coords
+        self.species = 'Crosses'
+
+
 if __name__ == '__main__':
     g=GameMap()
     #g.add(Animal(0, 0, np.array([1,0]), 'Rhinoceros'))
