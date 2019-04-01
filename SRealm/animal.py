@@ -29,16 +29,19 @@ class Animal:
     """
             Creating an animal.
 
-            This create an animal with a position and a direction on a map.
+            This creates an animal with a position and a direction.
 
-            :param x: is the abscissa of the animal
-            :type x: int
-            :param y: is the ordinate of the animal
-            :type y: int
-            :param dir: is the direction of the animal
-            :type dir: numpy.array
-            :param species: is the species of the animal. It can take only the values : "Elephant" or "Rhinoceros"
-            :type car: car
+            :Args:
+                :param x: is the abscissa of the animal
+                :type x: int
+                :param y: is the ordinate of the animal
+                :type y: int
+                :param dir: is the direction of the animal
+                :type dir: numpy.array
+
+            :Returns:
+                :param species: is the species of the animal. It can take only the values : "Elephant" or "Rhinoceros"
+                :type car: car
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
@@ -55,14 +58,15 @@ class Animal:
         """
             Getting the coordinates
 
-            :return coords: is
-            :type car: car
+            :Returns:
+                :return coords: which are the coordinates of the animal
+                :rtype tuple: car
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> print(a.coords)
 
-            .. seealso:: Boulder()
+            .. seealso:: animal.direction()
         """
         return self.__coords
 
