@@ -13,7 +13,7 @@ def turn(nbplayer):
     print("2 - Move on a free case")
     print("3 - Change the direction of an animal")
     print("4 - Take an animal off the board")
-    choice = input("Type your choice : ")
+    choice = input("Choose your move : ")
     print('\n')
     return int(choice)
 
