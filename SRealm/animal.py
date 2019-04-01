@@ -32,14 +32,12 @@ class Animal:
             This creates an animal with a position and a direction.
 
             :Args:
-                :param x: is the abscissa of the animal
+                :param x: is the abscissa of the animal.
                 :type x: int
-                :param y: is the ordinate of the animal
+                :param y: is the ordinate of the animal.
                 :type y: int
                 :param dir: is the direction of the animal
                 :type dir: numpy.array
-
-            :Returns:
                 :param species: is the species of the animal. It can take only the values : "Elephant" or "Rhinoceros"
                 :type car: car
 
@@ -56,11 +54,11 @@ class Animal:
     @property
     def coords(self):
         """
-            Getting the coordinates
+            Getting the coordinates.
 
             :Returns:
-                :return coords: which are the coordinates of the animal
-                :rtype tuple: car
+                :return coords: which are the coordinates of the animal.
+                :rtype coords: tuple of int
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
@@ -72,6 +70,20 @@ class Animal:
 
     @coords.setter
     def coords(self, ncoords):
+        """
+            Setting the coordinates.
+
+            :Args:
+                :param ncoords: which are the new coords of the animal
+                :type ncoords: tuple of int
+
+
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> a.coords((0, 2))
+
+            .. seealso:: animal.direction()
+        """
         nx,ny=ncoords
         if nx < 5 and ny < 5 :
             self.__coords = nx,ny
