@@ -105,3 +105,4 @@ if __name__ == '__main__':
     a.rotate(np.array([-1, 0]))
     print(a.bearing(b))
     print(a, b)
+
