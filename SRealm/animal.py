@@ -6,9 +6,10 @@ import numpy as np
 
 class Animal:
     """
-        Creating an animal.
+        The Animal module
+        =================
 
-        This creates an animal with a position and a direction.
+        This module creates an animal with a position and a direction.
 
         :Args:
             :param x: is the abscissa of the animal,
