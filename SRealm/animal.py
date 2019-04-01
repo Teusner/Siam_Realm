@@ -143,6 +143,28 @@ class Animal:
         return self.__species + ' : [Position = ' + str(self.coords) + ' ; Direction = ' + str(self.direction) + ']\n'
 
 
+class Boulder:
+    """
+        The Boulder module
+        =================
+
+        This module creates an boulder with a position.
+
+        :Args:
+            :param x (int): is the abscissa of the boulder,
+            :param y (int): is the ordinate of the boulder,
+            :param species (str): is the species of the species. It can only take the values "Boulder" and is here to be used with polymorphism.
+
+        :Example:
+            >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+
+        .. seealso:: Animal(), Crosses()
+    """
+    def __init__(self, coords):
+        self.coords = coords
+        self.species = 'Boulder'
+
+
 if __name__ == '__main__':
     a = Animal(0, 2, np.array([1,0]), 'Elephant')
     b = Animal(1, 2, np.array([1,0]), 'Rhinoceros')

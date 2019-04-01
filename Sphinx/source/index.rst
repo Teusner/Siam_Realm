@@ -5,10 +5,10 @@ Welcome to the King of Siam's documentation!
 .. automodule:: animal.Animal
    :members:
 
-.. automodule:: gamemap.GameMap
+.. automodule:: animal.GameMap
    :members:
 
-.. automodule:: gamemap.Boulder
+.. automodule:: animal.Boulder
    :members:
 
 .. automodule:: gamemap.Crosses
