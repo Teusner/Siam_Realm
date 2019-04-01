@@ -43,6 +43,8 @@ class Animal:
             :Setter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> a.coords((0, 2))
+
+            .. warning:: The coordinates should be on the 5x5 board game.
         """
         return self.__coords
 
@@ -148,7 +150,7 @@ class Boulder:
         The Boulder module
         =================
 
-        This module creates an boulder with a position.
+        This module creates a boulder at a position.
 
         :Args:
             :param x (int): is the abscissa of the boulder,
@@ -156,12 +158,13 @@ class Boulder:
             :param species (str): is the species of the species. It can only take the values "Boulder" and is here to be used with polymorphism.
 
         :Example:
-            >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+            >>> b = Boulder(1, 2)
 
+        .. warning:: The coordinates should be on the 5x5 board game.
         .. seealso:: Animal(), Crosses()
     """
-    def __init__(self, coords):
-        self.coords = coords
+    def __init__(self, x, y):
+        self.coords = (x, y)
         self.species = 'Boulder'
 
 
