@@ -34,18 +34,44 @@ class GameMap (list):
 
     @property
     def nb_elephants(self):
+        """
+            Getting an elephant's number.
+
+            :Returns:
+                :return nb_elephants: identifies an elephant.
+                :rtype nb_elephants: int.
+        """
         return self.__nb_elephants
 
     @nb_elephants.setter
-    def nb_elephants(self, x):
+    def nb_elephants(self, nb_el):
+        """
+            Getting an elephant's number.
+
+            :Prints:
+                :print number of elephants can not be changed by hand.
+        """
         print('Warning ! Changing the number of Elephant is not possible!')
 
     @property
     def nb_rhinoceros(self):
+        """
+             Getting a rhino's number.
+
+             :Returns:
+                 :return nb_rhinoceros: identifies a rhino.
+                 :rtype nb_rhinoceros: int.
+             """
         return self.__nb_rhinoceros
 
     @nb_rhinoceros.setter
     def nb_rhinoceros(self, x):
+        """
+            Getting an elephant's number.
+
+            :Prints:
+                :print number of elephants can not be changed by hand.
+        """
         print('Warning ! Changing the number of Rhinoceros is not possible!')
 
     def add(self, animal):
