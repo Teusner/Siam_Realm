@@ -1,5 +1,6 @@
-Welcome to SiamRealm's documentation!
+Welcome to the King of Siam's documentation!
 =====================================
+
 
 .. automodule:: animal.Animal
    :members:
@@ -8,6 +9,9 @@ Welcome to SiamRealm's documentation!
    :members:
 
 .. automodule:: gamemap.Boulder
+   :members:
+
+.. automodule:: gamemap.Crosses
    :members:
 
 .. toctree::

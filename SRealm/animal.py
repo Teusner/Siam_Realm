@@ -12,14 +12,10 @@ class Animal:
         This module creates an animal with a position and a direction.
 
         :Args:
-            :param x: is the abscissa of the animal,
-            :type x: int,
-            :param y: is the ordinate of the animal,
-            :type y: int,
-            :param dir: is the direction of the animal,
-            :type dir: numpy.array,
-            :param species: is the species of the animal. It can take only the values : "Elephant" or "Rhinoceros",
-            :type car: car.
+            :param x (int): is the abscissa of the animal,
+            :param y (int): is the ordinate of the animal,
+            :param dir (numpy.array): is the direction of the animal,
+            :param species (str): is the species of the animal. It can take only the values "Elephant" or "Rhinoceros".
 
         :Example:
             >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
@@ -34,17 +30,19 @@ class Animal:
     @property
     def coords(self):
         """
-            Getting the coordinates of the animal.
+            This is the coordinates of the animal in a tuple.
 
-            :Returns:
-                :return coords: which are the coordinates of the animal,
-                :rtype coords: tuple of int.
+            :Getter: Return the coordinates of the animal.
+            :Setter: Set the coordinates of the animal
+            :Type: tuple of int
 
-            :Example:
+            :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> print(a.coords)
 
-            .. seealso:: animal.direction(), animal.species()
+            :Setter's example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> a.coords((0, 2))
         """
         return self.__coords
 
@@ -53,15 +51,7 @@ class Animal:
         """
             Setting the coordinates or the animal. The coords should be
 
-            :Args:
-                :param ncoords: which are the new coords of the animal,
-                :type ncoords: tuple of int.
-
-            :Example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.coords((0, 2))
-
-            .. seealso:: animal.direction(), animal.species()
+            :param ncoords (tuple): which are the new coords of the animal.
         """
         nx,ny=ncoords
         if nx < 5 and ny < 5 :
@@ -70,17 +60,22 @@ class Animal:
     @property
     def direction(self):
         """
-            Getting the direction of the animal.
+            This is the direction of the animal in a numpy.array. The direction is a unitary vector with a null coordinate.
 
-            :Returns:
-                :return direction: which is the direction of the animal,
-                :rtype direction: numpy.array.
+            :Getter: Return the direction of the animal.
+            :Setter: Set the direction of the animal
+            :Type: numpy.array
 
-            :Example:
+            :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> print(a.direction)
+                >>> dir = a.direction
+                >>> print(dir)
 
-            .. seealso:: animal.coords(), animal.species()
+            :Setter's example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> a.direction(np.array([-1, 0])
+
+            .. warning:: the direction should be a numpy.array unitary vector with a null coordinate.
         """
         return self.__direction
 
@@ -89,15 +84,7 @@ class Animal:
         """
             Setting the direction of the animal. The direction is a unitary vector with a null coordinate.
 
-            :Args:
-                :param ndir: which is the new direction of the animal,
-                :type ndir: tuple of int.
-
-            :Example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.direction(np.array([-1, 0])
-
-            .. seealso:: animal.coords(), animal.species()
+            :param ndir (numpy.array): which is the new direction of the animal.
         """
         if np.sqrt(ndir[0]**2+ndir[1]**2)==1 and (ndir[0]==0 or ndir[1]==0) :
             self.__direction = ndir
@@ -105,51 +92,37 @@ class Animal:
     @property
     def species(self):
         """
-            Getting the species of the animal.
+            This is the species of the animal. It should be "Elephant" or "Rhinoceros".
 
-            :Returns:
-                :return species: which is the direction of the animal,
-                :rtype species: string.
+            :Getter: Return the species of the animal.
+            :Setter: Set the species of the animal
+            :Type: str
 
-            :Example:
+            :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> print(a.species)
 
-            .. seealso:: animal.coords(), animal.direction()
+            :Setter's example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> a.species("Rhinoceros")
+
+            .. warning:: the species should be "Elephant" or "Rhinoceros".
         """
         return self.__species
 
     @species.setter
     def species(self, nspecies):
         """
-            Getting the direction of the animal. The direction is a unitary vector with a null coordinate.
+            Getting the species of the animal.
 
-            :Args:
-                :param nspecies: which is the new species of the animal,
-                :type nspecies: string.
-
-            :Example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.species("Rhinoceros")
-
-            .. seealso:: animal.coords(), animal.direction()
+            :param nspecies (str): which is the new species of the animal.
         """
         if nspecies in ['Elephant', 'Rhinoceros']:
             self.__species = nspecies
 
     def move(self, nx, ny):
         """
-            Getting the direction of the animal. The direction is a unitary vector with a null coordinate.
 
-            :Args:
-                :param nspecies: which is the new species of the animal,
-                :type nspecies: string.
-
-            :Example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.move((0, 2))
-
-            .. seealso:: animal.coords(), animal.direction()
         """
         self.coords = (nx,ny)
 

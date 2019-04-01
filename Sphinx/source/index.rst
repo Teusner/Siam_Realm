@@ -1,16 +1,17 @@
-Welcome to SiamRealm's documentation!
+Welcome to the King of Siam's documentation!
 =====================================
+
 
 .. automodule:: animal.Animal
    :members:
 
-.. automodule:: SRealm.gamemap.GameMap
+.. automodule:: gamemap.GameMap
    :members:
 
-.. automodule:: SRealm.gamemap.Boulder
+.. automodule:: gamemap.Boulder
    :members:
 
-.. automodule:: SRealm.gamemap.Crosses
+.. automodule:: gamemap.Crosses
    :members:
 
 .. toctree::

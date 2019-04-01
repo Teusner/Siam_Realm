@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../../SRealm'))
 # -- Project information -----------------------------------------------------
 import sphinx_bootstrap_theme
 
-project = 'SiamRealm'
+project = 'King of Siam'
 copyright = '2019, Quentin BRATEAU, Luca FAROLFI'
 author = 'Quentin BRATEAU, Luca FAROLFI'
 
@@ -51,10 +51,10 @@ html_theme = 'bootstrap'
 html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "SiamRealm",
+    'navbar_title': "King of Siam",
 
     # Tab name for entire site. (Default: "Site")
-    'navbar_site_name': "SiamRealm",
+    'navbar_site_name': "King of Siam",
 
     # A list of tuples containing pages or urls to link to.
     # Valid tuples should be in the following forms:
@@ -64,8 +64,7 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        ("Examples", "examples"),
-        ("Link", "http://example.com", True),
+        ("GitHub", "https://github.com/Teusner/SiamRealm", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)

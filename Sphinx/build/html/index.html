@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to SiamRealm’s documentation! &#8212; SiamRealm 1.0 documentation</title>
+    <title>Welcome to the King of Siam’s documentation! &#8212; King of Siam 1.0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -34,15 +34,14 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          SiamRealm</a>
+          King of Siam</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="examples.html">Examples</a></li>
-                <li><a href="http://example.com">Link</a></li>
+                <li><a href="https://github.com/Teusner/SiamRealm">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -50,7 +49,7 @@
      id="dLabelGlobalToc"
      data-toggle="dropdown"
      data-target="#"
-     href="#">SiamRealm <b class="caret"></b></a>
+     href="#">King of Siam <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"></ul>
@@ -65,7 +64,10 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Welcome to SiamRealm’s documentation!</a></li>
+<li><a class="reference internal" href="#">Welcome to the King of Siam’s documentation!</a><ul>
+<li><a class="reference internal" href="#the-animal-module">The Animal module</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </ul>
@@ -106,36 +108,25 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="module-animal.Animal">
-<span id="welcome-to-siamrealm-s-documentation"></span><h1>Welcome to SiamRealm’s documentation!<a class="headerlink" href="#module-animal.Animal" title="Permalink to this headline">¶</a></h1>
-<p>Creating an animal.</p>
-<p>This creates an animal with a position and a direction.</p>
+  <div class="section" id="welcome-to-the-king-of-siam-s-documentation">
+<h1>Welcome to the King of Siam’s documentation!<a class="headerlink" href="#welcome-to-the-king-of-siam-s-documentation" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-animal.Animal"></span><div class="section" id="the-animal-module">
+<h2>The Animal module<a class="headerlink" href="#the-animal-module" title="Permalink to this headline">¶</a></h2>
+<p>This module creates an animal with a position and a direction.</p>
 <dl class="field-list">
 <dt class="field-odd">Args</dt>
 <dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">param x</dt>
+<dt class="field-odd">param x (int)</dt>
 <dd class="field-odd"><p>is the abscissa of the animal,</p>
 </dd>
-<dt class="field-even">type x</dt>
-<dd class="field-even"><p>int,</p>
+<dt class="field-even">param y (int)</dt>
+<dd class="field-even"><p>is the ordinate of the animal,</p>
 </dd>
-<dt class="field-odd">param y</dt>
-<dd class="field-odd"><p>is the ordinate of the animal,</p>
-</dd>
-<dt class="field-even">type y</dt>
-<dd class="field-even"><p>int,</p>
-</dd>
-<dt class="field-odd">param dir</dt>
+<dt class="field-odd">param dir (numpy.array)</dt>
 <dd class="field-odd"><p>is the direction of the animal,</p>
 </dd>
-<dt class="field-even">type dir</dt>
-<dd class="field-even"><p>numpy.array,</p>
-</dd>
-<dt class="field-odd">param species</dt>
-<dd class="field-odd"><p>is the species of the animal. It can take only the values : “Elephant” or “Rhinoceros”,</p>
-</dd>
-<dt class="field-even">type car</dt>
-<dd class="field-even"><p>car.</p>
+<dt class="field-even">param species (str)</dt>
+<dd class="field-even"><p>is the species of the animal. It can take only the values “Elephant” or “Rhinoceros”.</p>
 </dd>
 </dl>
 </dd>
@@ -152,87 +143,91 @@
 <dl class="attribute">
 <dt id="animal.Animal.coords">
 <code class="descclassname">animal.Animal.</code><code class="descname">coords</code><a class="headerlink" href="#animal.Animal.coords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Getting the coordinates of the animal.</p>
+<dd><p>This is the coordinates of the animal in a tuple.</p>
 <dl class="field-list">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">return coords</dt>
-<dd class="field-odd"><p>which are the coordinates of the animal,</p>
+<dt class="field-odd">Getter</dt>
+<dd class="field-odd"><p>Return the coordinates of the animal.</p>
 </dd>
-<dt class="field-even">rtype coords</dt>
-<dd class="field-even"><p>tuple of int.</p>
+<dt class="field-even">Setter</dt>
+<dd class="field-even"><p>Set the coordinates of the animal</p>
 </dd>
-</dl>
-</dd>
-<dt class="field-odd">Example</dt>
+<dt class="field-odd">Getter’s example</dt>
 <dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>animal.direction(), animal.species()</p>
+<dt class="field-even">Setter’s example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">coords</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
 </div>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="animal.Animal.direction">
 <code class="descclassname">animal.Animal.</code><code class="descname">direction</code><a class="headerlink" href="#animal.Animal.direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Getting the direction of the animal.</p>
+<dd><p>This is the direction of the animal in a numpy.array. The direction is a unitary vector with a null coordinate.</p>
 <dl class="field-list">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">return direction</dt>
-<dd class="field-odd"><p>which is the direction of the animal,</p>
+<dt class="field-odd">Getter</dt>
+<dd class="field-odd"><p>Return the direction of the animal.</p>
 </dd>
-<dt class="field-even">rtype direction</dt>
-<dd class="field-even"><p>numpy.array.</p>
+<dt class="field-even">Setter</dt>
+<dd class="field-even"><p>Set the direction of the animal</p>
 </dd>
-</dl>
-</dd>
-<dt class="field-odd">Example</dt>
+<dt class="field-odd">Getter’s example</dt>
 <dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">direction</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt class="field-even">Setter’s example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">direction</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd>
 </dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>animal.coords(), animal.species()</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the direction should be a numpy.array unitary vector with a null coordinate.</p>
 </div>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="animal.Animal.species">
 <code class="descclassname">animal.Animal.</code><code class="descname">species</code><a class="headerlink" href="#animal.Animal.species" title="Permalink to this definition">¶</a></dt>
-<dd><p>Getting the species of the animal.</p>
+<dd><p>This is the species of the animal. It should be “Elephant” or “Rhinoceros”.</p>
 <dl class="field-list">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">return species</dt>
-<dd class="field-odd"><p>which is the direction of the animal,</p>
+<dt class="field-odd">Getter</dt>
+<dd class="field-odd"><p>Return the species of the animal.</p>
 </dd>
-<dt class="field-even">rtype species</dt>
-<dd class="field-even"><p>string.</p>
+<dt class="field-even">Setter</dt>
+<dd class="field-even"><p>Set the species of the animal</p>
 </dd>
-</dl>
-</dd>
-<dt class="field-odd">Example</dt>
+<dt class="field-odd">Getter’s example</dt>
 <dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
+<dt class="field-even">Setter’s example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">species</span><span class="p">(</span><span class="s2">&quot;Rhinoceros&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
 </dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>animal.coords(), animal.direction()</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the species should be “Elephant” or “Rhinoceros”.</p>
 </div>
 </dd></dl>
 
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
