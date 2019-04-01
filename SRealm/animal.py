@@ -31,19 +31,19 @@ class Animal:
 
             This create an animal with a position and a direction on a map.
 
-            :param x: int
-            :param y: int
-            :param dir: int
-            :param map: map.map
+            :param x: is the abscissa of the animal
+            :type x: int
+            :param y: is the ordinate of the animal
+            :type y: int
+            :param dir: is the direction of the animal
+            :type dir: numpy.array
+            :param species: is the species of the animal. It can take only the values : "Elephant" or "Rhinoceros"
             :type car: car
 
             :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
 
-            # >>> M = Map()
-            # >>> a = Animal(0,1,180,M)
-
-            .. seealso:: elephant(), rhinoceros()
-            .. warning:: This class is abstract and can not be instanciated.
+            .. seealso:: Boulder()
     """
     def __init__(self, x, y, dir, species):
         self.__coords = x,y
@@ -52,6 +52,18 @@ class Animal:
 
     @property
     def coords(self):
+        """
+            Getting the coordinates
+
+            :return coords: is
+            :type car: car
+
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> print(a.coords)
+
+            .. seealso:: Boulder()
+        """
         return self.__coords
 
     @coords.setter
