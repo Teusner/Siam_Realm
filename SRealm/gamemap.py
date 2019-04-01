@@ -7,23 +7,14 @@ from SRealm.animal import Animal
 
 class GameMap (list):
     """
-                Creating an animal.
+                Creating a gamemap.
 
-                This create an animal with a position and a direction on a map.
-
-                :param x: is the abscissa of the animal
-                :type x: int
-                :param y: is the ordinate of the animal
-                :type y: int
-                :param dir: is the direction of the animal
-                :type dir: numpy.array
-                :param species: is the species of the animal. It can take only the values : "Elephant" or "Rhinoceros"
-                :type car: car
+                This creates a gamemap with the moves and position of the gamepieces, it is inherited from a list.
 
                 :Example:
-                    >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                    >>> m = GameMap()
 
-                .. seealso:: Animal(), Boulder()
+                .. seealso:: Animal(), Boulder(), Crosses()
         """
     def __init__(self):
         self.xmax = 5
