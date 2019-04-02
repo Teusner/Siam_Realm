@@ -11,7 +11,7 @@ Welcome to the King of Siam's documentation!
 .. automodule:: animal.Boulder
    :members:
 
-.. automodule:: gamemap.Crosses
+.. automodule:: animal.Cross
    :members:
 
 .. toctree::

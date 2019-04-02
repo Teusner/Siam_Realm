@@ -20,7 +20,7 @@ class Animal:
         :Example:
             >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
 
-        .. seealso:: Boulder(), Crosses()
+        .. seealso:: :class:`animal.Boulder()`, :class:`animal.Cross()`
     """
     def __init__(self, x, y, dir, species):
         self.__coords = x,y
@@ -148,24 +148,47 @@ class Animal:
 class Boulder:
     """
         The Boulder module
-        =================
+        ==================
 
         This module creates a boulder at a position.
 
         :Args:
             :param x (int): is the abscissa of the boulder,
             :param y (int): is the ordinate of the boulder,
-            :param species (str): is the species of the species. It can only take the values "Boulder" and is here to be used with polymorphism.
+            :param species (str): is the species of this object. It can only take the values "Boulder" and is here to be used with polymorphism.
 
         :Example:
             >>> b = Boulder(1, 2)
 
         .. warning:: The coordinates should be on the 5x5 board game.
-        .. seealso:: Animal(), Crosses()
+        .. seealso:: :class:`animal.Animal()`, :class:`animal.Cross()`
     """
     def __init__(self, x, y):
         self.coords = (x, y)
         self.species = 'Boulder'
+
+
+class Cross:
+    """
+        The Cross module
+        ================
+
+        This module creates a cross at a position.
+
+        :Args:
+            :param x (int): is the abscissa of the cross,
+            :param y (int): is the ordinate of the cross,
+            :param species (str): is the species of this object. It can only take the values "Cross" and is here to be used with polymorphism.
+
+        :Example:
+            >>> b = Cross(1, 2)
+
+        .. warning:: The coordinates should be on the 5x5 board game.
+        .. seealso:: :class:`animal.Animal()`, :class:`animal.Boulder()`
+    """
+    def __init__(self, coords):
+        self.coords = coords
+        self.species = 'Cross'
 
 
 if __name__ == '__main__':

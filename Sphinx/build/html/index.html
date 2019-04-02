@@ -67,6 +67,7 @@
 <li><a class="reference internal" href="#">Welcome to the King of Siam’s documentation!</a><ul>
 <li><a class="reference internal" href="#the-animal-module">The Animal module</a></li>
 <li><a class="reference internal" href="#the-boulder-module">The Boulder module</a></li>
+<li><a class="reference internal" href="#the-cross-module">The Cross module</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
@@ -139,7 +140,7 @@
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>Boulder(), Crosses()</p>
+<p><a class="reference internal" href="#module-animal.Boulder" title="animal.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Boulder()</span></code></a>, <a class="reference internal" href="#module-animal.Cross" title="animal.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Cross()</span></code></a></p>
 </div>
 <dl class="attribute">
 <dt id="animal.Animal.coords">
@@ -255,7 +256,7 @@
 <dd class="field-even"><p>is the ordinate of the boulder,</p>
 </dd>
 <dt class="field-odd">param species (str)</dt>
-<dd class="field-odd"><p>is the species of the species. It can only take the values “Boulder” and is here to be used with polymorphism.</p>
+<dd class="field-odd"><p>is the species of this object. It can only take the values “Boulder” and is here to be used with polymorphism.</p>
 </dd>
 </dl>
 </dd>
@@ -271,7 +272,39 @@
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>Animal(), Crosses()</p>
+<p><a class="reference internal" href="#module-animal.Animal" title="animal.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Animal()</span></code></a>, <a class="reference internal" href="#module-animal.Cross" title="animal.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Cross()</span></code></a></p>
+</div>
+</div>
+<span class="target" id="module-animal.Cross"></span><div class="section" id="the-cross-module">
+<h2>The Cross module<a class="headerlink" href="#the-cross-module" title="Permalink to this headline">¶</a></h2>
+<p>This module creates a cross at a position.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param x (int)</dt>
+<dd class="field-odd"><p>is the abscissa of the cross,</p>
+</dd>
+<dt class="field-even">param y (int)</dt>
+<dd class="field-even"><p>is the ordinate of the cross,</p>
+</dd>
+<dt class="field-odd">param species (str)</dt>
+<dd class="field-odd"><p>is the species of this object. It can only take the values “Cross” and is here to be used with polymorphism.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Cross</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The coordinates should be on the 5x5 board game.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#module-animal.Animal" title="animal.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Animal()</span></code></a>, <a class="reference internal" href="#module-animal.Boulder" title="animal.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Boulder()</span></code></a></p>
 </div>
 </div>
 <div class="toctree-wrapper compound">
