@@ -145,6 +145,152 @@ class Animal:
         return self.__species + ' : [Position = ' + str(self.coords) + ' ; Direction = ' + str(self.direction) + ']\n'
 
 
+class GameMap (list):
+    """
+        The Gamemap module
+        ==================
+
+        Creating the Gamemap.
+
+        This creates the 5x5 gamemap with the moves and position of the gamepieces to play at the King of Siam. It is inherited from a list.
+
+        :Example:
+            >>> m = GameMap()
+
+        .. seealso:: :class:`animal.Animal()`, :class:`animal.Boulder()`, :class:`animal.Crosses()`
+    """
+    def __init__(self):
+        self.xmax = 5
+        self.ymax = 5
+        self.__nb_elephants = 0
+        self.__nb_rhinoceros = 0
+        self.nb_boulders = 0
+        self.nb_crosses = 0
+        for k in range(self.ymax):
+            y=[]
+            for i in range(self.ymax):
+                y.append(0)
+            self.append(y)
+        for k in range(3): # Setting up the 3 Boulders
+            self[1+k][2]=Boulder(1+k, 2)
+            self.nb_boulders += 1
+
+    @property
+    def nb_elephants(self):
+        """
+            This is the number of elephant on the gamemap.
+
+            :Getter: Return the number of elephant on the gamemap.
+            :Type: int
+
+            :Getter's example:
+                >>> m = GameMap()
+                >>> print(m.nb_elephants)
+
+            .. note:: The elephant's number can not exceed 5.
+            .. warning:: the number of elephant can't be changed by hand.
+        """
+        return self.__nb_elephants
+
+    @nb_elephants.setter
+    def nb_elephants(self, nb_el):
+        """
+            Setting the elephant's number.
+            .. warning:: the number of elephant can't be changed by hand.
+        """
+        print('Warning ! Changing the number of Elephant is not possible!')
+
+    @property
+    def nb_rhinoceros(self):
+        """
+            This is the number of rinoceros on the gamemap.
+
+            :Getter: Return the number of rhinoceros on the gamemap.
+            :Type: int
+
+            :Getter's example:
+                >>> m = GameMap()
+                >>> print(m.nb_rhinoceros)
+
+            .. note:: The rhinoceros's number can not exceed 5.
+            .. warning:: the number of rhinoceros can't be changed by hand.
+        """
+        return self.__nb_rhinoceros
+
+    @nb_rhinoceros.setter
+    def nb_rhinoceros(self, x):
+        """
+            Setting the rhinoceros's number.
+            .. warning:: the number of rhinoceros can't be changed by hand.
+        """
+        print('Warning ! Changing the number of Rhinoceros is not possible!')
+
+    def add(self, animal):
+        x, y = animal.coords
+        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self[x][y] = animal
+            self.__nb_elephants += 1
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self[x][y] = animal
+            self.__nb_rhinoceros += 1
+        else:
+            return False
+
+    def delete(self, animal):
+        x, y = animal.coords
+        if x == 0 or x == 4 or y == 0 or y == 4:
+            self[x][y] = 0
+            if animal.species == 'Elephant':
+                self.__nb_elephants -= 1
+            elif animal.species == 'Rhinoceros':
+                self.__nb_rhinoceros -= 1
+        else:
+            return False
+
+    def move(self, animal, ncoords):
+        x, y = animal.coords
+        nx, ny = ncoords
+        cx, cy = nx-x, ny-y
+        if self[nx][ny] == 0 and (cx == 0 and cy == 1 or cx == 1 and cy == 0):
+            animal.coords = (nx, ny)
+            self[x][y] = 0
+            self[nx][ny] = animal
+
+    def __str__(self):
+        """
+            Show the current state of the game board
+
+            :return: the string with the characteristics of the board
+            :rtype: str
+        """
+        s=''
+        for j in range(5):
+            for i in range(5):
+                ani = False
+                if self[i][j] == 0:
+                   s+=' 0  '
+                elif self[i][j].species == 'Elephant' :
+                    s+=' E'
+                    ani = True
+                elif self[i][j].species == 'Rhinoceros':
+                    s+=' R'
+                    ani = True
+                else :
+                    s+=' B  '
+                if ani :
+                    if self[i][j].direction[0] == 1 and self[i][j].direction[1] == 0:
+                        d='> '
+                    elif self[i][j].direction[0] == 0 and self[i][j].direction[1] == 1:
+                        d='∧ '
+                    elif self[i][j].direction[0] == -1 and self[i][j].direction[1] == 0:
+                        d='< '
+                    else :
+                        d='∨ '
+                    s += d
+            s+='\n \n'
+        return s
+
+
 class Boulder:
     """
         The Boulder module
