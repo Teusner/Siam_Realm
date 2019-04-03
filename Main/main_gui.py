@@ -1,0 +1,77 @@
+from PyQt5 import QtWidgets, QtGui
+from PyQt5.QtCore import Qt
+
+
+class Login(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(Login, self).__init__(parent)
+
+        self.initGUI()
+        self.setWindowTitle("Login")
+        self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
+        self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
+        self.setFixedSize(400, 150)
+
+    def initGUI(self):
+        # Creating the elephant login
+        self.eText = QtWidgets.QLabel("Elephant's name ")
+        self.eName = QtWidgets.QLineEdit(self)
+        self.eName.setStyleSheet("background-color: white; color: #0984e3; font-weight: bold; font-size: 14px; padding: 4px; margin-left: 6px; width: 150px; height: 20px; border: 0px solid #aaa; border-radius: 0px;")
+
+        # Creating the elephant login
+        self.rText = QtWidgets.QLabel("Rhinoceros name")
+        self.rName = QtWidgets.QLineEdit(self)
+        self.rName.setStyleSheet("background-color: white; color: #d63031; font-weight: bold; font-size: 14px; padding: 4px; margin-left: 6px; width: 150px; height: 20px; border: 0px solid #aaa; border-radius: 0px;")
+
+        # Creating the login button
+        self.buttonLogin = QtWidgets.QPushButton('Login', self)
+        self.buttonLogin.clicked.connect(self.handleLogin)
+        self.buttonLogin.setStyleSheet("height: 30px; font-size: 18px; color: white; text-align: center; background: #2980b9; border: 0; border-bottom: 2px solid #2475ab;")
+
+        eLayout = QtWidgets.QHBoxLayout()
+        eLayout.addWidget(self.eText)
+        eLayout.addWidget(self.eName)
+        rLayout = QtWidgets.QHBoxLayout()
+        rLayout.addWidget(self.rText)
+        rLayout.addWidget(self.rName)
+
+        layout = QtWidgets.QVBoxLayout(self)
+        layout.addLayout(eLayout)
+        layout.addLayout(rLayout)
+        layout.addWidget(self.buttonLogin)
+
+        self.setLayout(layout)
+
+
+    def handleLogin(self):
+        if self.eName.text() != '' and self.rName.text() != '':
+            self.accept()
+        else:
+            QtWidgets.QMessageBox.warning(
+                self, 'Error', 'Enter valid usernames !')
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            print("appui bouton gauche")
+            print("position = " + str(event.x()) + " " + str(event.y()))
+
+
+class Game(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        super(Game, self).__init__(parent)
+        self.resize(600, 600)
+        self.setWindowTitle("King of Siam")
+        self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
+        self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
+
+if __name__ == '__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    login = Login()
+
+    eName, rName = login.eName.text(), login.rName.text()
+
+    if login.exec_() == QtWidgets.QDialog.Accepted:
+        gwin = Game()
+        gwin.show()
+        sys.exit(app.exec_())
