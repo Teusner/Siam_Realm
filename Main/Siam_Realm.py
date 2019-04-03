@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import SRealm.gamemap as gm
-from SRealm.KingOfSiam import Animal
+import Module.gamemap as gm
+from Module.KingOfSiam import Animal
 
 
 
