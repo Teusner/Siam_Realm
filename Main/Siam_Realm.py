@@ -3,7 +3,7 @@
 
 import numpy as np
 import SRealm.gamemap as gm
-from SRealm.animal import Animal
+from SRealm.KingOfSiam import Animal
 
 
 

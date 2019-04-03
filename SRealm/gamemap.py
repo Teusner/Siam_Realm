@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from SRealm.animal import Animal
+from SRealm.KingOfSiam import Animal
 
 
 class GameMap (list):
