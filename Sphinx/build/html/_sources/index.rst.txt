@@ -1,30 +1,31 @@
 Welcome to the King of Siam's documentation!
 ============================================
 
-This :mod:`animal` module is created to play at the King of Siam game. There is 4 classes which
+This :mod:`KingOfSiam` module is created to play at the King of Siam game. There is 4 classes which
 are implemented :
-    - :class:`animal.Gamemap` : which is the game board.
-    - :class:`animal.Animal` : which can be "Elephant" or "Rhinoceros".
-    - :class:`animal.Boulder` : which are the boulders on the game board.
-    - :class:`animal.Cross` : which are the crosses we can set up to stop some moves.
+    - :class:`KingOfSiam.GameMap` : which is the game board.
+    - :class:`KingOfSiam.Animal` : which can be "Elephant" or "Rhinoceros".
+    - :class:`KingOfSiam.Boulder` : which are the boulders on the game board.
+    - :class:`KingOfSiam.Cross` : which are the crosses we can set up to stop some moves.
 
+....
 
-.. automodule:: animal.Animal
+.. automodule:: KingOfSiam.Animal
    :members:
 
 ....
 
-.. automodule:: animal.GameMap
+.. automodule:: KingOfSiam.GameMap
    :members:
 
 ....
 
-.. automodule:: animal.Boulder
+.. automodule:: KingOfSiam.Boulder
    :members:
 
 ....
 
-.. automodule:: animal.Cross
+.. automodule:: KingOfSiam.Cross
    :members:
 
 ....

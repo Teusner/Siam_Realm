@@ -113,33 +113,34 @@
       
   <div class="section" id="welcome-to-the-king-of-siam-s-documentation">
 <h1>Welcome to the King of Siam’s documentation!<a class="headerlink" href="#welcome-to-the-king-of-siam-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This <code class="xref py py-mod docutils literal notranslate"><span class="pre">animal</span></code> module is created to play at the King of Siam game. There is 4 classes which
+<p>This <code class="xref py py-mod docutils literal notranslate"><span class="pre">KingOfSiam</span></code> module is created to play at the King of Siam game. There is 4 classes which
 are implemented :</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Gamemap</span></code> : which is the game board.</p></li>
-<li><p><a class="reference internal" href="#module-animal.Animal" title="animal.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Animal</span></code></a> : which can be “Elephant” or “Rhinoceros”.</p></li>
-<li><p><a class="reference internal" href="#module-animal.Boulder" title="animal.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Boulder</span></code></a> : which are the boulders on the game board.</p></li>
-<li><p><a class="reference internal" href="#module-animal.Cross" title="animal.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Cross</span></code></a> : which are the crosses we can set up to stop some moves.</p></li>
+<li><p><a class="reference internal" href="#module-KingOfSiam.GameMap" title="KingOfSiam.GameMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.GameMap</span></code></a> : which is the game board.</p></li>
+<li><p><a class="reference internal" href="#module-KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal</span></code></a> : which can be “Elephant” or “Rhinoceros”.</p></li>
+<li><p><a class="reference internal" href="#module-KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder</span></code></a> : which are the boulders on the game board.</p></li>
+<li><p><a class="reference internal" href="#module-KingOfSiam.Cross" title="KingOfSiam.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Cross</span></code></a> : which are the crosses we can set up to stop some moves.</p></li>
 </ul>
 </div></blockquote>
-<span class="target" id="module-animal.Animal"></span><div class="section" id="the-animal-module">
+<hr class="docutils" />
+<span class="target" id="module-KingOfSiam.Animal"></span><div class="section" id="the-animal-module">
 <h2>The Animal module<a class="headerlink" href="#the-animal-module" title="Permalink to this headline">¶</a></h2>
-<p>This module creates an animal with a position and a direction.</p>
+<p>This module creates an KingOfSiam with a position and a direction.</p>
 <dl class="field-list">
 <dt class="field-odd">Args</dt>
 <dd class="field-odd"><dl class="field-list simple">
 <dt class="field-odd">param x (int)</dt>
-<dd class="field-odd"><p>is the abscissa of the animal,</p>
+<dd class="field-odd"><p>is the abscissa of the KingOfSiam,</p>
 </dd>
 <dt class="field-even">param y (int)</dt>
-<dd class="field-even"><p>is the ordinate of the animal,</p>
+<dd class="field-even"><p>is the ordinate of the KingOfSiam,</p>
 </dd>
 <dt class="field-odd">param dir (numpy.array)</dt>
-<dd class="field-odd"><p>is the direction of the animal,</p>
+<dd class="field-odd"><p>is the direction of the KingOfSiam,</p>
 </dd>
 <dt class="field-even">param species (str)</dt>
-<dd class="field-even"><p>is the species of the animal. It can take only the values “Elephant” or “Rhinoceros”.</p>
+<dd class="field-even"><p>is the species of the KingOfSiam. It can take only the values “Elephant” or “Rhinoceros”.</p>
 </dd>
 </dl>
 </dd>
@@ -151,18 +152,18 @@ are implemented :</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#module-animal.Boulder" title="animal.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Boulder()</span></code></a>, <a class="reference internal" href="#module-animal.Cross" title="animal.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Cross()</span></code></a></p>
+<p><a class="reference internal" href="#module-KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a>, <a class="reference internal" href="#module-KingOfSiam.Cross" title="KingOfSiam.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Cross()</span></code></a></p>
 </div>
 <dl class="attribute">
-<dt id="animal.Animal.coords">
-<code class="descclassname">animal.Animal.</code><code class="descname">coords</code><a class="headerlink" href="#animal.Animal.coords" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the coordinates of the animal in a tuple.</p>
+<dt id="KingOfSiam.Animal.coords">
+<code class="descclassname">KingOfSiam.Animal.</code><code class="descname">coords</code><a class="headerlink" href="#KingOfSiam.Animal.coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the coordinates of the KingOfSiam in a tuple.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
-<dd class="field-odd"><p>Return the coordinates of the animal.</p>
+<dd class="field-odd"><p>Return the coordinates of the KingOfSiam.</p>
 </dd>
 <dt class="field-even">Setter</dt>
-<dd class="field-even"><p>Set the coordinates of the animal</p>
+<dd class="field-even"><p>Set the coordinates of the KingOfSiam</p>
 </dd>
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>tuple of int</p>
@@ -187,15 +188,15 @@ are implemented :</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="animal.Animal.direction">
-<code class="descclassname">animal.Animal.</code><code class="descname">direction</code><a class="headerlink" href="#animal.Animal.direction" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the direction of the animal in a numpy.array. The direction is a unitary vector with a null coordinate.</p>
+<dt id="KingOfSiam.Animal.direction">
+<code class="descclassname">KingOfSiam.Animal.</code><code class="descname">direction</code><a class="headerlink" href="#KingOfSiam.Animal.direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the direction of the KingOfSiam in a numpy.array. The direction is a unitary vector with a null coordinate.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
-<dd class="field-odd"><p>Return the direction of the animal.</p>
+<dd class="field-odd"><p>Return the direction of the KingOfSiam.</p>
 </dd>
 <dt class="field-even">Setter</dt>
-<dd class="field-even"><p>Set the direction of the animal</p>
+<dd class="field-even"><p>Set the direction of the KingOfSiam</p>
 </dd>
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>numpy.array</p>
@@ -221,15 +222,15 @@ are implemented :</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="animal.Animal.species">
-<code class="descclassname">animal.Animal.</code><code class="descname">species</code><a class="headerlink" href="#animal.Animal.species" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the species of the animal. It should be “Elephant” or “Rhinoceros”.</p>
+<dt id="KingOfSiam.Animal.species">
+<code class="descclassname">KingOfSiam.Animal.</code><code class="descname">species</code><a class="headerlink" href="#KingOfSiam.Animal.species" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the species of the KingOfSiam. It should be “Elephant” or “Rhinoceros”.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
-<dd class="field-odd"><p>Return the species of the animal.</p>
+<dd class="field-odd"><p>Return the species of the KingOfSiam.</p>
 </dd>
 <dt class="field-even">Setter</dt>
-<dd class="field-even"><p>Set the species of the animal</p>
+<dd class="field-even"><p>Set the species of the KingOfSiam</p>
 </dd>
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>str</p>
@@ -255,7 +256,7 @@ are implemented :</p>
 
 </div>
 <hr class="docutils" />
-<span class="target" id="module-animal.GameMap"></span><div class="section" id="the-gamemap-module">
+<span class="target" id="module-KingOfSiam.GameMap"></span><div class="section" id="the-gamemap-module">
 <h2>The Gamemap module<a class="headerlink" href="#the-gamemap-module" title="Permalink to this headline">¶</a></h2>
 <p>Creating the Gamemap.</p>
 <p>This creates the 5x5 gamemap with the moves and position of the gamepieces to play at the King of Siam. It is inherited from a list.</p>
@@ -268,11 +269,11 @@ are implemented :</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#module-animal.Animal" title="animal.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Animal()</span></code></a>, <a class="reference internal" href="#module-animal.Boulder" title="animal.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Boulder()</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Crosses()</span></code></p>
+<p><a class="reference internal" href="#module-KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#module-KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Crosses()</span></code></p>
 </div>
 <dl class="attribute">
-<dt id="animal.GameMap.nb_elephants">
-<code class="descclassname">animal.GameMap.</code><code class="descname">nb_elephants</code><a class="headerlink" href="#animal.GameMap.nb_elephants" title="Permalink to this definition">¶</a></dt>
+<dt id="KingOfSiam.GameMap.nb_elephants">
+<code class="descclassname">KingOfSiam.GameMap.</code><code class="descname">nb_elephants</code><a class="headerlink" href="#KingOfSiam.GameMap.nb_elephants" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the number of elephant on the gamemap.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
@@ -299,8 +300,8 @@ are implemented :</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="animal.GameMap.nb_rhinoceros">
-<code class="descclassname">animal.GameMap.</code><code class="descname">nb_rhinoceros</code><a class="headerlink" href="#animal.GameMap.nb_rhinoceros" title="Permalink to this definition">¶</a></dt>
+<dt id="KingOfSiam.GameMap.nb_rhinoceros">
+<code class="descclassname">KingOfSiam.GameMap.</code><code class="descname">nb_rhinoceros</code><a class="headerlink" href="#KingOfSiam.GameMap.nb_rhinoceros" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the number of rinoceros on the gamemap.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
@@ -328,7 +329,7 @@ are implemented :</p>
 
 </div>
 <hr class="docutils" />
-<span class="target" id="module-animal.Boulder"></span><div class="section" id="the-boulder-module">
+<span class="target" id="module-KingOfSiam.Boulder"></span><div class="section" id="the-boulder-module">
 <h2>The Boulder module<a class="headerlink" href="#the-boulder-module" title="Permalink to this headline">¶</a></h2>
 <p>This module creates a boulder at a position.</p>
 <dl class="field-list">
@@ -357,11 +358,11 @@ are implemented :</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#module-animal.Animal" title="animal.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Animal()</span></code></a>, <a class="reference internal" href="#module-animal.Cross" title="animal.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Cross()</span></code></a></p>
+<p><a class="reference internal" href="#module-KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#module-KingOfSiam.Cross" title="KingOfSiam.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Cross()</span></code></a></p>
 </div>
 </div>
 <hr class="docutils" />
-<span class="target" id="module-animal.Cross"></span><div class="section" id="the-cross-module">
+<span class="target" id="module-KingOfSiam.Cross"></span><div class="section" id="the-cross-module">
 <h2>The Cross module<a class="headerlink" href="#the-cross-module" title="Permalink to this headline">¶</a></h2>
 <p>This module creates a cross at a position.</p>
 <dl class="field-list">
@@ -390,7 +391,7 @@ are implemented :</p>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#module-animal.Animal" title="animal.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Animal()</span></code></a>, <a class="reference internal" href="#module-animal.Boulder" title="animal.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">animal.Boulder()</span></code></a></p>
+<p><a class="reference internal" href="#module-KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#module-KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a></p>
 </div>
 </div>
 <hr class="docutils" />

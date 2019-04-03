@@ -9,18 +9,18 @@ class Animal:
         The Animal module
         =================
 
-        This module creates an animal with a position and a direction.
+        This module creates an KingOfSiam with a position and a direction.
 
         :Args:
-            :param x (int): is the abscissa of the animal,
-            :param y (int): is the ordinate of the animal,
-            :param dir (numpy.array): is the direction of the animal,
-            :param species (str): is the species of the animal. It can take only the values "Elephant" or "Rhinoceros".
+            :param x (int): is the abscissa of the KingOfSiam,
+            :param y (int): is the ordinate of the KingOfSiam,
+            :param dir (numpy.array): is the direction of the KingOfSiam,
+            :param species (str): is the species of the KingOfSiam. It can take only the values "Elephant" or "Rhinoceros".
 
         :Example:
             >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
 
-        .. seealso:: :class:`animal.Boulder()`, :class:`animal.Cross()`
+        .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
     """
     def __init__(self, x, y, dir, species):
         self.__coords = x,y
@@ -30,10 +30,10 @@ class Animal:
     @property
     def coords(self):
         """
-            This is the coordinates of the animal in a tuple.
+            This is the coordinates of the KingOfSiam in a tuple.
 
-            :Getter: Return the coordinates of the animal.
-            :Setter: Set the coordinates of the animal
+            :Getter: Return the coordinates of the KingOfSiam.
+            :Setter: Set the coordinates of the KingOfSiam
             :Type: tuple of int
 
             :Getter's example:
@@ -51,9 +51,9 @@ class Animal:
     @coords.setter
     def coords(self, ncoords):
         """
-            Setting the coordinates or the animal. The coords should be
+            Setting the coordinates or the KingOfSiam. The coords should be
 
-            :param ncoords (tuple): which are the new coords of the animal.
+            :param ncoords (tuple): which are the new coords of the KingOfSiam.
         """
         nx,ny=ncoords
         if nx < 5 and ny < 5 :
@@ -62,10 +62,10 @@ class Animal:
     @property
     def direction(self):
         """
-            This is the direction of the animal in a numpy.array. The direction is a unitary vector with a null coordinate.
+            This is the direction of the KingOfSiam in a numpy.array. The direction is a unitary vector with a null coordinate.
 
-            :Getter: Return the direction of the animal.
-            :Setter: Set the direction of the animal
+            :Getter: Return the direction of the KingOfSiam.
+            :Setter: Set the direction of the KingOfSiam
             :Type: numpy.array
 
             :Getter's example:
@@ -84,9 +84,9 @@ class Animal:
     @direction.setter
     def direction(self, ndir):
         """
-            Setting the direction of the animal. The direction is a unitary vector with a null coordinate.
+            Setting the direction of the KingOfSiam. The direction is a unitary vector with a null coordinate.
 
-            :param ndir (numpy.array): which is the new direction of the animal.
+            :param ndir (numpy.array): which is the new direction of the KingOfSiam.
         """
         if np.sqrt(ndir[0]**2+ndir[1]**2)==1 and (ndir[0]==0 or ndir[1]==0) :
             self.__direction = ndir
@@ -94,10 +94,10 @@ class Animal:
     @property
     def species(self):
         """
-            This is the species of the animal. It should be "Elephant" or "Rhinoceros".
+            This is the species of the KingOfSiam. It should be "Elephant" or "Rhinoceros".
 
-            :Getter: Return the species of the animal.
-            :Setter: Set the species of the animal
+            :Getter: Return the species of the KingOfSiam.
+            :Setter: Set the species of the KingOfSiam
             :Type: str
 
             :Getter's example:
@@ -115,9 +115,9 @@ class Animal:
     @species.setter
     def species(self, nspecies):
         """
-            Getting the species of the animal.
+            Getting the species of the KingOfSiam.
 
-            :param nspecies (str): which is the new species of the animal.
+            :param nspecies (str): which is the new species of the KingOfSiam.
         """
         if nspecies in ['Elephant', 'Rhinoceros']:
             self.__species = nspecies
@@ -131,15 +131,15 @@ class Animal:
     def rotate(self, dir):
         self.direction = dir
 
-    def bearing(self, animal):
-        dira, dirb = self.direction, animal.direction
+    def bearing(self, KingOfSiam):
+        dira, dirb = self.direction, KingOfSiam.direction
         return dira @ dirb
 
     def __str__(self):
         """
-            Show the current state of an animal
+            Show the current state of an KingOfSiam
 
-            :return: the string with the characteristics of the animal
+            :return: the string with the characteristics of the KingOfSiam
             :rtype: str
         """
         return self.__species + ' : [Position = ' + str(self.coords) + ' ; Direction = ' + str(self.direction) + ']\n'
@@ -157,7 +157,7 @@ class GameMap (list):
         :Example:
             >>> m = GameMap()
 
-        .. seealso:: :class:`animal.Animal()`, :class:`animal.Boulder()`, :class:`animal.Crosses()`
+        .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
     """
     def __init__(self):
         self.xmax = 5
@@ -225,36 +225,36 @@ class GameMap (list):
         """
         print('Warning ! Changing the number of Rhinoceros is not possible!')
 
-    def add(self, animal):
-        x, y = animal.coords
-        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
-            self[x][y] = animal
+    def add(self, KingOfSiam):
+        x, y = KingOfSiam.coords
+        if KingOfSiam.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self[x][y] = KingOfSiam
             self.__nb_elephants += 1
-        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
-            self[x][y] = animal
+        elif KingOfSiam.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self[x][y] = KingOfSiam
             self.__nb_rhinoceros += 1
         else:
             return False
 
-    def delete(self, animal):
-        x, y = animal.coords
+    def delete(self, KingOfSiam):
+        x, y = KingOfSiam.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
             self[x][y] = 0
-            if animal.species == 'Elephant':
+            if KingOfSiam.species == 'Elephant':
                 self.__nb_elephants -= 1
-            elif animal.species == 'Rhinoceros':
+            elif KingOfSiam.species == 'Rhinoceros':
                 self.__nb_rhinoceros -= 1
         else:
             return False
 
-    def move(self, animal, ncoords):
-        x, y = animal.coords
+    def move(self, KingOfSiam, ncoords):
+        x, y = KingOfSiam.coords
         nx, ny = ncoords
         cx, cy = nx-x, ny-y
         if self[nx][ny] == 0 and (cx == 0 and cy == 1 or cx == 1 and cy == 0):
-            animal.coords = (nx, ny)
+            KingOfSiam.coords = (nx, ny)
             self[x][y] = 0
-            self[nx][ny] = animal
+            self[nx][ny] = KingOfSiam
 
     def __str__(self):
         """
@@ -307,7 +307,7 @@ class Boulder:
             >>> b = Boulder(1, 2)
 
         .. warning:: The coordinates should be on the 5x5 board game.
-        .. seealso:: :class:`animal.Animal()`, :class:`animal.Cross()`
+        .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Cross()`
     """
     def __init__(self, x, y):
         self.coords = (x, y)
@@ -330,7 +330,7 @@ class Cross:
             >>> b = Cross(1, 2)
 
         .. warning:: The coordinates should be on the 5x5 board game.
-        .. seealso:: :class:`animal.Animal()`, :class:`animal.Boulder()`
+        .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`
     """
     def __init__(self, coords):
         self.coords = coords
