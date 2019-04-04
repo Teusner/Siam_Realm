@@ -9,13 +9,13 @@ class Animal:
         The Animal module
         =================
 
-        This module creates an KingOfSiam with a position and a direction.
+        This module creates an animal with a position and a direction.
 
         :Args:
-            :param x (int): is the abscissa of the KingOfSiam,
-            :param y (int): is the ordinate of the KingOfSiam,
-            :param dir (numpy.array): is the direction of the KingOfSiam,
-            :param species (str): is the species of the KingOfSiam. It can take only the values "Elephant" or "Rhinoceros".
+            :param x (int): is the abscissa of the animal,
+            :param y (int): is the ordinate of the animal,
+            :param dir (numpy.array): is the direction of the animal,
+            :param species (str): is the species of the animal. It can take only the values "Elephant" or "Rhinoceros".
 
         :Example:
             >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
@@ -27,22 +27,37 @@ class Animal:
         self.__direction = dir
         self.__species = species
 
+    def bearing(self, animal):
+        """
+            This method get the orientation of an animal relative to another.
+            It return the scalar product between the two direction vector of each animal.
+
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> b = Animal(0, 2, np.array([-1,0]), "Rhinoceros")
+                >>> c = a.bearing(b)
+
+            .. warning:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
+        """
+        dira, dirb = self.direction, animal.direction
+        return dira @ dirb
+
     @property
     def coords(self):
         """
-            This is the coordinates of the KingOfSiam in a tuple.
+            This is the coordinates of the animal in a tuple.
 
-            :Getter: Return the coordinates of the KingOfSiam.
-            :Setter: Set the coordinates of the KingOfSiam
+            :Getter: Return the coordinates of the animal.
+            :Setter: Set the coordinates of the animal.
             :Type: tuple of int
 
             :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> print(a.coords)
+                >>> c = a.coords
 
             :Setter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.coords((0, 2))
+                >>> a.coords = (0, 2)
 
             .. warning:: The coordinates should be on the 5x5 board game.
         """
@@ -51,9 +66,9 @@ class Animal:
     @coords.setter
     def coords(self, ncoords):
         """
-            Setting the coordinates or the KingOfSiam. The coords should be
+            Setting the coordinates or the animal. The coords should be
 
-            :param ncoords (tuple): which are the new coords of the KingOfSiam.
+            :param ncoords (tuple): which are the new coords of the animal.
         """
         nx,ny=ncoords
         if nx < 5 and ny < 5 :
@@ -62,20 +77,19 @@ class Animal:
     @property
     def direction(self):
         """
-            This is the direction of the KingOfSiam in a numpy.array. The direction is a unitary vector with a null coordinate.
+            This is the direction of the animal in a numpy.array. The direction is a unitary vector with a null coordinate.
 
-            :Getter: Return the direction of the KingOfSiam.
-            :Setter: Set the direction of the KingOfSiam
+            :Getter: Return the direction of the animal.
+            :Setter: Set the direction of the animal.
             :Type: numpy.array
 
             :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> dir = a.direction
-                >>> print(dir)
 
             :Setter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.direction(np.array([-1, 0])
+                >>> a.direction = np.array([-1, 0])
 
             .. warning:: the direction should be a numpy.array unitary vector with a null coordinate.
         """
@@ -84,9 +98,9 @@ class Animal:
     @direction.setter
     def direction(self, ndir):
         """
-            Setting the direction of the KingOfSiam. The direction is a unitary vector with a null coordinate.
+            Setting the direction of the animal. The direction is a unitary vector with a null coordinate.
 
-            :param ndir (numpy.array): which is the new direction of the KingOfSiam.
+            :param ndir (numpy.array): which is the new direction of the animal.
         """
         if np.sqrt(ndir[0]**2+ndir[1]**2)==1 and (ndir[0]==0 or ndir[1]==0) :
             self.__direction = ndir
@@ -94,19 +108,19 @@ class Animal:
     @property
     def species(self):
         """
-            This is the species of the KingOfSiam. It should be "Elephant" or "Rhinoceros".
+            This is the species of the animal. It should be "Elephant" or "Rhinoceros".
 
-            :Getter: Return the species of the KingOfSiam.
-            :Setter: Set the species of the KingOfSiam
+            :Getter: Return the species of the animal.
+            :Setter: Set the species of the animal.
             :Type: str
 
             :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> print(a.species)
+                >>> s = a.species
 
             :Setter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> a.species("Rhinoceros")
+                >>> a.species = "Rhinoceros"
 
             .. warning:: the species should be "Elephant" or "Rhinoceros".
         """
@@ -117,29 +131,16 @@ class Animal:
         """
             Getting the species of the KingOfSiam.
 
-            :param nspecies (str): which is the new species of the KingOfSiam.
+            :param nspecies (str): which is the new species of the animal.
         """
         if nspecies in ['Elephant', 'Rhinoceros']:
             self.__species = nspecies
 
-    def move(self, nx, ny):
-        """
-
-        """
-        self.coords = (nx,ny)
-
-    def rotate(self, dir):
-        self.direction = dir
-
-    def bearing(self, animal):
-        dira, dirb = self.direction, animal.direction
-        return dira @ dirb
-
     def __str__(self):
         """
-            Show the current state of an KingOfSiam
+            Show the current state of an animal
 
-            :return: the string with the characteristics of the KingOfSiam
+            :return: the string with the characteristics of the animal
             :rtype: str
         """
         return self.__species + ' : [Position = ' + str(self.coords) + ' ; Direction = ' + str(self.direction) + ']\n'

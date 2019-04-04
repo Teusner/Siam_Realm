@@ -1,6 +1,8 @@
 Welcome to the King of Siam's documentation!
 ============================================
 
+....
+
 This :mod:`KingOfSiam` module is created to play at the King of Siam game. There is 4 classes which
 are implemented :
     - :class:`KingOfSiam.GameMap` : which is the game board.
@@ -10,12 +12,12 @@ are implemented :
 
 ....
 
-.. automodule:: KingOfSiam.Animal
+.. automodule:: KingOfSiam.GameMap
    :members:
 
 ....
 
-.. automodule:: KingOfSiam.GameMap
+.. automodule:: KingOfSiam.Animal
    :members:
 
 ....
