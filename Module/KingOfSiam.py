@@ -131,8 +131,8 @@ class Animal:
     def rotate(self, dir):
         self.direction = dir
 
-    def bearing(self, KingOfSiam):
-        dira, dirb = self.direction, KingOfSiam.direction
+    def bearing(self, animal):
+        dira, dirb = self.direction, animal.direction
         return dira @ dirb
 
     def __str__(self):
@@ -332,8 +332,8 @@ class Cross:
         .. warning:: The coordinates should be on the 5x5 board game.
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`
     """
-    def __init__(self, coords):
-        self.coords = coords
+    def __init__(self, x, y):
+        self.coords = (x, y)
         self.species = 'Cross'
 
 
