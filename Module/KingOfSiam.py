@@ -37,7 +37,7 @@ class Animal:
                 >>> b = Animal(0, 2, np.array([-1,0]), "Rhinoceros")
                 >>> c = a.bearing(b)
 
-            .. warning:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
+            .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
         """
         dira, dirb = self.direction, animal.direction
         return dira @ dirb
