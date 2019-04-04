@@ -22,12 +22,12 @@ class Login(QtWidgets.QDialog):
         # Creating the elephant login
         self.eText = QtWidgets.QLabel("Elephant's name ")
         self.eName = QtWidgets.QLineEdit(self)
-        self.eName.setStyleSheet("background-color: white; color: #0984e3; font-weight: bold; font-size: 14px; padding: 4px; margin-left: 6px; border: 0px solid #aaa; border-radius: 0px;")
+        self.eName.setStyleSheet("background-color: #b2bec3; color: #0984e3; font-weight: bold; font-size: 14px; padding: 4px; margin-left: 6px; border: 0px solid #aaa; border-radius: 0px;")
 
-        # Creating the elephant login
+        # Creating the rhinoceros login
         self.rText = QtWidgets.QLabel("Rhinoceros name")
         self.rName = QtWidgets.QLineEdit(self)
-        self.rName.setStyleSheet("background-color: white; color: #d63031; font-weight: bold; font-size: 14px; padding: 4px; margin-left: 6px; margin-top: 6px; border: 0px solid #aaa; border-radius: 0px;")
+        self.rName.setStyleSheet("background-color: #b2bec3; color: #d63031; font-weight: bold; font-size: 14px; padding: 4px; margin-left: 6px; margin-top: 6px; border: 0px solid #aaa; border-radius: 0px;")
 
         # Creating the login button
         self.buttonLogin = QtWidgets.QPushButton('Login', self)
@@ -55,21 +55,22 @@ class Login(QtWidgets.QDialog):
             self.accept()
         else:
             QtWidgets.QMessageBox.warning(
-                self, 'Error', 'Enter valid usernames !')
+                self, 'Error', 'Enter usernames !')
+
+
+class Game(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        super(Game, self).__init__(parent)
+        self.setFixedSize(600, 600)
+        self.setWindowTitle("King of Siam")
+        self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
+        self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             print("appui bouton gauche")
             print("position = " + str(event.x()) + " " + str(event.y()))
 
-
-class Game(QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
-        super(Game, self).__init__(parent)
-        self.resize(600, 600)
-        self.setWindowTitle("King of Siam")
-        self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
-        self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
 
 if __name__ == '__main__':
     import sys
