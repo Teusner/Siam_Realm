@@ -226,36 +226,42 @@ class GameMap (list):
         """
         print('Warning ! Changing the number of Rhinoceros is not possible!')
 
-    def add(self, KingOfSiam):
-        x, y = KingOfSiam.coords
-        if KingOfSiam.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
-            self[x][y] = KingOfSiam
+    def add(self, animal):
+        x, y = animal.coords
+        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self[x][y] = animal
             self.__nb_elephants += 1
-        elif KingOfSiam.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
-            self[x][y] = KingOfSiam
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self[x][y] = animal
             self.__nb_rhinoceros += 1
         else:
             return False
 
-    def delete(self, KingOfSiam):
-        x, y = KingOfSiam.coords
+    def delete(self, animal):
+        x, y = animal.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
             self[x][y] = 0
-            if KingOfSiam.species == 'Elephant':
+            if animal.species == 'Elephant':
                 self.__nb_elephants -= 1
-            elif KingOfSiam.species == 'Rhinoceros':
+            elif animal.species == 'Rhinoceros':
                 self.__nb_rhinoceros -= 1
         else:
             return False
 
-    def move(self, KingOfSiam, ncoords):
-        x, y = KingOfSiam.coords
+    def move(self, animal, ncoords):
+        x, y = animal.coords
         nx, ny = ncoords
         cx, cy = nx-x, ny-y
         if self[nx][ny] == 0 and (cx == 0 and cy == 1 or cx == 1 and cy == 0):
-            KingOfSiam.coords = (nx, ny)
+            animal.coords = (nx, ny)
             self[x][y] = 0
-            self[nx][ny] = KingOfSiam
+            self[nx][ny] = animal
+
+    def rotate(self, animal, ndir):
+        x, y = animal.coords
+        if ndir[0] == 0 and abs(ndir[1]) == 1 or ndir[0] == 1 and abs(ndir[1]) == 0 :
+            animal.direction = dir
+            self[x][y] = animal
 
     def __str__(self):
         """
