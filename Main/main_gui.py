@@ -66,6 +66,14 @@ class Game(QtWidgets.QMainWindow):
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
 
+        self.label = QtWidgets.QLabel
+        myPixmap = QtGui.QPixmap('./content/gamemap.png')
+        self.label.setPixmap(myPixmap)
+
+        layout = QtWidgets.QVBoxLayout(self)
+        layout.addWidget(self.label)
+        self.setLayout(layout)
+
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             print("appui bouton gauche")
