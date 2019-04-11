@@ -61,10 +61,18 @@ class Login(QtWidgets.QDialog):
 class Game(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(Game, self).__init__(parent)
-        self.setFixedSize(600, 600)
+        self.setFixedSize(500, 500)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
+
+        self.label = QtWidgets.QLabel
+        myPixmap = QtGui.QPixmap('./content/gamemap.png')
+        self.label.setPixmap(myPixmap)
+
+        layout = QtWidgets.QVBoxLayout(self)
+        layout.addWidget(self.label)
+        self.setLayout(layout)
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
