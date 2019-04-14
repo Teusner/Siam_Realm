@@ -2,27 +2,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-G = np.zeros((530, 530, 3))
+size = 64*5+6*5
+print(size)
+gridColor = [0.6, 0.6, 0.6]
+mapColor = [1, 1, 1]
 
-for i in range(530):
-    for j in range(530):
-        for k in range(3):
-            G[i, j, k] = 1
+G = np.zeros((size, size, 3))
+
+for i in range(size):
+    for j in range(size):
+        G[i, j] = mapColor
 
 for k in range(0,6):
-    G[105*k: 105*k+5, :, 0] = 0.6
-    G[105*k: 105*k+5,:, 1] = 0.6
-    G[105*k: 105*k+5,:, 2] = 0.6
-
-    G[:, 105*k:105*k+5, 0] = 0.6
-    G[:, 105*k:105*k+5, 1] = 0.6
-    G[:, 105*k:105*k+5, 2] = 0.6
+    G[69*k: 69*k+5, :] = gridColor
+    G[:, 69*k:69*k+5] = gridColor
 
 plt.imshow(G)
 plt.box(on=None)
 plt.xticks([])
 plt.yticks([])
 plt.axes().set_aspect('equal')
-plt.axis([0, 530, 0, 530])
+plt.axis([0, size, 0, size])
 plt.show()
 mpimg.imsave('gamemap.png', G)

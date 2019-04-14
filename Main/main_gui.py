@@ -61,7 +61,7 @@ class Login(QtWidgets.QDialog):
 class Game(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(Game, self).__init__(parent)
-        self.setFixedSize(400, 600)
+        #self.setFixedSize(370, 600)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
@@ -69,7 +69,7 @@ class Game(QtWidgets.QDialog):
         label = QtWidgets.QLabel(self)
         Pixmap = QtGui.QPixmap('./content/gamemap.png')
         label.setPixmap(Pixmap)
-        label.setGeometry(10, 10, 400, 400)
+        #label.setGeometry(10, 10, 360, 360)
 
         layout = QtWidgets.QVBoxLayout(self)
         layout.addWidget(label)
