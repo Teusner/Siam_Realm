@@ -66,6 +66,9 @@ class Game(QtWidgets.QDialog):
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
 
+        self.startpoint = True
+        self.selectValid = False
+
         # Showing the gamemap
         label = QtWidgets.QLabel(self)
         Pixmap = QtGui.QPixmap('./content/gamemap.png')
@@ -114,21 +117,30 @@ class Game(QtWidgets.QDialog):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            seli, selj = int((event.x()-10)/66.5), int((event.y()-15)/66.5)
+            if self.startpoint:
+                self.starti, self.startj = int((event.x()-10)/66.5), int((event.y()-15)/66.5)
 
-            print("appui bouton gauche")
-            print("position = " + str(seli) + " " + str(selj))
-            for j in range(5):
-                for i in range(5):
-                    self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
+                for j in range(5):
+                    for i in range(5):
+                        self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
 
-            li = [-1, 0, 1]
-            l = [(seli+x, selj+y) for x in li for y in li if seli+x>=0 and seli+x<5 and selj+y>=0 and selj+y<5 and abs(x*y) != 1]
-            for k in l:
-                m,n = k
-                self.tile[m][n].setStyleSheet("background-color: #2ecc71")
+                li = [-1, 0, 1]
+                l = [(self.starti+x, self.startj+y) for x in li for y in li if self.starti+x>=0 and self.starti+x<5 and self.startj+y>=0 and self.startj+y<5 and abs(x*y) != 1]
+                for k in l:
+                    m,n = k
+                    self.tile[m][n].setStyleSheet("background-color: #2ecc71")
 
-            self.tile[seli][selj].setStyleSheet("background-color: #16a085")
+                self.tile[self.starti][self.startj].setStyleSheet("background-color: #16a085")
+                self.startpoint = False
+            else :
+                li = [-1, 0, 1]
+                l = [(self.starti + x, self.startj + y) for x in li for y in li if self.starti + x >= 0 and self.starti + x < 5 and self.startj + y >= 0 and self.startj + y < 5 and abs(x * y) != 1]
+                self.endi, self.endj = int((event.x()-10)/66.5), int((event.y()-15)/66.5)
+
+                if (self.endi, self.endj) in l:
+                    self.selectValid = True
+                    self.startpoint = True
+                    self.tile[self.endi][self.endj].setStyleSheet("background-color: #e74c3c")
 
 
 if __name__ == '__main__':
