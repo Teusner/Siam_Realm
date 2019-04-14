@@ -61,7 +61,7 @@ class Login(QtWidgets.QDialog):
 class Game(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(Game, self).__init__(parent)
-        #self.setFixedSize(370, 600)
+        #Kself.setFixedSize(370, 600)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
