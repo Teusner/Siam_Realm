@@ -252,10 +252,81 @@ class GameMap (list):
         x, y = animal.coords
         nx, ny = ncoords
         cx, cy = nx-x, ny-y
-        if self[nx][ny] == 0 and (cx == 0 and cy == 1 or cx == 1 and cy == 0):
+        if self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0):
             animal.coords = (nx, ny)
             self[x][y] = 0
             self[nx][ny] = animal
+
+        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0):
+            compteur = 0
+
+            while compteur>0:  #si le compteur passe en négatif, c'est que l'action pousser est impossible
+
+                #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
+                if cx=1:
+                    for i in range (nx,5):
+                        if isinstance("Animal", self[i][y]):
+                            if cx*(self[x][y].direction)[0] + cy*(slef[x][y].direction)[1] == 1:
+                                compteur+=1
+                            elif cx*(self[x][y].direction)[0] + cy*(slef[x][y].direction)[1] == 0:
+                                compteur-=1
+                            elif cx*(self[x][y].direction)[0] + cy*(slef[x][y].direction)[1] == -1:
+                                compteur-=2
+
+                        elif isinstance("Boulder", self[i][y]):
+                            compteur-=1
+
+                        elif self[i][y]==0:
+                            break
+
+                elif cx=-1:
+                    for i in range(0, nx+1, -1):
+                        if isinstance("Animal", self[i][y]):
+                            if cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 1:
+                                compteur += 1
+                            elif cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 0:
+                                compteur -= 1
+                            elif cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == -1:
+                                compteur -= 2
+
+                        elif isinstance("Boulder", self[i][y]):
+                            compteur -= 1
+
+                        elif self[i][y].species == 0:
+                            break
+                elif cy=1:
+                    for i in range(ny, 5):
+                        if isinstance("Animal", self[i][y]):
+                            if cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 1:
+                                compteur += 1
+                            elif cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 0:
+                                compteur -= 1
+                            elif cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == -1:
+                                compteur -= 2
+
+                        elif isinstance("Boulder", self[i][y]):
+                            compteur -= 1
+
+                        elif self[i][y].species == 0:
+                            break
+                elif cy=-1:
+                    for i in range(0, ny+1, -1):
+                        if isinstance("Animal", self[i][y]):
+                            if cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 1:
+                                compteur += 1
+                            elif cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 0:
+                                compteur -= 1
+                            elif cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == -1:
+                                compteur -= 2
+
+                        elif isinstance("Boulder", self[i][y]):
+                            compteur -= 1
+
+                        elif self[i][y].species == 0:
+                            break
+            if compteur>0:
+                "move tous les elmts de cx/cy"
+
 
     def rotate(self, animal, ndir):
         x, y = animal.coords
