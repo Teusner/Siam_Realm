@@ -58,20 +58,35 @@ class Login(QtWidgets.QDialog):
                 self, 'Error', 'Enter usernames !')
 
 
-class Game(QtWidgets.QMainWindow):
+class Game(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(Game, self).__init__(parent)
-        self.setFixedSize(500, 500)
+        self.setFixedSize(400, 600)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
 
-        self.label = QtWidgets.QLabel
-        myPixmap = QtGui.QPixmap('./content/gamemap.png')
-        self.label.setPixmap(myPixmap)
+        label = QtWidgets.QLabel(self)
+        Pixmap = QtGui.QPixmap('./content/gamemap.png')
+        label.setPixmap(Pixmap)
+        label.setGeometry(10, 10, 400, 400)
 
         layout = QtWidgets.QVBoxLayout(self)
-        layout.addWidget(self.label)
+        layout.addWidget(label)
+
+        # Creating the buttons
+        self.buttonCancel = QtWidgets.QPushButton('Cancel', self)
+        self.buttonCancel.setStyleSheet("height: 30px; font-size: 18px; color: white; margin-top: 6px; text-align: center; background: #e74c3c; border: 0; border-bottom: 2px solid #c0392b;")
+
+        self.buttonValid = QtWidgets.QPushButton('Accept', self)
+        self.buttonValid.setStyleSheet("height: 30px; font-size: 18px; color: white; margin-top: 6px; text-align: center; background: #2ecc71; border: 0; border-bottom: 2px solid #27ae60;")
+
+        layoutButtons = QtWidgets.QHBoxLayout()
+        layoutButtons.addWidget(self.buttonCancel)
+        layoutButtons.addWidget(self.buttonValid)
+
+        layout.addLayout(layoutButtons)
+
         self.setLayout(layout)
 
     def mousePressEvent(self, event):
@@ -83,11 +98,11 @@ class Game(QtWidgets.QMainWindow):
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    login = Login()
+    """login = Login()
 
     eName, rName = login.eName.text(), login.rName.text()
 
-    if login.exec_() == QtWidgets.QDialog.Accepted:
-        gwin = Game()
-        gwin.show()
-        sys.exit(app.exec_())
+    if login.exec_() == QtWidgets.QDialog.Accepted:"""
+    gwin = Game()
+    gwin.show()
+    sys.exit(app.exec_())
