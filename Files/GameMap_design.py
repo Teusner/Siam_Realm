@@ -4,8 +4,8 @@ import matplotlib.image as mpimg
 
 size = 64*5+6*5
 print(size)
-gridColor = [0.6, 0.6, 0.6]
-mapColor = [1, 1, 1]
+gridColor = [45/255, 52/255, 54/255]
+mapColor = [52/255, 152/255, 219/255]
 
 G = np.zeros((size, size, 3))
 

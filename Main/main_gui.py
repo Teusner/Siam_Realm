@@ -61,7 +61,7 @@ class Login(QtWidgets.QDialog):
 class Game(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(Game, self).__init__(parent)
-        #Kself.setFixedSize(370, 600)
+        self.setFixedSize(370, 600)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
@@ -69,10 +69,14 @@ class Game(QtWidgets.QDialog):
         label = QtWidgets.QLabel(self)
         Pixmap = QtGui.QPixmap('./content/gamemap.png')
         label.setPixmap(Pixmap)
-        #label.setGeometry(10, 10, 360, 360)
+        label.setGeometry(10, 10, 360, 360)
+
+        label1 = QtWidgets.QLabel(self)
+        Pixmap = QtGui.QPixmap('./content/rhinoceros.png')
+        label1.setPixmap(Pixmap)
+        label1.setGeometry(10, 10, 64, 64)
 
         layout = QtWidgets.QVBoxLayout(self)
-        layout.addWidget(label)
 
         # Creating the buttons
         self.buttonCancel = QtWidgets.QPushButton('Cancel', self)
@@ -98,11 +102,11 @@ class Game(QtWidgets.QDialog):
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    """login = Login()
+    login = Login()
 
     eName, rName = login.eName.text(), login.rName.text()
 
-    if login.exec_() == QtWidgets.QDialog.Accepted:"""
-    gwin = Game()
-    gwin.show()
-    sys.exit(app.exec_())
+    if login.exec_() == QtWidgets.QDialog.Accepted:
+        gwin = Game()
+        gwin.show()
+        sys.exit(app.exec_())
