@@ -263,7 +263,7 @@ class GameMap (list):
             while compteur>0:  #si le compteur passe en négatif, c'est que l'action pousser est impossible
 
                 #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
-                if cx=1:
+                if cx==1:
                     for i in range (nx,5):
                         if isinstance("Animal", self[i][y]):
                             if cx*(self[x][y].direction)[0] + cy*(slef[x][y].direction)[1] == 1:
@@ -279,7 +279,7 @@ class GameMap (list):
                         elif self[i][y]==0:
                             break
 
-                elif cx=-1:
+                elif cx==-1:
                     for i in range(0, nx+1, -1):
                         if isinstance("Animal", self[i][y]):
                             if cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 1:
@@ -294,7 +294,7 @@ class GameMap (list):
 
                         elif self[i][y].species == 0:
                             break
-                elif cy=1:
+                elif cy==1:
                     for i in range(ny, 5):
                         if isinstance("Animal", self[i][y]):
                             if cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 1:
@@ -309,7 +309,7 @@ class GameMap (list):
 
                         elif self[i][y].species == 0:
                             break
-                elif cy=-1:
+                elif cy==-1:
                     for i in range(0, ny+1, -1):
                         if isinstance("Animal", self[i][y]):
                             if cx * (self[x][y].direction)[0] + cy * (slef[x][y].direction)[1] == 1:
