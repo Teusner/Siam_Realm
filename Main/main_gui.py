@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import Qt
 
 import random as rd
+import numpy as np
 
 
 class Login(QtWidgets.QDialog):
@@ -11,7 +12,7 @@ class Login(QtWidgets.QDialog):
         self.initGUI()
         self.setWindowTitle("Login")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
-        self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
+        self.setWindowIcon(QtGui.QIcon('./content/boulder.png'))
         self.setFixedSize(380, 220)
 
     def initGUI(self):
@@ -66,69 +67,67 @@ class Game(QtWidgets.QDialog):
         self.setFixedSize(650, 415)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
-        self.setWindowIcon(QtGui.QIcon('./content/rock.png'))
+        self.setWindowIcon(QtGui.QIcon('./content/boulder.png'))
         self.title = QtWidgets.QLabel(self)
         self.title.setText("King of Siam")
-        self.title.setStyleSheet("font-size: 41px; font-family: Bradley Hand ITC; font-weight: bold;")
+        self.title.setStyleSheet("font-size: 41px; font-family: Bradley Hand ITC; font-weight: bold; color: #ee5253;")
         self.title.setGeometry(375, 10, 300, 50)
 
-        self.Playertitle = QtWidgets.QLabel(self)
-        self.Playertitle.setText("Players")
-        self.Playertitle.setStyleSheet("font-size: 20px; font-family: Tahoma; font-weight: bold;")
-        self.Playertitle.setGeometry(375, 60, 100, 25)
+        self.ndir = np.array([1, 0])
+        self.ndirDeg = 0
 
         self.Elephanttitle = QtWidgets.QLabel(self)
         self.Elephanttitle.setText("Elephant :")
-        self.Elephanttitle.setStyleSheet("font-size: 16px; font-family: Tahoma; font-weight: bold;")
-        self.Elephanttitle.setGeometry(375, 90, 300, 20)
+        self.Elephanttitle.setStyleSheet("font-size: 18px; font-family: Tahoma; font-weight: bold;")
+        self.Elephanttitle.setGeometry(375, 80, 300, 20)
 
         self.Elephantname = QtWidgets.QLabel(self)
         self.Elephantname.setText("Teusner")
-        self.Elephantname.setStyleSheet("font-size: 16px; font-family: Tahoma; color: #0984e3; font-weight: bold;")
-        self.Elephantname.setGeometry(490, 90, 300, 20)
+        self.Elephantname.setStyleSheet("font-size: 18px; font-family: Tahoma; color: #0984e3; font-weight: bold;")
+        self.Elephantname.setGeometry(500, 80, 300, 20)
 
         self.Rhinocerostitle = QtWidgets.QLabel(self)
         self.Rhinocerostitle.setText("Rhinoceros :")
-        self.Rhinocerostitle.setStyleSheet("font-size: 16px; font-family: Tahoma; font-weight: bold;")
-        self.Rhinocerostitle.setGeometry(375, 115, 300, 16)
+        self.Rhinocerostitle.setStyleSheet("font-size: 18px; font-family: Tahoma; font-weight: bold;")
+        self.Rhinocerostitle.setGeometry(375, 110, 300, 16)
 
         self.Rhinocerosname = QtWidgets.QLabel(self)
         self.Rhinocerosname.setText("Faroluca")
-        self.Rhinocerosname.setStyleSheet("font-size: 16px; font-family: Tahoma; color: #d63031; font-weight: bold;")
-        self.Rhinocerosname.setGeometry(490, 115, 300, 20)
+        self.Rhinocerosname.setStyleSheet("font-size: 18px; font-family: Tahoma; color: #d63031; font-weight: bold;")
+        self.Rhinocerosname.setGeometry(500, 110, 300, 20)
 
         self.playerTile = QtWidgets.QLabel(self)
         Pixmap = QtGui.QPixmap('./content/elephant.png')
         self.playerTile.setPixmap(Pixmap)
-        self.playerTile.setStyleSheet("background-color: #8e44ad")
+        self.playerTile.setStyleSheet("background-color: #ff9f43")
         self.playerTile.setGeometry(380, 155, 64, 64)
 
         self.button90l = QtWidgets.QPushButton('Turn 90° Left', self)
         self.button90l.setStyleSheet("QPushButton {"
                                         "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
-                                        "text-align: center; background: #e74c3c; border: 0;"
-                                        "border-bottom: 3px solid #c0392b; border-right: 3px solid #c0392b;}"
-                                        "QPushButton:pressed {"
-                                        "border: 0px; background: #c0392b;}"
-                                        "QPushButton:!enabled {"
+                                        "text-align: center; background: #9b59b6; border: 0;"
+                                        "border-bottom: 3px solid #8e44ad; border-right: 3px solid #8e44ad;}"
+                                    "QPushButton:pressed {"
+                                        "border: 0px; background: #8e44ad;}"
+                                    "QPushButton:!enabled {"
                                         "background-color: #353b48; border: 0;"
                                         "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
         self.button90l.setGeometry(465, 145, 160, 40)
-        #self.button90l.clicked.connect(lambda: self.cancelButtonClicked())
+        self.button90l.clicked.connect(lambda: self.TLeft90())
         #self.button90l.setDisabled(True)
 
         self.button90r = QtWidgets.QPushButton('Turn 90° Right', self)
         self.button90r.setStyleSheet("QPushButton {"
                                      "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
-                                     "text-align: center; background: #e74c3c; border: 0;"
-                                     "border-bottom: 3px solid #c0392b; border-right: 3px solid #c0392b;}"
+                                     "text-align: center; background: #3498db; border: 0;"
+                                     "border-bottom: 3px solid #2980b9; border-right: 3px solid #2980b9;}"
                                      "QPushButton:pressed {"
-                                     "border: 0px; background: #c0392b;}"
+                                     "border: 0px; background: #2980b9;}"
                                      "QPushButton:!enabled {"
                                      "background-color: #353b48; border: 0;"
                                      "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
         self.button90r.setGeometry(465, 185, 160, 40)
-        # self.button90r.clicked.connect(lambda: self.cancelButtonClicked())
+        self.button90r.clicked.connect(lambda: self.TRight90())
         #self.button90r.setDisabled(True)
 
         self.startpoint = True
@@ -196,9 +195,9 @@ class Game(QtWidgets.QDialog):
                 l = [(self.starti+x, self.startj+y) for x in li for y in li if self.starti+x>=0 and self.starti+x<5 and self.startj+y>=0 and self.startj+y<5 and abs(x*y) != 1]
                 for k in l:
                     m,n = k
-                    self.tile[m][n].setStyleSheet("background-color: #0097e6")
+                    self.tile[m][n].setStyleSheet("background-color: #ff9f43")
 
-                self.tile[self.starti][self.startj].setStyleSheet("background-color: #8e44ad")
+                self.tile[self.starti][self.startj].setStyleSheet("background-color: #ff9f43")
                 self.startpoint = False
                 self.buttonCancel.setEnabled(True)
                 self.buttonValid.setDisabled(True)
@@ -210,7 +209,7 @@ class Game(QtWidgets.QDialog):
                 if (self.endi, self.endj) in l:
                     self.selectValid = True
                     self.startpoint = True
-                    self.tile[self.endi][self.endj].setStyleSheet("background-color: #f1c40f")
+                    self.tile[self.endi][self.endj].setStyleSheet("background-color: #ee5253")
                     self.buttonValid.setEnabled(True)
 
     def cancelButton(self):
@@ -258,6 +257,29 @@ class Game(QtWidgets.QDialog):
         self.startpoint = True
         self.buttonCancel.setDisabled(True)
         self.buttonValid.setDisabled(True)
+
+    def TLeft90(self):
+        dirs = [np.array([1, 0]), np.array([0, -1]), np.array([-1, 0]), np.array([0, 1])]
+        dirdeg = [0, 270, 180, 90]
+        self.ndirDeg = dirdeg[dirdeg.index(self.ndirDeg) % len(dirdeg)-1]
+        self.ndir = dirs[dirdeg.index(self.ndirDeg)]
+
+        path = "./content/elephant/elephant_"
+        path += str(self.ndirDeg)
+        path += ".png"
+        Pixmap = QtGui.QPixmap(path)
+        self.playerTile.setPixmap(Pixmap)
+
+    def TRight90(self):
+        dirs = [np.array([1, 0]), np.array([0, 1]), np.array([-1, 0]), np.array([0, -1])]
+        dirdeg = [0, 90, 180, 270]
+        self.ndirDeg = dirdeg[dirdeg.index(self.ndirDeg) % len(dirdeg)-1]
+        self.ndir = dirs[dirdeg.index(self.ndirDeg)]
+
+        path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
+        Pixmap = QtGui.QPixmap(path)
+        self.playerTile.setPixmap(Pixmap)
+
 
 if __name__ == '__main__':
     import sys
