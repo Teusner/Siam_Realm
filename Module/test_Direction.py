@@ -19,6 +19,9 @@ class testDirection(unittest.TestCase):
         self.assertEqual(self.d[0], -1)
         self.assertEqual(self.d[1], 0)
 
+    def testType(self):
+        self.assertIsInstance(self.a, Direction)
+
     def testUnitary(self):
         self.assertEqual(np.linalg.norm(self.a), 1)
 
