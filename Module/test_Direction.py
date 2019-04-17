@@ -21,6 +21,7 @@ class testDirection(unittest.TestCase):
 
     def testType(self):
         self.assertIsInstance(self.a, Direction)
+        self.assertIsInstance(self.a, np.ndarray)
 
     def testUnitary(self):
         self.assertEqual(np.linalg.norm(self.a), 1)
