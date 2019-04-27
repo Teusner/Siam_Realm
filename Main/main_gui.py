@@ -63,16 +63,22 @@ class Login(QtWidgets.QDialog):
 
 
 class Game(QtWidgets.QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, Player1, Player2, parent=None):
         super(Game, self).__init__(parent)
         self.setFixedSize(650, 370)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/boulder.png'))
         self.title = QtWidgets.QLabel(self)
+
         self.title.setText("King of Siam")
         self.title.setStyleSheet("font-size: 41px; font-family: Bradley Hand ITC; font-weight: bold; color: #ee5253;")
         self.title.setGeometry(375, 10, 300, 50)
+
+        self.namePlayer1 = Player1
+        self.namePlayer2 = Player2
+
+        self.currentPlayer1 = True
 
         # Game setup
         self.g = GameMap()
@@ -88,38 +94,13 @@ class Game(QtWidgets.QDialog):
         label.setPixmap(Pixmap)
         label.setGeometry(10, 5, 360, 360)
 
-        # Creating the coordinates of the tiles
-        xcoords, ycoords = [15, 84, 153, 222, 291], [15, 84, 153, 222, 291]
-        self.coord = [[(x, y) for x in xcoords] for y in ycoords]
-
-        self.tile = []
-        for i in range(5):
-            l=[]
-            for j in range(5):
-                label = QtWidgets.QLabel(self)
-                elephPixmap = QtGui.QPixmap('./content/elephant.png')
-                rhinoPixmap = QtGui.QPixmap('./content/rhinoceros.png')
-                boulderPixmap = QtGui.QPixmap('./content/boulder.png')
-                if self.g[i][j] == 0:
-                    pass
-                elif self.g[i][j].species == 'Boulder':
-                    label.setPixmap(boulderPixmap)
-                elif self.g[i][j].species == 'Rhinoceros':
-                    label.setPixmap(rhinoPixmap)
-                elif self.g[i][j].species == 'Elephant':
-                    label.setPixmap(elephPixmap)
-                label.setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
-                x, y = self.coord[j][i]
-                label.setGeometry(x, y, 64, 64)
-                l.append(label)
-            self.tile.append(l)
+        self.refresh()
 
         # Creating the buttons
         self.cancelButton()
         self.validButton()
         self.playerBoard()
         self.turnWidget()
-
 
         self.show()
 
@@ -221,6 +202,12 @@ class Game(QtWidgets.QDialog):
         for j in range(5):
             for i in range(5):
                 self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
+
+        if self.currentPlayer1 :
+            self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
+        else:
+            self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
+
         self.startpoint = True
         self.buttonCancel.setDisabled(True)
         self.buttonValid.setDisabled(True)
@@ -228,6 +215,9 @@ class Game(QtWidgets.QDialog):
         self.button90r.setDisabled(True)
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
+        self.currentPlayer1 = not self.currentPlayer1
+
+        self.refresh()
 
     def turnWidget(self):
         self.playerTile = QtWidgets.QLabel(self)
@@ -268,7 +258,10 @@ class Game(QtWidgets.QDialog):
         self.ndirDeg = dirdeg[dirdeg.index(self.ndirDeg) % len(dirdeg)-1]
         self.ndir = dirs[dirdeg.index(self.ndirDeg)]
 
-        path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
+        if self.currentPlayer1 :
+            path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
+        else:
+            path = "./content/rhinoceros/rhinoceros_" + str(self.ndirDeg) + ".png"
         Pixmap = QtGui.QPixmap(path)
         self.playerTile.setPixmap(Pixmap)
 
@@ -278,7 +271,10 @@ class Game(QtWidgets.QDialog):
         self.ndirDeg = dirdeg[dirdeg.index(self.ndirDeg) % len(dirdeg)-1]
         self.ndir = dirs[dirdeg.index(self.ndirDeg)]
 
-        path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
+        if self.currentPlayer1:
+            path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
+        else:
+            path = "./content/rhinoceros/rhinoceros_" + str(self.ndirDeg) + ".png"
         Pixmap = QtGui.QPixmap(path)
         self.playerTile.setPixmap(Pixmap)
 
@@ -289,7 +285,7 @@ class Game(QtWidgets.QDialog):
         self.Elephanttitle.setGeometry(375, 80, 300, 20)
 
         self.Elephantname = QtWidgets.QLabel(self)
-        self.Elephantname.setText("Teusner")
+        self.Elephantname.setText(self.namePlayer1)
         self.Elephantname.setStyleSheet("font-size: 18px; font-family: Tahoma; color: #0984e3; font-weight: bold;")
         self.Elephantname.setGeometry(500, 80, 300, 20)
 
@@ -299,14 +295,17 @@ class Game(QtWidgets.QDialog):
         self.Rhinocerostitle.setGeometry(375, 110, 300, 16)
 
         self.Rhinocerosname = QtWidgets.QLabel(self)
-        self.Rhinocerosname.setText("Faroluca")
+        self.Rhinocerosname.setText(self.namePlayer2)
         self.Rhinocerosname.setStyleSheet("font-size: 18px; font-family: Tahoma; color: #d63031; font-weight: bold;")
         self.Rhinocerosname.setGeometry(500, 110, 300, 20)
 
     def setPlayerTile(self, i, j):
 
         if self.g[i][j] == 0:
-            Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
+            if self.currentPlayer1 :
+                Pixmap = QtGui.QPixmap("./content/elephant/elephant_270.png")
+            else:
+                Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
             self.playerTile.setPixmap(Pixmap)
             self.ndir = np.array([0, -1])
             self.ndirDeg = 270
@@ -314,57 +313,104 @@ class Game(QtWidgets.QDialog):
             s = self.g[i][j].species
             dir = self.g[i][j].direction
             if s == 'Elephant':
-                if dir == np.array([1, 0]):
-                    Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
-                    self.playerTile.setPixmap("./content/elephant/elephant_0.png")
+                if dir[0] == 1 and dir[1] == 0:
+                    Pixmap = QtGui.QPixmap("./content/elephant/elephant_270.png")
+                    self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([1, 0])
                     self.ndirDeg = 0
-                elif dir == np.array([0, 1]):
+                elif dir[0] ==0 and dir[1] == 1:
                     Pixmap = QtGui.QPixmap("./content/elephant/elephant_90.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([0, 1])
                     self.ndirDeg = 90
-                elif dir == np.array([-1, 0]):
+                elif dir[0] == -1 and dir[1] == 0:
                     Pixmap = QtGui.QPixmap("./content/elephant/elephant_180.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([-1, 0])
                     self.ndirDeg = 180
-                elif dir == np.array([0, -1]):
+                elif dir[0] == 0 and dir[1] == -1:
                     Pixmap = QtGui.QPixmap("./content/elephant/elephant_270.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([0, -1])
                     self.ndirDeg = 270
-            elif s == 'Boulder':
-                if dir == np.array([1, 0]):
+            elif s == 'Rhinoceros':
+                if dir[0] == 1 and dir[1] == 0:
                     Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_0.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([1, 0])
                     self.ndirDeg = 0
-                elif dir == np.array([0, 1]):
+                elif dir[0] ==0 and dir[1] == 1:
                     Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_90.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([0, 1])
                     self.ndirDeg = 90
-                elif dir == np.array([-1, 0]):
+                elif dir[0] == -1 and dir[1] == 0:
                     Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_180.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([-1, 0])
                     self.ndirDeg = 180
-                elif dir == np.array([0, -1]):
+                elif dir[0] == 0 and dir[1] == -1:
                     Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([0, -1])
                     self.ndirDeg = 270
+
+    def refresh(self):
+        # Creating the coordinates of the tiles
+        xcoords, ycoords = [15, 84, 153, 222, 291], [15, 84, 153, 222, 291]
+        self.coord = [[(x, y) for x in xcoords] for y in ycoords]
+
+        self.tile = []
+        for i in range(5):
+            l = []
+            for j in range(5):
+                label = QtWidgets.QLabel(self)
+                boulderPixmap = QtGui.QPixmap('./content/boulder.png')
+                if self.g[i][j] == 0:
+                    pass
+                elif self.g[i][j].species == 'Boulder':
+                    label.setPixmap(boulderPixmap)
+                elif self.g[i][j].species == 'Rhinoceros':
+                    if self.g[i][j].direction[0] == 1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_0.png")
+                        label.setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == 1:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_90.png")
+                        label.setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == -1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_180.png")
+                        label.setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == -1:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
+                        label.setPixmap(Pixmap)
+                elif self.g[i][j].species == 'Elephant':
+                    if self.g[i][j].direction[0] == 1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_0.png")
+                        label.setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == 1:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_90.png")
+                        label.setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == -1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_180.png")
+                        label.setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == -1:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_270.png")
+                        label.setPixmap(Pixmap)
+                label.setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
+                x, y = self.coord[j][i]
+                label.setGeometry(x, y, 64, 64)
+                label.show()
+                l.append(label)
+            self.tile.append(l)
 
 
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    """login = Login()
+    login = Login()
 
-    eName, rName = login.eName.text(), login.rName.text()
-
-    if login.exec_() == QtWidgets.QDialog.Accepted:"""
-    gwin = Game()
-    gwin.show()
-    sys.exit(app.exec_())
+    if login.exec_() == QtWidgets.QDialog.Accepted:
+        eName, rName = login.eName.text(), login.rName.text()
+        gwin = Game(eName, rName)
+        gwin.show()
+        sys.exit(app.exec_())
