@@ -40,7 +40,7 @@ class Animal:
             .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
         """
         dira, dirb = self.direction, animal.direction
-        return dira @ dirb
+        return dira , dirb
 
     @property
     def coords(self):
@@ -257,14 +257,18 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0):
-            compteur = 0
+        elif nx < 0 or nx > 4 or ny < 0 or ny > 4:
+            self.delete(animal)
 
+        elif cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0:
+            compteur = 0
+            k=0
             while compteur>0:  #si le compteur passe en négatif, c'est que l'action pousser est impossible
 
                 #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
                 if cx == 1:
                     for i in range(nx, 5):
+                        k += 1
                         if isinstance(self[i][y], Animal):
                             if cx*self[x][y].direction[0] + cy*self[x][y].direction[1] == 1:
                                 compteur += 1
@@ -281,6 +285,7 @@ class GameMap (list):
 
                 elif cx == -1:
                     for i in range(0, nx+1, -1):
+                        k += 1
                         if isinstance(self[i][y], Animal):
                             if cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 1:
                                 compteur += 1
@@ -296,6 +301,7 @@ class GameMap (list):
                             break
                 elif cy == 1:
                     for i in range(ny, 5):
+                        k += 1
                         if isinstance(self[i][y], Animal):
                             if cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 1:
                                 compteur += 1
@@ -311,6 +317,7 @@ class GameMap (list):
                             break
                 elif cy == -1:
                     for i in range(0, ny+1, -1):
+                        k+=1
                         if isinstance(self[i][y], Animal):
                             if cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 1:
                                 compteur += 1
@@ -326,6 +333,13 @@ class GameMap (list):
                             break
             if compteur>0:
                 "move tous les elmts de cx/cy"
+                if cx > 0:
+                    for j in range(0,k-1,-1):
+
+
+
+                else:
+
 
 
     def rotate(self, animal, ndir):
