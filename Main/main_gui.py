@@ -203,10 +203,12 @@ class Game(QtWidgets.QDialog):
             for i in range(5):
                 self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
 
-        if self.currentPlayer1 :
+        if self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
-        else:
+        elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
+        else :
+            self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj))
 
         self.startpoint = True
         self.buttonCancel.setDisabled(True)
@@ -262,8 +264,7 @@ class Game(QtWidgets.QDialog):
             path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
         else:
             path = "./content/rhinoceros/rhinoceros_" + str(self.ndirDeg) + ".png"
-        Pixmap = QtGui.QPixmap(path)
-        self.playerTile.setPixmap(Pixmap)
+        self.playerTile.setPixmap(QtGui.QPixmap(path))
 
     def TRight90(self):
         dirs = [np.array([1, 0]), np.array([0, 1]), np.array([-1, 0]), np.array([0, -1])]
@@ -275,8 +276,7 @@ class Game(QtWidgets.QDialog):
             path = "./content/elephant/elephant_" + str(self.ndirDeg) + ".png"
         else:
             path = "./content/rhinoceros/rhinoceros_" + str(self.ndirDeg) + ".png"
-        Pixmap = QtGui.QPixmap(path)
-        self.playerTile.setPixmap(Pixmap)
+        self.playerTile.setPixmap(QtGui.QPixmap(path))
 
     def playerBoard(self):
         self.Elephanttitle = QtWidgets.QLabel(self)
@@ -339,7 +339,7 @@ class Game(QtWidgets.QDialog):
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([1, 0])
                     self.ndirDeg = 0
-                elif dir[0] ==0 and dir[1] == 1:
+                elif dir[0] == 0 and dir[1] == 1:
                     Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_90.png")
                     self.playerTile.setPixmap(Pixmap)
                     self.ndir = np.array([0, 1])
