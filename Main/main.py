@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), "Module"))
 import numpy as np
-import KingOfSiam.GameMap as gm
-from KingOfSiam import Animal
+from Module import GameMap as gm
+from Module import Animal
 
 
 
@@ -21,7 +18,7 @@ def turn(nbplayer):
 
 
 ''' Initialisation du plateau de jeu '''
-m = gm.GameMap()
+m = gm
 
 condSortie=False
 

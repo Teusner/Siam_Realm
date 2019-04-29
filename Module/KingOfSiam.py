@@ -362,6 +362,9 @@ class GameMap (list):
                             self[x-j-1][y] = animal
                         else:
                             self.delete(self[x][y])
+                else:
+                    print("ne peut pas pousser")
+                    return False
 
 
 
