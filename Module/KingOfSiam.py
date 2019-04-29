@@ -227,6 +227,19 @@ class GameMap (list):
         print('Warning ! Changing the number of Rhinoceros is not possible!')
 
     def add(self, animal):
+        """
+            This method get the orientation of an animal relative to another.
+            It return the scalar product between the two direction vector of each animal.
+
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> g = GameMap
+                >>> g.add(a)
+
+            .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
+            .. warning:: ...
+            .. info:: ...
+        """
         x, y = animal.coords
         if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
