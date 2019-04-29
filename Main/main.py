@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-import Module.gamemap as gm
+import Files.GameMap_design as gm
 from Module.KingOfSiam import Animal
 
 
@@ -19,7 +19,7 @@ def turn(nbplayer):
 
 
 ''' Initialisation du plateau de jeu '''
-m = gm.GameMap()
+m = gm
 
 condSortie=False
 
