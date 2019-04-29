@@ -29,4 +29,4 @@ class Direction(np.ndarray):
 
 if __name__ == '__main__':
     a = Direction([1, 0])
-    print(a.scalar([np.array([-1, 0])]))
+    print(a.scalar([np.array([1, 0]), np.array([-1, 0]), np.array([-1, 0])]))
