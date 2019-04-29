@@ -81,6 +81,18 @@ class testAnimal(unittest.TestCase):
     def testPosition(self):
         self.assertEqual(self.a.coords, (0, 1))
 
+    def testPositionInGameMap(self):
+        c = [(-1, 0), (0, -1), (5, 0), (0, 5)]
+        for coord in c:
+            self.a.coords = coord
+            self.assertEqual(self.a.coords, (0, 1))
+
+    def testPositionInGameMap(self):
+        c = [(-1, 0), (0, -1), (5, 0), (0, 5)]
+        for coord in c:
+            self.a.coords = coord
+            self.assertEqual(self.a.coords, (0, 1))
+
 
 class testBoulder(unittest.TestCase):
     def setUp(self):

@@ -2,7 +2,6 @@ from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import Qt
 
 from Module.KingOfSiam import *
-import random as rd
 import numpy as np
 
 
