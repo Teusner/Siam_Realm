@@ -248,12 +248,13 @@ class GameMap (list):
         else:
             return False
 
-    def move(self, animal, ncoords):
+    def move(self, animal, ncoords, ndir):
         x, y = animal.coords
         nx, ny = ncoords
         cx, cy = nx-x, ny-y
-        if self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0):
+        if self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (nx==x and ny==y):
             animal.coords = (nx, ny)
+            animal.direction=ndir
             self[x][y] = 0
             self[nx][ny] = animal
 
@@ -332,13 +333,38 @@ class GameMap (list):
                         elif self[i][y].species == 0:
                             break
             if compteur>0:
-                "move tous les elmts de cx/cy"
+                "move tous les elmts de 1 selon cx ou cy"
                 if cx > 0:
                     for j in range(0,k-1,-1):
+                        if y+j<5:
+                            self[x][y+j] = 0
+                            self[x][y+j+1] = animal
+                        else:
+                            self.delete(self[x][j])
+                if cx < 0:
+                    for j in range(0,k-1,-1):
+                        if y-j >= 1:
+                            self[x][y-j] = 0
+                            self[x][y-j-1] = animal
+                        else:
+                            self.delete(self[x][y-j])
+                if cy > 0:
+                    for j in range(0,k-1,-1):
+                        if x+j+1 < 5:
+                            self[x+j][y] = 0
+                            self[x+j+1][y] = animal
+                        else:
+                            self.delete(self[x+j][y])
+                if cy < 0:
+                    for j in range(0,k-1,-1):
+                        if x-j >= 1:
+                            self[x-j][y] = 0
+                            self[x-j-1][y] = animal
+                        else:
+                            self.delete(self[x][y])
 
 
 
-                else:
 
 
 
