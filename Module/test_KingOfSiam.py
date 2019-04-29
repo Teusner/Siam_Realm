@@ -57,11 +57,11 @@ class testGameMap(unittest.TestCase):
     def testDelete(self):
         self.m.add(Animal(0, 2, np.array([0, 1]), 'Rhinoceros'))
         self.m.add(Animal(0, 1, np.array([0, 1]), 'Rhinoceros'))
-        self.m.move(self.m[0][1], (1, 1))
+        self.m.move(self.m[0][1], (1, 1), np.array([0, 1]))
         self.assertIsInstance(self.m[0][2], Animal)
         self.assertIsInstance(self.m[1][1], Animal)
         self.assertEqual(self.m.nb_rhinoceros, 2)
-        self.assertEqual(self.m.nb_rhinoceros, 2)
+        self.assertEqual(self.m.nb_elephants, 0)
         self.m.delete(Animal(0, 2, np.array([0, 1]), 'Rhinoceros'))
         self.m.delete(Animal(1, 1, np.array([0, 1]), 'Rhinoceros'))
         self.assertEqual(self.m[0][2], 0)
