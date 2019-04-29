@@ -1,4 +1,9 @@
 # King of Siam GameFile edited on %date at %time
+
+player_turn {
+    elephant
+}
+
 Boulder {
     (x1, y1);
     (x2, y2);

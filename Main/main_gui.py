@@ -207,7 +207,7 @@ class Game(QtWidgets.QDialog):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
         elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
-        else :
+        else:
             self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj))
 
         self.startpoint = True
