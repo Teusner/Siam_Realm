@@ -71,7 +71,7 @@ class Animal:
             :param ncoords (tuple): which are the new coords of the animal.
         """
         nx,ny=ncoords
-        if nx < 5 and ny < 5 :
+        if 0 <= nx <= 4 and 0 <= ny <= 4:
             self.__coords = nx,ny
 
     @property

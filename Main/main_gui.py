@@ -107,7 +107,7 @@ class Game(QtWidgets.QDialog):
     def mousePressEvent(self, event):
         isel,jsel = int((event.x() - 15) / 66.5), int((event.y() - 15) / 66.5)
 
-        if event.button() == Qt.LeftButton and isel<5 and isel>=0 and jsel<5 and jsel>=0:
+        if event.button() == Qt.LeftButton and 0 <= isel <= 4 and 0 <= jsel <= 4:
             if self.startpoint and self.g[isel][jsel] != 0 and self.g[isel][jsel].species != 'Boulder':
                 self.starti, self.startj = isel, jsel
                 for j in range(5):
