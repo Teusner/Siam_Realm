@@ -228,16 +228,17 @@ class GameMap (list):
 
     def add(self, animal):
         """
-            This method get the orientation of an animal relative to another.
-            It return the scalar product between the two direction vector of each animal.
+            This method introduces a new animal onto the board, letting you decide the position and orientation
+            It returns whether the placement was possible or not.
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> g = GameMap
                 >>> g.add(a)
 
-            .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
-            .. warning:: ...
+            .. note:: the turn does not count if the insertion was not possible
+            .. warning:: if the location of the insertion is already taken by another piece, add calls upon move to see
+            if insertion is possible
             .. info:: ...
         """
         x, y = animal.coords
@@ -251,6 +252,19 @@ class GameMap (list):
             return False
 
     def delete(self, animal):
+        """
+                    This method removes an animal from the board
+                    It reduces by one the number of animals of that species
+
+                    :Example:
+                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                        >>> g = GameMap
+                        >>> g.remove(a)
+
+                    .. note:: if removal of a boulder, game ends?
+                    .. warning:: error if piece is not on the edge
+                    .. info:: ...
+                """
         x, y = animal.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
             self[x][y] = 0
@@ -262,8 +276,21 @@ class GameMap (list):
             return False
 
     def move(self, animal, ncoords, ndir):
+        """
+                    This method moves an animal from on the board, as well as turns it
+                    If the coords to which the animal is moving are taken, the the animal pushes
+
+                    :Example:
+                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                        >>> g = GameMap
+                        >>> g.move(a,(1,1),np.array([0,1]))
+
+                    .. note:: coords outside the board, it removes
+                    .. warning:: error if push is not possible
+                    .. info:: ...
+                """
         x, y = animal.coords
-        nx, ny = ncoords
+        (nx,ny) = ncoords
         cx, cy = nx-x, ny-y
         if self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (nx==x and ny==y):
             animal.coords = (nx, ny)
@@ -385,6 +412,19 @@ class GameMap (list):
 
 
     def rotate(self, animal, ndir):
+        """
+                    This method turns an animal without moving it
+
+                    :Example:
+                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                        >>> g = GameMap
+                        >>> g.rotate(a,np.array([-1,0]))
+
+                    .. note:: ...
+                    .. warning:: if coords don't correspond to a direction, it returns an error
+                    .. info:: ...
+                """
+
         x, y = animal.coords
         if ndir[0] == 0 and abs(ndir[1]) == 1 or ndir[0] == 1 and abs(ndir[1]) == 0 :
             animal.direction = dir
