@@ -126,4 +126,6 @@ class testRegles(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(testGameMap)
+    unittest.TextTestRunner(verbosity=0).run(suite)

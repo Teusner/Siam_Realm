@@ -107,7 +107,7 @@ class Game(QtWidgets.QDialog):
         isel,jsel = int((event.x() - 15) / 66.5), int((event.y() - 15) / 66.5)
 
         if event.button() == Qt.LeftButton and 0 <= isel <= 4 and 0 <= jsel <= 4:
-            if self.startpoint and self.g[isel][jsel] != 0 and self.g[isel][jsel].species != 'Boulder':
+            if self.startpoint and self.g[isel][jsel] != 0 and self.g[isel][jsel].species != 'Boulder' and (self.currentPlayer1 and self.g[isel][jsel].species == 'Elephant' or not self.currentPlayer1 and self.g[isel][jsel].species == 'Rhinoceros'):
                 self.starti, self.startj = isel, jsel
                 for j in range(5):
                     for i in range(5):
