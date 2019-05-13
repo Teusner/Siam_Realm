@@ -298,6 +298,8 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
+        # Je pense que tu en as pas besoin car tu ne vas pas pousser les animaux avec move mais de case en case, il faut revoir toutess les utilisations de move dans la methode move qui ne doivent pas etre la
+
         elif nx < 0 or nx > 4 or ny < 0 or ny > 4:
             self.delete(animal)
 

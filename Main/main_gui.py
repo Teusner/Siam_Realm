@@ -207,7 +207,7 @@ class Game(QtWidgets.QDialog):
         elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
         else:  
-            self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj))
+            self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj), self.ndir)
 
         self.startpoint = True
         self.buttonCancel.setDisabled(True)
@@ -217,6 +217,8 @@ class Game(QtWidgets.QDialog):
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
         self.currentPlayer1 = not self.currentPlayer1
+
+        print(self.g)
 
         self.refresh()
 
@@ -406,10 +408,11 @@ class Game(QtWidgets.QDialog):
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    login = Login()
+    #login = Login()
 
-    if login.exec_() == QtWidgets.QDialog.Accepted:
-        eName, rName = login.eName.text(), login.rName.text()
-        gwin = Game(eName, rName)
-        gwin.show()
-        sys.exit(app.exec_())
+    #if login.exec_() == QtWidgets.QDialog.Accepted:
+        #eName, rName = login.eName.text(), login.rName.text()
+    eName, rName = "Teusner", "Faroluca"
+    gwin = Game(eName, rName)
+    gwin.show()
+    sys.exit(app.exec_())
