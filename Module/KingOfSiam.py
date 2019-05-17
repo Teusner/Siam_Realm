@@ -330,8 +330,8 @@ class GameMap (list):
             if c>=0:
                 "move tous les elmts de 1 selon cx ou cy"
                 for i in range(0,k+1,-1):
-                    self.[x+(i+1)*cx][y+(i+1)*cy]=self.[x+i*cx][y+i*cy]
-                    self.[x+i*cx][y+i*yc]=0
+                    self[x+(i+1)*cx][y+(i+1)*cy]=self[x+i*cx][y+i*cy]
+                    self[x+i*cx][y+i*yc]=0
         else:
             return False
 
@@ -399,11 +399,54 @@ class GameMap (list):
 
         f = fichier.readlines()
         k=0
-        while k < len(f) and "Elephant{" not in f[k]:
+        while k < len(f) and "Boulder {" not in f[k]:
             k += 1
-        #k+=1
-        #while ":" in f[k] and ";" in f[k] :
-        print(f[k+1].split(":")[0].split(" ")[4].split("(")[1].split(")")[0].split(","))
+        k += 1
+        while ";" in f[k] :
+            coords = f[k][5:8].split(",")
+            x, y = int(coords[0]), int(coords[1])
+            self[x][y] = Boulder(x, y)
+            k += 1
+
+        while k < len(f) and "Elephant {" not in f[k]:
+            k += 1
+        k+=1
+        while ":" in f[k] and ";" in f[k] :
+            coords = f[k][5:8].split(",")
+            x, y = int(coords[0]), int(coords[1])
+            d = f[k][22:].split("]")[0].split(",")
+            xdir, ydir = 0, 0
+            if d[0] == "1":
+                xdir = 1
+            elif d[0] == "-1":
+                xdir = -1
+            if d[1] == "1":
+                ydir = 1
+            elif d[1] == "-1":
+                ydir = -1
+            direction = np.array([xdir, ydir])
+            self[x][y] = Animal(x, y, direction, 'Elephant')
+            k += 1
+
+        while k < len(f) and "Rhinoceros {" not in f[k]:
+            k += 1
+        k+=1
+        while ":" in f[k] and ";" in f[k] :
+            coords = f[k][5:8].split(",")
+            x, y = int(coords[0]), int(coords[1])
+            d = f[k][22:].split("]")[0].split(",")
+            xdir, ydir = 0, 0
+            if d[0] == "1":
+                xdir = 1
+            elif d[0] == "-1":
+                xdir = -1
+            if d[1] == "1":
+                ydir = 1
+            elif d[1] == "-1":
+                ydir = -1
+            direction = np.array([xdir, ydir])
+            self[x][y] = Animal(x, y, direction, 'Rhinoceros')
+            k += 1
 
 
 class Boulder:
@@ -454,6 +497,6 @@ class Cross:
 
 if __name__ == '__main__':
     g=GameMap()
-    f=open('../Saves/trame.kos')
-    print("loaded")
+    f=open('../Saves/save.kos')
     g.load(f)
+    print(g)
