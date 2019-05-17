@@ -264,7 +264,7 @@ class GameMap (list):
                     .. note:: if removal of a boulder, game ends?
                     .. warning:: error if piece is not on the edge
                     .. info:: ...
-                """
+        """
         x, y = animal.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
             self[x][y] = 0
@@ -277,22 +277,20 @@ class GameMap (list):
 
     def push_counter(self, x, y, cx, cy, compteur=1):
         #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
-        if isinstance(self[x+cx][y+cy], Animal):
+        if self[x + cx][y + cy] == 0:
+            print(compteur)
+            return compteur
+        elif isinstance(self[x+cx][y+cy], Animal):
             if cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == 1:
                 compteur += 1
-            elif cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == 0:
-                compteur -= 1
             elif cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == -1:
                 compteur -= 2
 
         elif isinstance(self[x+cx][y+cy], Boulder):
             compteur -= 1
 
-        elif self[x+cx][y+cy] == 0:
-            print(compteur)
-            return compteur
 
-        return self.push_counter(x + cx, y + cy, cx, cy, compteur)
+        return compteur, self.push_counter(x + cx, y + cy, cx, cy, compteur)
 
 
 
