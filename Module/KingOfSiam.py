@@ -292,7 +292,9 @@ class GameMap (list):
         x, y = animal.coords
         (nx,ny) = ncoords
         cx, cy = nx-x, ny-y
-        if self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (nx==x and ny==y):
+        if abs(cx)>1 or abs(cy)>1:
+            return False
+        elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (nx==x and ny==y):
             animal.coords = (nx, ny)
             animal.direction=ndir
             self[x][y] = 0
