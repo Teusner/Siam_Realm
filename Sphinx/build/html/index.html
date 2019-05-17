@@ -355,6 +355,80 @@ It return the scalar product between the two direction vector of each animal.</p
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Crosses()</span></code></p>
 </div>
+<dl class="method">
+<dt id="KingOfSiam.GameMap.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method introduces a new animal onto the board, letting you decide the position and orientation
+It returns whether the placement was possible or not.</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the turn does not count if the insertion was not possible</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>if the location of the insertion is already taken by another piece, add calls upon move to see</p>
+</div>
+<p>if insertion is possible
+.. info:: …</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="KingOfSiam.GameMap.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method removes an animal from the board
+It reduces by one the number of animals of that species</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if removal of a boulder, game ends?</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>error if piece is not on the edge</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="KingOfSiam.GameMap.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>animal</em>, <em>ncoords</em>, <em>ndir</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method moves an animal from on the board, as well as turns it
+If the coords to which the animal is moving are taken, the the animal pushes</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>coords outside the board, it removes</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>error if push is not possible</p>
+</div>
+</dd></dl>
+
 <dl class="attribute">
 <dt id="KingOfSiam.GameMap.nb_elephants">
 <code class="descname">nb_elephants</code><a class="headerlink" href="#KingOfSiam.GameMap.nb_elephants" title="Permalink to this definition">¶</a></dt>
@@ -408,6 +482,29 @@ It return the scalar product between the two direction vector of each animal.</p
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>the number of rhinoceros can’t be changed by hand.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="KingOfSiam.GameMap.rotate">
+<code class="descname">rotate</code><span class="sig-paren">(</span><em>animal</em>, <em>ndir</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method turns an animal without moving it</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>…</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>if coords don’t correspond to a direction, it returns an error</p>
 </div>
 </dd></dl>
 

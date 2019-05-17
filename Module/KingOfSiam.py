@@ -233,7 +233,7 @@ class GameMap (list):
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> g = GameMap
+                >>> g = GameMap()
                 >>> g.add(a)
 
             .. note:: the turn does not count if the insertion was not possible
@@ -258,8 +258,8 @@ class GameMap (list):
 
                     :Example:
                         >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap
-                        >>> g.remove(a)
+                        >>> g = GameMap()
+                        >>> g.delete(a)
 
                     .. note:: if removal of a boulder, game ends?
                     .. warning:: error if piece is not on the edge
@@ -303,7 +303,7 @@ class GameMap (list):
 
                     :Example:
                         >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap
+                        >>> g = GameMap()
                         >>> g.move(a,(1,1),np.array([0,1]))
 
                     .. note:: coords outside the board, it removes
@@ -342,8 +342,8 @@ class GameMap (list):
 
                     :Example:
                         >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap
-                        >>> g.rotate(a,np.array([-1,0]))
+                        >>> g = GameMap()
+                        >>> g.rotate(a, np.array([-1,0]))
 
                     .. note:: ...
                     .. warning:: if coords don't correspond to a direction, it returns an error
@@ -388,6 +388,18 @@ class GameMap (list):
                     s += d
             s+='\n \n'
         return s
+
+    def load(self, fichier):
+        for i in range(5):
+            for j in range(5):
+                self[i][j] = 0
+
+        for l in fichier:
+            if "Elephant{" in l:
+                fichier.readlines()
+                if ";" in l and ";" in l:
+                    l.split(";")
+                    print(l)
 
 
 class Boulder:
