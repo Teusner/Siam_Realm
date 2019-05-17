@@ -264,7 +264,7 @@ class GameMap (list):
                     .. note:: if removal of a boulder, game ends?
                     .. warning:: error if piece is not on the edge
                     .. info:: ...
-                """
+        """
         x, y = animal.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
             self[x][y] = 0
@@ -274,6 +274,26 @@ class GameMap (list):
                 self.__nb_rhinoceros -= 1
         else:
             return False
+
+    def push_counter(self, x, y, cx, cy, compteur=1,k=0):
+        k+=1
+        #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
+        if self[x + cx][y + cy] == 0:
+            print(compteur)
+            return compteur
+        elif isinstance(self[x+cx][y+cy], Animal):
+            if cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == 1:
+                compteur += 1
+            elif cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == -1:
+                compteur -= 2
+
+        elif isinstance(self[x+cx][y+cy], Boulder):
+            compteur -= 1
+
+
+        return compteur, k, self.push_counter(x + cx, y + cy, cx, cy, compteur)
+
+
 
     def move(self, animal, ncoords, ndir):
         """
@@ -306,110 +326,14 @@ class GameMap (list):
             self.delete(animal)
 
         elif cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0:
-            compteur = 0
-            k=0
-            while compteur>0:  #si le compteur passe en négatif, c'est que l'action pousser est impossible
-
-                #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
-                if cx == 1:
-                    for i in range(nx, 5):
-                        k += 1
-                        if isinstance(self[i][y], Animal):
-                            if cx*self[x][y].direction[0] + cy*self[x][y].direction[1] == 1:
-                                compteur += 1
-                            elif cx*self[x][y].direction[0] + cy*self[x][y].direction[1] == 0:
-                                compteur -= 1
-                            elif cx*self[x][y].direction[0] + cy*self[x][y].direction[1] == -1:
-                                compteur -= 2
-
-                        elif isinstance(self[i][y], Boulder):
-                            compteur -= 1
-
-                        elif self[i][y] == 0:
-                            break
-
-                elif cx == -1:
-                    for i in range(0, nx+1, -1):
-                        k += 1
-                        if isinstance(self[i][y], Animal):
-                            if cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 1:
-                                compteur += 1
-                            elif cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 0:
-                                compteur -= 1
-                            elif cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == -1:
-                                compteur -= 2
-
-                        elif isinstance(self[i][y], Boulder):
-                            compteur -= 1
-
-                        elif self[i][y].species == 0:
-                            break
-                elif cy == 1:
-                    for i in range(ny, 5):
-                        k += 1
-                        if isinstance(self[i][y], Animal):
-                            if cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 1:
-                                compteur += 1
-                            elif cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 0:
-                                compteur -= 1
-                            elif cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == -1:
-                                compteur -= 2
-
-                        elif isinstance(self[i][y], Boulder):
-                            compteur -= 1
-
-                        elif self[i][y].species == 0:
-                            break
-                elif cy == -1:
-                    for i in range(0, ny+1, -1):
-                        k+=1
-                        if isinstance(self[i][y], Animal):
-                            if cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 1:
-                                compteur += 1
-                            elif cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == 0:
-                                compteur -= 1
-                            elif cx * (self[x][y].direction)[0] + cy * (self[x][y].direction)[1] == -1:
-                                compteur -= 2
-
-                        elif isinstance(self[i][y], Boulder):
-                            compteur -= 1
-
-                        elif self[i][y].species == 0:
-                            break
-            if compteur>0:
+            c= self.push_counter(x, y, cx, cy, compteur=1)
+            if c>=0:
                 "move tous les elmts de 1 selon cx ou cy"
-                if cx > 0:
-                    for j in range(0,k-1,-1):
-                        if y+j<5:
-                            self[x][y+j] = 0
-                            self[x][y+j+1] = animal
-                        else:
-                            self.delete(self[x][j])
-                if cx < 0:
-                    for j in range(0,k-1,-1):
-                        if y-j >= 1:
-                            self[x][y-j] = 0
-                            self[x][y-j-1] = animal
-                        else:
-                            self.delete(self[x][y-j])
-                if cy > 0:
-                    for j in range(0,k-1,-1):
-                        if x+j+1 < 5:
-                            self[x+j][y] = 0
-                            self[x+j+1][y] = animal
-                        else:
-                            self.delete(self[x+j][y])
-                if cy < 0:
-                    for j in range(0,k-1,-1):
-                        if x-j >= 1:
-                            self[x-j][y] = 0
-                            self[x-j-1][y] = animal
-                        else:
-                            self.delete(self[x][y])
-                else:
-                    print("ne peut pas pousser")
-                    return False
-
+                for i in range(0,k+1,-1):
+                    self.[x+(i+1)*cx][y+(i+1)*cy]=self.[x+i*cx][y+i*cy]
+                    self.[x+i*cx][y+i*yc]=0
+        else:
+            return False
 
 
 
