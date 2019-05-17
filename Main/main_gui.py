@@ -64,7 +64,7 @@ class Login(QtWidgets.QDialog):
 class Game(QtWidgets.QDialog):
     def __init__(self, Player1, Player2, parent=None):
         super(Game, self).__init__(parent)
-        self.setFixedSize(650, 370)
+        self.setFixedSize(650, 450)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/boulder.png'))
@@ -267,10 +267,10 @@ class Game(QtWidgets.QDialog):
                                      "QPushButton:!enabled {"
                                      "background-color: #353b48; border: 0;"
                                      "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.buttonLoad.setGeometry(465, 155, 165, 40)
+        self.buttonLoad.setGeometry(15, 370, 200, 40)
         self.buttonLoad.clicked.connect(lambda: self.loadFile())
 
-        self.buttonLoad = QtWidgets.QPushButton('Load', self)
+        self.buttonLoad = QtWidgets.QPushButton('Save', self)
         self.buttonLoad.setStyleSheet("QPushButton {"
                                       "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
                                       "text-align: center; background: #9b59b6; border: 0;"
@@ -280,7 +280,7 @@ class Game(QtWidgets.QDialog):
                                       "QPushButton:!enabled {"
                                       "background-color: #353b48; border: 0;"
                                       "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.buttonLoad.setGeometry(465, 155, 165, 40)
+        self.buttonLoad.setGeometry(230, 370, 200, 40)
         self.buttonLoad.clicked.connect(lambda: self.loadFile())
 
     def loadFile(self):
