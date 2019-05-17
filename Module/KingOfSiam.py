@@ -186,7 +186,7 @@ class GameMap (list):
 
             :Getter's example:
                 >>> m = GameMap()
-                >>> print(m.nb_elephants)
+                >>> ne = m.nb_elephants
 
             .. note:: The elephant's number can not exceed 5.
             .. warning:: the number of elephant can't be changed by hand.
@@ -211,7 +211,7 @@ class GameMap (list):
 
             :Getter's example:
                 >>> m = GameMap()
-                >>> print(m.nb_rhinoceros)
+                >>> nr = m.nb_rhinoceros
 
             .. note:: The rhinoceros's number can not exceed 5.
             .. warning:: the number of rhinoceros can't be changed by hand.
@@ -447,10 +447,3 @@ class Cross:
 
 
 if __name__ == '__main__':
-    a = Animal(0, 2, np.array([1,0]), 'Elephant')
-    b = Animal(1, 2, np.array([1,0]), 'Rhinoceros')
-    b.move(1,4)
-    a.rotate(np.array([-1, 0]))
-    print(a.bearing(b))
-    print(a, b)
-
