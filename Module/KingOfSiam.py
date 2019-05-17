@@ -528,10 +528,3 @@ class Cross:
 
 
 if __name__ == '__main__':
-    a = Animal(0, 2, np.array([1,0]), 'Elephant')
-    b = Animal(1, 2, np.array([1,0]), 'Rhinoceros')
-    b.move(1,4)
-    a.rotate(np.array([-1, 0]))
-    print(a.bearing(b))
-    print(a, b)
-
