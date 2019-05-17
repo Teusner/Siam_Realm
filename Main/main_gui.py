@@ -64,7 +64,7 @@ class Login(QtWidgets.QDialog):
 class Game(QtWidgets.QDialog):
     def __init__(self, Player1, Player2, parent=None):
         super(Game, self).__init__(parent)
-        self.setFixedSize(650, 450)
+        self.setFixedSize(645, 415)
         self.setWindowTitle("King of Siam")
         self.setStyleSheet("background-color: #2d3436; color: white; font-size: 18px;")
         self.setWindowIcon(QtGui.QIcon('./content/boulder.png'))
@@ -93,6 +93,7 @@ class Game(QtWidgets.QDialog):
         label.setPixmap(Pixmap)
         label.setGeometry(10, 5, 360, 360)
 
+        self.setTiles()
         self.refresh()
 
         # Creating the buttons
@@ -260,31 +261,34 @@ class Game(QtWidgets.QDialog):
         self.buttonLoad = QtWidgets.QPushButton('Load', self)
         self.buttonLoad.setStyleSheet("QPushButton {"
                                      "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
-                                     "text-align: center; background: #9b59b6; border: 0;"
-                                     "border-bottom: 3px solid #8e44ad; border-right: 3px solid #8e44ad;}"
+                                     "text-align: center; background: #1abc9c; border: 0;"
+                                     "border-bottom: 3px solid #16a085; border-right: 3px solid #16a085;}"
                                      "QPushButton:pressed {"
-                                     "border: 0px; background: #8e44ad;}"
+                                     "border: 0px; background: #16a085;}"
                                      "QPushButton:!enabled {"
                                      "background-color: #353b48; border: 0;"
                                      "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.buttonLoad.setGeometry(15, 370, 200, 40)
+        self.buttonLoad.setGeometry(15, 365, 300, 40)
         self.buttonLoad.clicked.connect(lambda: self.loadFile())
 
         self.buttonLoad = QtWidgets.QPushButton('Save', self)
         self.buttonLoad.setStyleSheet("QPushButton {"
                                       "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
-                                      "text-align: center; background: #9b59b6; border: 0;"
-                                      "border-bottom: 3px solid #8e44ad; border-right: 3px solid #8e44ad;}"
+                                      "text-align: center; background: #1abc9c; border: 0;"
+                                      "border-bottom: 3px solid #16a085; border-right: 3px solid #16a085;}"
                                       "QPushButton:pressed {"
-                                      "border: 0px; background: #8e44ad;}"
+                                      "border: 0px; background: #16a085;}"
                                       "QPushButton:!enabled {"
                                       "background-color: #353b48; border: 0;"
                                       "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.buttonLoad.setGeometry(230, 370, 200, 40)
+        self.buttonLoad.setGeometry(330, 365, 300, 40)
         self.buttonLoad.clicked.connect(lambda: self.loadFile())
 
     def loadFile(self):
-        pass
+        fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open King of Siam save', '/home')
+        if fname[0]:
+            f = open(fname[0], 'r')
+
     def saveFile(self):
         pass
 
@@ -389,53 +393,57 @@ class Game(QtWidgets.QDialog):
                     self.ndir = np.array([0, -1])
                     self.ndirDeg = 270
 
-    def refresh(self):
-        # Creating the coordinates of the tiles
+    def setTiles(self):
         xcoords, ycoords = [15, 84, 153, 222, 291], [15, 84, 153, 222, 291]
         self.coord = [[(x, y) for x in xcoords] for y in ycoords]
 
         self.tile = []
         for i in range(5):
             l = []
-            for j in range(5):
+            for j in range (5):
                 label = QtWidgets.QLabel(self)
-                boulderPixmap = QtGui.QPixmap('./content/boulder.png')
-                if self.g[i][j] == 0:
-                    pass
-                elif self.g[i][j].species == 'Boulder':
-                    label.setPixmap(boulderPixmap)
-                elif self.g[i][j].species == 'Rhinoceros':
-                    if self.g[i][j].direction[0] == 1 and self.g[i][j].direction[1] == 0:
-                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_0.png")
-                        label.setPixmap(Pixmap)
-                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == 1:
-                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_90.png")
-                        label.setPixmap(Pixmap)
-                    elif self.g[i][j].direction[0] == -1 and self.g[i][j].direction[1] == 0:
-                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_180.png")
-                        label.setPixmap(Pixmap)
-                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == -1:
-                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
-                        label.setPixmap(Pixmap)
-                elif self.g[i][j].species == 'Elephant':
-                    if self.g[i][j].direction[0] == 1 and self.g[i][j].direction[1] == 0:
-                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_0.png")
-                        label.setPixmap(Pixmap)
-                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == 1:
-                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_90.png")
-                        label.setPixmap(Pixmap)
-                    elif self.g[i][j].direction[0] == -1 and self.g[i][j].direction[1] == 0:
-                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_180.png")
-                        label.setPixmap(Pixmap)
-                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == -1:
-                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_270.png")
-                        label.setPixmap(Pixmap)
                 label.setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
                 x, y = self.coord[j][i]
                 label.setGeometry(x, y, 64, 64)
                 label.show()
                 l.append(label)
             self.tile.append(l)
+
+    def refresh(self):
+        for i in range(5):
+            for j in range(5):
+                if self.g[i][j] == 0:
+                    self.tile[i][j].setPixmap(QtGui.QPixmap('./content/transparent.png'))
+                elif self.g[i][j].species == 'Boulder':
+                    self.tile[i][j].setPixmap(QtGui.QPixmap('./content/boulder.png'))
+                elif self.g[i][j].species == 'Rhinoceros':
+                    if self.g[i][j].direction[0] == 1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_0.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == 1:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_90.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == -1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_180.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == -1:
+                        Pixmap = QtGui.QPixmap("./content/rhinoceros/rhinoceros_270.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                elif self.g[i][j].species == 'Elephant':
+                    if self.g[i][j].direction[0] == 1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_0.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == 1:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_90.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == -1 and self.g[i][j].direction[1] == 0:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_180.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                    elif self.g[i][j].direction[0] == 0 and self.g[i][j].direction[1] == -1:
+                        Pixmap = QtGui.QPixmap("./content/elephant/elephant_270.png")
+                        self.tile[i][j].setPixmap(Pixmap)
+                self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
+                self.tile[i][j].show()
 
 
 if __name__ == '__main__':
