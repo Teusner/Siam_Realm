@@ -186,7 +186,7 @@ class GameMap (list):
 
             :Getter's example:
                 >>> m = GameMap()
-                >>> print(m.nb_elephants)
+                >>> ne = m.nb_elephants
 
             .. note:: The elephant's number can not exceed 5.
             .. warning:: the number of elephant can't be changed by hand.
@@ -211,7 +211,7 @@ class GameMap (list):
 
             :Getter's example:
                 >>> m = GameMap()
-                >>> print(m.nb_rhinoceros)
+                >>> nr = m.nb_rhinoceros
 
             .. note:: The rhinoceros's number can not exceed 5.
             .. warning:: the number of rhinoceros can't be changed by hand.
