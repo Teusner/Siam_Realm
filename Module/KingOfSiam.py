@@ -473,12 +473,13 @@ class GameMap (list):
             for j in range(5):
                 self[i][j] = 0
 
-        for l in fichier:
-            if "Elephant{" in l:
-                fichier.readlines()
-                if ";" in l and ";" in l:
-                    l.split(";")
-                    print(l)
+        f = fichier.readlines()
+        k=0
+        while k < len(f) and "Elephant{" not in f[k]:
+            k += 1
+        #k+=1
+        #while ":" in f[k] and ";" in f[k] :
+        print(f[k+1].split(":")[0].split(" ")[4].split("(")[1].split(")")[0].split(","))
 
 
 class Boulder:
@@ -528,3 +529,7 @@ class Cross:
 
 
 if __name__ == '__main__':
+    g=GameMap()
+    f=open('../Saves/trame.kos')
+    print("loaded")
+    g.load(f)
