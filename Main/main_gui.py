@@ -100,6 +100,7 @@ class Game(QtWidgets.QDialog):
         self.validButton()
         self.playerBoard()
         self.turnWidget()
+        self.saveWidget()
 
         self.show()
 
@@ -202,9 +203,9 @@ class Game(QtWidgets.QDialog):
             for i in range(5):
                 self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
 
-        if self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
+        if self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
-        elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
+        elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4):
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
         else:  
             self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj), self.ndir)
@@ -254,6 +255,38 @@ class Game(QtWidgets.QDialog):
         self.button90r.setGeometry(465, 195, 165, 40)
         self.button90r.clicked.connect(lambda: self.TRight90())
         self.button90r.setDisabled(True)
+
+    def saveWidget(self):
+        self.buttonLoad = QtWidgets.QPushButton('Load', self)
+        self.buttonLoad.setStyleSheet("QPushButton {"
+                                     "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
+                                     "text-align: center; background: #9b59b6; border: 0;"
+                                     "border-bottom: 3px solid #8e44ad; border-right: 3px solid #8e44ad;}"
+                                     "QPushButton:pressed {"
+                                     "border: 0px; background: #8e44ad;}"
+                                     "QPushButton:!enabled {"
+                                     "background-color: #353b48; border: 0;"
+                                     "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
+        self.buttonLoad.setGeometry(465, 155, 165, 40)
+        self.buttonLoad.clicked.connect(lambda: self.loadFile())
+
+        self.buttonLoad = QtWidgets.QPushButton('Load', self)
+        self.buttonLoad.setStyleSheet("QPushButton {"
+                                      "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
+                                      "text-align: center; background: #9b59b6; border: 0;"
+                                      "border-bottom: 3px solid #8e44ad; border-right: 3px solid #8e44ad;}"
+                                      "QPushButton:pressed {"
+                                      "border: 0px; background: #8e44ad;}"
+                                      "QPushButton:!enabled {"
+                                      "background-color: #353b48; border: 0;"
+                                      "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
+        self.buttonLoad.setGeometry(465, 155, 165, 40)
+        self.buttonLoad.clicked.connect(lambda: self.loadFile())
+
+    def loadFile(self):
+        pass
+    def saveFile(self):
+        pass
 
     def TLeft90(self):
         dirs = [np.array([1, 0]), np.array([0, -1]), np.array([-1, 0]), np.array([0, 1])]
