@@ -5,23 +5,23 @@ player_turn {
 }
 
 Boulder {
-    (x1, y1);
-    (x2, y2);
-    (x3, y3);
+    (x1,y1);
+    (x2,y2);
+    (x3,y3);
 }
 
 Elephant{
-    (x1, y1) : np.array([0, 1]);
-    (x2, y2) : np.array([0, -1]);
-    (x3, y3) : np.array([-1, 0]);
-    (x4, y4) : np.array([0, 1]);
-    (x5, y5) : np.array([1, 0]);
+    (x1,y1) : np.array([0, 1]);
+    (x2,y2) : np.array([0, -1]);
+    (x3,y3) : np.array([-1, 0]);
+    (x4,y4) : np.array([0, 1]);
+    (x5,y5) : np.array([1, 0]);
 }
 
 Rhinoceros{
-    (x1, y1) : np.array([0, 1]);
-    (x2, y2) : np.array([0, -1]);
-    (x3, y3) : np.array([-1, 0]);
-    (x4, y4) : np.array([0, 1]);
-    (x5, y5) : np.array([1, 0]);
+    (x1,y1) : np.array([0, 1]);
+    (x2,y2) : np.array([0, -1]);
+    (x3,y3) : np.array([-1, 0]);
+    (x4,y4) : np.array([0, 1]);
+    (x5,y5) : np.array([1, 0]);
 }
