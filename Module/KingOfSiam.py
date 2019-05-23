@@ -277,6 +277,7 @@ class GameMap (list):
 
     def push_counter(self, x, y, cx, cy, compteur=1,k=0):
         k+=1
+        print('compteur=', k)
         #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
         if self[x + cx][y + cy] == 0:
             print(compteur)
@@ -289,7 +290,6 @@ class GameMap (list):
 
         elif isinstance(self[x+cx][y+cy], Boulder):
             compteur -= 1
-
 
         return compteur, k, self.push_counter(x + cx, y + cy, cx, cy, compteur)
 
@@ -314,9 +314,9 @@ class GameMap (list):
         cx, cy = nx-x, ny-y
         if abs(cx)>1 or abs(cy)>1:
             return False
-        elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (nx==x and ny==y):
+        elif (self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0)) or (nx==x and ny==y):
             animal.coords = (nx, ny)
-            animal.direction=ndir
+            animal.direction = ndir
             self[x][y] = 0
             self[nx][ny] = animal
 
@@ -326,12 +326,13 @@ class GameMap (list):
             self.delete(animal)
 
         elif cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0:
-            c= self.push_counter(x, y, cx, cy, compteur=1)
-            if c>=0:
+            c = self.push_counter(x, y, cx, cy, 1)[0]
+            k = self.push_counter(x, y, cx, cy, 1)[1]
+            if c >= 0:
                 "move tous les elmts de 1 selon cx ou cy"
-                for i in range(0,k+1,-1):
-                    self[x+(i+1)*cx][y+(i+1)*cy]=self[x+i*cx][y+i*cy]
-                    self[x+i*cx][y+i*yc]=0
+                for i in range(k, -1, -1):
+                    self[x+(i+1)*cx][y+(i+1)*cy] = self[x+i*cx][y+i*cy]
+                    self[x+i*cx][y+i*cy] = 0
         else:
             return False
 
