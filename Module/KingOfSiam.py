@@ -498,13 +498,13 @@ class Cross:
 
 if __name__ == '__main__':
     g=GameMap()
-    mon_fichier = open("../Saves/save.kos", "w")
-    mon_fichier.write("player_turn {\nelephant or rhino\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
-                      "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
-                      "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
-                      "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
-                      "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
-    mon_fichier.close()
+    #mon_fichier = open("../Saves/save.kos", "w")
+    #mon_fichier.write("player_turn {\nelephant or rhino\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
+    #                 "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
+    #                  "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
+    #                  "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
+    #                  "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
+    #mon_fichier.close()
 
     f=open('../Saves/save.kos')
     g.load(f)
