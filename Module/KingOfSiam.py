@@ -70,9 +70,9 @@ class Animal:
 
             :param ncoords (tuple): which are the new coords of the animal.
         """
-        nx,ny=ncoords
+        nx, ny = ncoords
         if 0 <= nx <= 4 and 0 <= ny <= 4:
-            self.__coords = nx,ny
+            self.__coords = nx, ny
 
     @property
     def direction(self):
@@ -102,7 +102,7 @@ class Animal:
 
             :param ndir (numpy.array): which is the new direction of the animal.
         """
-        if np.sqrt(ndir[0]**2+ndir[1]**2)==1 and (ndir[0]==0 or ndir[1]==0) :
+        if np.sqrt(ndir[0]**2+ndir[1]**2) == 1 and (ndir[0] == 0 or ndir[1] == 0) and ndir.size == 2:
             self.__direction = ndir
 
     @property

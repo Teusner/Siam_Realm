@@ -87,11 +87,19 @@ class testAnimal(unittest.TestCase):
             self.a.coords = coord
             self.assertEqual(self.a.coords, (0, 1))
 
-    def testPositionInGameMap(self):
-        c = [(-1, 0), (0, -1), (5, 0), (0, 5)]
-        for coord in c:
-            self.a.coords = coord
-            self.assertEqual(self.a.coords, (0, 1))
+    def testDirectionInGameMap(self):
+        d = [np.array([0, 2]), np.array([2, 0]), np.array([-2, 0]), np.array([0, -2]), np.array([1, 1]), np.array([-1, -1]), np.array([1/2, np.sqrt(3)/2])]
+        for dir in d:
+            self.a.direction = dir
+            self.assertEqual(self.a.direction[0], 0)
+            self.assertEqual(self.a.direction[1], 1)
+
+    def testSpecies(self):
+        self.assertEqual(self.a.species, "Elephant")
+        self.a.species = "Rhinoceros"
+        self.assertEqual(self.a.species, "Rhinoceros")
+        self.a.species = "TheCakeIsALie"
+        self.assertEqual(self.a.species, "Rhinoceros")
 
 
 class testBoulder(unittest.TestCase):
