@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from Module.KingOfSiam import GameMap, Animal, Boulder, Cross
+from KingOfSiam import GameMap, Animal, Boulder, Cross
 import numpy as np
 
 
@@ -126,6 +126,6 @@ class testRegles(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    #unittest.main()
-    suite = unittest.TestLoader().loadTestsFromTestCase(testGameMap)
-    unittest.TextTestRunner(verbosity=0).run(suite)
+    unittest.main()
+    #suite = unittest.TestLoader().loadTestsFromTestCase(testGameMap)
+    #unittest.TextTestRunner(verbosity=0).run(suite)
