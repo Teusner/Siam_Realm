@@ -1,6 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
+__author__ = "Brateaqu, Farolflu"
+__copyright__ = "Copyright 2019"
+__credits__ = ["Quentin BRATEAU", "Luca FAROLFI"]
+
+__license__ = "GPL"
+__version__ = "1.0"
+__email__ = ["quentin.brateau@ensta-bretagne.org", "luca.farolfi@ensta-bretagne.org"]
+
+
+# Importing modules
 import numpy as np
 
 
@@ -22,9 +33,9 @@ class Animal:
 
         .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
     """
-    def __init__(self, x, y, dir, species):
+    def __init__(self, x, y, direction, species):
         self.__coords = x,y
-        self.__direction = dir
+        self.__direction = direction
         self.__species = species
 
     def bearing(self, animal):
@@ -39,8 +50,8 @@ class Animal:
 
             .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
         """
-        dira, dirb = self.direction, animal.direction
-        return dira , dirb
+        direction_1, direction_2 = self.direction, animal.direction
+        return direction_1@direction_2
 
     @property
     def coords(self):
@@ -85,7 +96,7 @@ class Animal:
 
             :Getter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> dir = a.direction
+                >>> d = a.direction
 
             :Setter's example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
@@ -161,6 +172,7 @@ class GameMap (list):
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
     """
     def __init__(self):
+        super().__init__()
         self.xmax = 5
         self.ymax = 5
         self.__nb_elephants = 0
@@ -168,12 +180,12 @@ class GameMap (list):
         self.nb_boulders = 0
         self.nb_crosses = 0
         for k in range(self.ymax):
-            y=[]
+            y = []
             for i in range(self.ymax):
                 y.append(0)
             self.append(y)
-        for k in range(3): # Setting up the 3 Boulders
-            self[1+k][2]=Boulder(1+k, 2)
+        for k in range(3):  # Setting up the 3 Boulders
+            self[1+k][2] = Boulder(1+k, 2)
             self.nb_boulders += 1
 
     @property
@@ -194,7 +206,7 @@ class GameMap (list):
         return self.__nb_elephants
 
     @nb_elephants.setter
-    def nb_elephants(self, nb_el):
+    def nb_elephants(self, x):
         """
             Setting the elephant's number.
             .. warning:: the number of elephant can't be changed by hand.
@@ -312,9 +324,9 @@ class GameMap (list):
         x, y = animal.coords
         (nx,ny) = ncoords
         cx, cy = nx-x, ny-y
-        if abs(cx)>1 or abs(cy)>1:
+        if abs(cx) > 1 or abs(cy) > 1:
             return False
-        elif (self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0)) or (nx==x and ny==y):
+        elif (self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0)) or (nx == x and ny == y):
             animal.coords = (nx, ny)
             animal.direction = ndir
             self[x][y] = 0
@@ -355,7 +367,7 @@ class GameMap (list):
                 """
 
         x, y = animal.coords
-        if ndir[0] == 0 and abs(ndir[1]) == 1 or ndir[0] == 1 and abs(ndir[1]) == 0 :
+        if ndir[0] == 0 and abs(ndir[1]) == 1 or ndir[0] == 1 and abs(ndir[1]) == 0:
             animal.direction = dir
             self[x][y] = animal
 
@@ -371,26 +383,26 @@ class GameMap (list):
             for i in range(5):
                 ani = False
                 if self[i][j] == 0:
-                   s+=' 0  '
+                   s += ' 0  '
                 elif self[i][j].species == 'Elephant' :
-                    s+=' E'
+                    s += ' E'
                     ani = True
                 elif self[i][j].species == 'Rhinoceros':
-                    s+=' R'
+                    s += ' R'
                     ani = True
-                else :
-                    s+=' B  '
-                if ani :
+                else:
+                    s += ' B  '
+                if ani:
                     if self[i][j].direction[0] == 1 and self[i][j].direction[1] == 0:
-                        d='> '
+                        d = '> '
                     elif self[i][j].direction[0] == 0 and self[i][j].direction[1] == 1:
-                        d='∧ '
+                        d = '∧ '
                     elif self[i][j].direction[0] == -1 and self[i][j].direction[1] == 0:
-                        d='< '
-                    else :
-                        d='∨ '
+                        d = '< '
+                    else:
+                        d = '∨ '
                     s += d
-            s+='\n \n'
+            s += '\n \n'
         return s
 
     def load(self, fichier):
@@ -399,7 +411,7 @@ class GameMap (list):
                 self[i][j] = 0
 
         f = fichier.readlines()
-        k=0
+        k = 0
         while k < len(f) and "Boulder {" not in f[k]:
             k += 1
         k += 1
@@ -411,8 +423,8 @@ class GameMap (list):
 
         while k < len(f) and "Elephant {" not in f[k]:
             k += 1
-        k+=1
-        while ":" in f[k] and ";" in f[k] :
+        k += 1
+        while ":" in f[k] and ";" in f[k]:
             coords = f[k][5:8].split(",")
             x, y = int(coords[0]), int(coords[1])
             d = f[k][22:].split("]")[0].split(",")
@@ -431,8 +443,8 @@ class GameMap (list):
 
         while k < len(f) and "Rhinoceros {" not in f[k]:
             k += 1
-        k+=1
-        while ":" in f[k] and ";" in f[k] :
+        k += 1
+        while ":" in f[k] and ";" in f[k]:
             coords = f[k][5:8].split(",")
             x, y = int(coords[0]), int(coords[1])
             d = f[k][22:].split("]")[0].split(",")
@@ -497,7 +509,7 @@ class Cross:
 
 
 if __name__ == '__main__':
-    g=GameMap()
+    g = GameMap()
     #mon_fichier = open("../Saves/save.kos", "w")
     #mon_fichier.write("player_turn {\nelephant or rhino\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
     #                 "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
@@ -506,6 +518,6 @@ if __name__ == '__main__':
     #                  "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
     #mon_fichier.close()
 
-    f=open('../Saves/save.kos')
+    f = open('../Saves/save.kos')
     g.load(f)
     print(g)
