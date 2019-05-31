@@ -34,7 +34,7 @@ class Animal:
         .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
     """
     def __init__(self, x, y, direction, species):
-        self.__coords = x,y
+        self.__coords = x, y
         self.__direction = direction
         self.__species = species
 
