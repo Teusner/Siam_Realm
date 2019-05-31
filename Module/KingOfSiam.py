@@ -95,11 +95,11 @@ class Animal:
             :Type: numpy.array
 
             :Getter's example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> a = Animal(0, 1, np.array([0, 1]), "Elephant")
                 >>> d = a.direction
 
             :Setter's example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> a = Animal(0, 1, np.array([0, 1]), "Elephant")
                 >>> a.direction = np.array([-1, 0])
 
             .. warning:: the direction should be a numpy.array unitary vector with a null coordinate.
