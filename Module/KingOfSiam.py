@@ -186,7 +186,7 @@ class GameMap (list):
                 y.append(0)
             self.append(y)
         for k in range(3):  # Setting up the 3 Boulders
-            self[1+k][2] = Boulder(1+k, 2)
+            self[1+k][2] = Boulder(2, 1+k)
             self.nb_boulders += 1
 
     @property
@@ -288,7 +288,7 @@ class GameMap (list):
         else:
             return False
 
-    def push_counter(self, x, y, cx, cy, compteur=1,k=0):
+    def push_counter(self, x, y, cx, cy, compteur=1, k=0):
         k+=1
         print('compteur=', k)
         #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
