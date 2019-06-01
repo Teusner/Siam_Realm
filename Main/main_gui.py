@@ -107,7 +107,7 @@ class Game(QtWidgets.QDialog):
         self.show()
 
     def mousePressEvent(self, event):
-        isel, jsel = int((event.x() - 15) / 66.5), int((event.y() - 15) / 66.5)
+        isel, jsel = int((event.y() - 15) / 66.5), int((event.x() - 15) / 66.5)
 
         if event.button() == Qt.LeftButton and 0 <= isel <= 4 and 0 <= jsel <= 4:
             if self.startpoint and self.g[isel][jsel] != 0 and self.g[isel][jsel].species != 'Boulder' and (self.currentPlayer1 and self.g[isel][jsel].species == 'Elephant' or not self.currentPlayer1 and self.g[isel][jsel].species == 'Rhinoceros'):
@@ -431,7 +431,7 @@ class Game(QtWidgets.QDialog):
 
     def setTiles(self):
         xcoords, ycoords = [15, 84, 153, 222, 291], [15, 84, 153, 222, 291]
-        self.coord = [[(x, y) for x in xcoords] for y in ycoords]
+        self.coord = [[(y, x) for x in xcoords] for y in ycoords]
 
         self.tile = []
         for i in range(5):

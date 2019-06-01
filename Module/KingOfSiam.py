@@ -186,7 +186,7 @@ class GameMap (list):
                 y.append(0)
             self.append(y)
         for k in range(3):  # Setting up the 3 Boulders
-            self[1+k][2] = Boulder(1+k, 2)
+            self[1+k][2] = Boulder(2, 1+k)
             self.nb_boulders += 1
 
     @property
