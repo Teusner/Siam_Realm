@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-__authors__ = "Brateaqu, Farolflu"
+__author__ = "Brateaqu, Farolflu"
 __copyright__ = "Copyright 2019"
 __credits__ = ["Quentin BRATEAU", "Luca FAROLFI"]
 
@@ -34,9 +34,9 @@ class Animal:
         .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
         .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
     """
-    def __init__(self, x, y, direction, species):
-        self.__coords = x, y
-        self.__direction = direction
+    def __init__(self, x, y, dir, species):
+        self.__coords = x,y
+        self.__direction = dir
         self.__species = species
 
     def bearing(self, animal):
@@ -51,8 +51,8 @@ class Animal:
 
             .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
         """
-        direction_1, direction_2 = self.direction, animal.direction
-        return direction_1@direction_2
+        dira, dirb = self.direction, animal.direction
+        return dira , dirb
 
     @property
     def coords(self):
@@ -82,7 +82,7 @@ class Animal:
 
             :param ncoords (tuple): which are the new coords of the animal.
         """
-        nx, ny = ncoords
+        nx,ny=ncoords
         if 0 <= nx <= 4 and 0 <= ny <= 4:
             self.__coords = nx, ny
 
@@ -171,7 +171,6 @@ class GameMap (list):
             >>> m = GameMap()
 
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
-        .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
     """
     def __init__(self):
         super().__init__()
@@ -307,6 +306,8 @@ class GameMap (list):
 
         return compteur, k, self.push_counter(x + cx, y + cy, cx, cy, compteur)
 
+
+
     def move(self, animal, ncoords, ndir):
         """
                     This method moves an animal from on the board, as well as turns it
@@ -332,21 +333,34 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-        # Je pense que tu en as pas besoin car tu ne vas pas pousser les animaux avec move mais de case en case, il faut revoir toutess les utilisations de move dans la methode move qui ne doivent pas etre la
-
-        elif nx < 0 or nx > 4 or ny < 0 or ny > 4:
-            self.delete(animal)
 
         elif cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0:
             c = self.push_counter(x, y, cx, cy, 1)[0]
             k = self.push_counter(x, y, cx, cy, 1)[1]
-            if c >= 0:
+            if c >= 0 and (cx == nx-x and cy == ny-y):
                 "move tous les elmts de 1 selon cx ou cy"
+
                 for i in range(k, -1, -1):
-                    self[x+(i+1)*cx][y+(i+1)*cy] = self[x+i*cx][y+i*cy]
-                    self[x+i*cx][y+i*cy] = 0
+                    if not (0 <= (x+(i+1)*cx) <= 4 and 0 <= (y+(i+1)*cy) <= 4):
+                        "l'élément en bout de poussée sort du plateau"
+                        if isinstance(self[x+cx][y+cy], Animal):
+                            self[x + (i+1) * cx][y + (i+1) * cy] = animal
+                            if animal.species == 'Elephant':
+                                self.__nb_elephants -= 1
+                            elif animal.species == 'Rhinoceros':
+                                self.__nb_rhinoceros -= 1
+                        else:
+                            return 'Victoire!'
+                    else:
+                        self[x + (i+1) * cx][y + (i+1) * cy] = self[x+i*cx][y+i*cy]
+                        self[x+i*cx][y+i*cy] = 0
+
         else:
             return False
+
+
+
+
 
     def rotate(self, animal, ndir):
         """
