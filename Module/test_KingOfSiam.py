@@ -26,9 +26,9 @@ class testGameMap(unittest.TestCase):
         self.assertEqual(self.m.ymax, 5)
 
     def testBoulderInit(self):
-        self.assertIsInstance(self.m[1][2], Boulder)
+        self.assertIsInstance(self.m[2][1], Boulder)
         self.assertIsInstance(self.m[2][2], Boulder)
-        self.assertIsInstance(self.m[3][2], Boulder)
+        self.assertIsInstance(self.m[2][3], Boulder)
 
     def testNbBoulders(self):
         self.assertEqual(self.m.nb_boulders, 3)
