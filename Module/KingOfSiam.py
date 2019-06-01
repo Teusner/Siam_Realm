@@ -389,11 +389,11 @@ class GameMap (list):
                 else:
                     s += ' B  '
                 if ani:
-                    if self[i][j].direction[0] == 1 and self[i][j].direction[1] == 0:
+                    if self[i][j].direction[0] == 0 and self[i][j].direction[1] == 1:
                         d = '> '
-                    elif self[i][j].direction[0] == 0 and self[i][j].direction[1] == 1:
-                        d = '∧ '
                     elif self[i][j].direction[0] == -1 and self[i][j].direction[1] == 0:
+                        d = '∧ '
+                    elif self[i][j].direction[0] == 0 and self[i][j].direction[1] == -1:
                         d = '< '
                     else:
                         d = '∨ '

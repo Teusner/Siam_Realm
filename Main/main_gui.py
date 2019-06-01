@@ -111,6 +111,7 @@ class Game(QtWidgets.QDialog):
         if event.button() == Qt.LeftButton and 0 <= isel <= 4 and 0 <= jsel <= 4:
             if self.startpoint and self.g[isel][jsel] != 0 and self.g[isel][jsel].species != 'Boulder' and (self.currentPlayer1 and self.g[isel][jsel].species == 'Elephant' or not self.currentPlayer1 and self.g[isel][jsel].species == 'Rhinoceros'):
                 self.starti, self.startj = isel, jsel
+                self.endi, self.endj = isel, jsel
                 for j in range(5):
                     for i in range(5):
                         self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
@@ -121,6 +122,7 @@ class Game(QtWidgets.QDialog):
                     m, n = k
                     self.tile[m][n].setStyleSheet("background-color: #ff9f43")
 
+                self.playerTile.setPixmap(QtGui.QPixmap('./content/transparent.png'))
                 self.tile[self.starti][self.startj].setStyleSheet("background-color: #ff9f43")
                 self.startpoint = False
                 self.buttonCancel.setEnabled(True)
@@ -204,9 +206,9 @@ class Game(QtWidgets.QDialog):
             for i in range(5):
                 self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
 
-        if self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4):
+        if self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4) and self.starti == self.endi and self.startj == self.endj:
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
-        elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4):
+        elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4) and self.starti == self.endi and self.startj == self.endj:
             self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
         else:  
             self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj), self.ndir)
