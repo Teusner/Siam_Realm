@@ -288,7 +288,7 @@ class GameMap (list):
         else:
             return False
 
-    def push_counter(self, x, y, cx, cy, compteur=1,k=0):
+    def push_counter(self, x, y, cx, cy, compteur=1, k=0):
         k+=1
         print('compteur=', k)
         #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
@@ -296,9 +296,9 @@ class GameMap (list):
             print(compteur)
             return compteur
         elif isinstance(self[x+cx][y+cy], Animal):
-            if cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == 1:
+            if cx * self[x+cx][y+cy].direction[1] + cy * self[x+cx][y+cy].direction[0] == 1:
                 compteur += 1
-            elif cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == -1:
+            elif cx * self[x+cx][y+cy].direction[1] + cy * self[x+cx][y+cy].direction[0] == -1:
                 compteur -= 2
 
         elif isinstance(self[x+cx][y+cy], Boulder):
@@ -333,7 +333,7 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[1] == cx and animal.direction[0] == cy):
+        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[0] == cy):
             c = self.push_counter(x, y, cx, cy, 1)[0]
             k = self.push_counter(x, y, cx, cy, 1)[1]
             if c >= 0:
@@ -358,28 +358,6 @@ class GameMap (list):
             return False
 
 
-
-
-
-    def rotate(self, animal, ndir):
-        """
-                    This method turns an animal without moving it
-
-                    :Example:
-                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap()
-                        >>> g.rotate(a, np.array([-1,0]))
-
-                    .. note:: ...
-                    .. warning:: if coords don't correspond to a direction, it returns an error
-                    .. info:: ...
-                """
-
-        x, y = animal.coords
-        if ndir[0] == 0 and abs(ndir[1]) == 1 or ndir[0] == 1 and abs(ndir[1]) == 0:
-            animal.direction = dir
-            self[x][y] = animal
-
     def __str__(self):
         """
             Show the current state of the game board
@@ -388,8 +366,8 @@ class GameMap (list):
             :rtype: str
         """
         s=''
-        for j in range(5):
-            for i in range(5):
+        for i in range(5):
+            for j in range(5):
                 ani = False
                 if self[i][j] == 0:
                    s += ' 0  '
@@ -413,6 +391,20 @@ class GameMap (list):
                     s += d
             s += '\n \n'
         return s
+"""
+    def save(self, fichier):
+        fichier.write("player_turn {\n" + self.Player_turn + "\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
+                          "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
+                          "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
+                          "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
+                          "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
+        fichier.close()
+"""
+
+# créer une liste de boulders, une de rhino, une d'éléphants:
+# stocker chaine de car correspondant à coords+dir
+# append à la liste correspondante
+# parcourrir les listes et créer ligne par ligne le texte
 
     def load(self, fichier):
         for i in range(5):
@@ -519,14 +511,7 @@ class Cross:
 
 if __name__ == '__main__':
     g = GameMap()
-    #mon_fichier = open("../Saves/save.kos", "w")
-    #mon_fichier.write("player_turn {\nelephant or rhino\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
-    #                 "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
-    #                  "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
-    #                  "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
-    #                  "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
-    #mon_fichier.close()
-
-    f = open('../Saves/save.kos')
-    g.load(f)
+    g.add(Animal(0,1,(1,0),'Elephant'))
+    #faire plein de tests
     print(g)
+ # "faire des tests dans test_Kingof... avec setup et voir si différentes fonctions marchent"
