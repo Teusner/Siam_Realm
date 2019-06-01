@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-__author__ = "Brateaqu, Farolflu"
+__authors__ = "Brateaqu, Farolflu"
 __copyright__ = "Copyright 2019"
 __credits__ = ["Quentin BRATEAU", "Luca FAROLFI"]
 
@@ -32,6 +32,7 @@ class Animal:
             >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
 
         .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
+        .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
     """
     def __init__(self, x, y, direction, species):
         self.__coords = x, y
@@ -170,6 +171,7 @@ class GameMap (list):
             >>> m = GameMap()
 
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
+        .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
     """
     def __init__(self):
         super().__init__()
@@ -305,8 +307,6 @@ class GameMap (list):
 
         return compteur, k, self.push_counter(x + cx, y + cy, cx, cy, compteur)
 
-
-
     def move(self, animal, ncoords, ndir):
         """
                     This method moves an animal from on the board, as well as turns it
@@ -347,10 +347,6 @@ class GameMap (list):
                     self[x+i*cx][y+i*cy] = 0
         else:
             return False
-
-
-
-
 
     def rotate(self, animal, ndir):
         """

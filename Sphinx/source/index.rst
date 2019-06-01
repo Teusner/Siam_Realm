@@ -11,7 +11,7 @@ are implemented :
 
 ....
 
-.. inheritance-diagram:: KingOfSiam.GameMap KingOfSiam.Animal
+.. inheritance-diagram:: Module.KingOfSiam
    :parts: 1
 
 ....
