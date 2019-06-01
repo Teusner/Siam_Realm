@@ -98,6 +98,7 @@ class Game(QtWidgets.QDialog):
 
         # Creating the buttons
         self.cancelButton()
+        self.deleteButton()
         self.validButton()
         self.playerBoard()
         self.turnWidget()
@@ -145,6 +146,9 @@ class Game(QtWidgets.QDialog):
                     self.playerTile.setStyleSheet("background-color: #ff9f43")
                     self.setPlayerTile(self.starti, self.startj)
 
+                    if self.starti == self.endi and self.startj == self.endj and self.g[self.starti][self.startj] != 0:
+                        self.buttonDelete.setEnabled(True)
+
             elif self.g[isel][jsel] == 0 and (isel == 4 or isel == 0 or jsel == 4 or jsel == 0):
                 self.starti, self.startj = isel, jsel
                 self.endi, self.endj = isel, jsel
@@ -170,7 +174,7 @@ class Game(QtWidgets.QDialog):
                                        "QPushButton:!enabled {"
                                             "background-color: #353b48; border: 0;"
                                             "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.buttonCancel.setGeometry(380, 270, 250, 40)
+        self.buttonCancel.setGeometry(380, 235, 250, 40)
         self.buttonCancel.clicked.connect(lambda: self.cancelButtonClicked())
         self.buttonCancel.setDisabled(True)
 
@@ -185,6 +189,34 @@ class Game(QtWidgets.QDialog):
         self.button90r.setDisabled(True)
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
+
+    def deleteButton(self):
+        self.buttonDelete = QtWidgets.QPushButton('Delete Animal', self)
+        self.buttonDelete.setStyleSheet("QPushButton {"
+                                            "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
+                                            "text-align: center; background: #e74c3c; border: 0;"
+                                            "border-bottom: 3px solid #c0392b; border-right: 3px solid #c0392b;}"
+                                       "QPushButton:pressed {"
+                                            "border: 0px; background: #c0392b;}"
+                                       "QPushButton:!enabled {"
+                                            "background-color: #353b48; border: 0;"
+                                            "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
+        self.buttonDelete.setGeometry(380, 275, 250, 40)
+        self.buttonDelete.clicked.connect(lambda: self.deleteButtonClicked())
+        self.buttonDelete.setDisabled(True)
+
+    def deleteButtonClicked(self):
+        self.g.delete(self.g[self.starti][self.startj])
+        self.startpoint = True
+        self.buttonCancel.setDisabled(True)
+        self.buttonDelete.setDisabled(True)
+        self.buttonValid.setDisabled(True)
+        self.button90l.setDisabled(True)
+        self.button90r.setDisabled(True)
+        self.playerTile.setStyleSheet("background-color: #353b48")
+        self.playerTile.clear()
+        self.currentPlayer1 = not self.currentPlayer1
+        self.refresh()
 
     def validButton(self):
         self.buttonValid = QtWidgets.QPushButton('Accept', self)
@@ -229,7 +261,7 @@ class Game(QtWidgets.QDialog):
     def turnWidget(self):
         self.playerTile = QtWidgets.QLabel(self)
         self.playerTile.setStyleSheet("background-color: #353b48")
-        self.playerTile.setGeometry(380, 165, 64, 64)
+        self.playerTile.setGeometry(380, 155, 64, 64)
 
         self.button90l = QtWidgets.QPushButton('Turn 90° Left', self)
         self.button90l.setStyleSheet("QPushButton {"
@@ -241,7 +273,7 @@ class Game(QtWidgets.QDialog):
                                      "QPushButton:!enabled {"
                                      "background-color: #353b48; border: 0;"
                                      "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.button90l.setGeometry(465, 155, 165, 40)
+        self.button90l.setGeometry(465, 145, 165, 40)
         self.button90l.clicked.connect(lambda: self.TLeft90())
         self.button90l.setDisabled(True)
 
@@ -255,7 +287,7 @@ class Game(QtWidgets.QDialog):
                                      "QPushButton:!enabled {"
                                      "background-color: #353b48; border: 0;"
                                      "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.button90r.setGeometry(465, 195, 165, 40)
+        self.button90r.setGeometry(465, 185, 165, 40)
         self.button90r.clicked.connect(lambda: self.TRight90())
         self.button90r.setDisabled(True)
 
@@ -290,6 +322,8 @@ class Game(QtWidgets.QDialog):
         fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open King of Siam save', '/home')
         if fname[0]:
             f = open(fname[0], 'r')
+            self.g.load(f)
+            self.refresh()
 
     def saveFile(self):
         pass
@@ -349,7 +383,7 @@ class Game(QtWidgets.QDialog):
             self.playerTile.setPixmap(Pixmap)
             self.ndir = np.array([1, 0])
             self.ndirDeg = 270
-        else :
+        else:
             s = self.g[i][j].species
             dir = self.g[i][j].direction
             if s == 'Elephant':
