@@ -333,11 +333,10 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-
-        elif cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0:
+        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[1] == cx and animal.direction[0] == cy):
             c = self.push_counter(x, y, cx, cy, 1)[0]
             k = self.push_counter(x, y, cx, cy, 1)[1]
-            if c >= 0 and (cx == nx-x and cy == ny-y):
+            if c >= 0:
                 "move tous les elmts de 1 selon cx ou cy"
 
                 for i in range(k, -1, -1):
