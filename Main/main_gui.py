@@ -134,7 +134,7 @@ class Game(QtWidgets.QDialog):
             elif not self.startpoint:
                 li = [-1, 0, 1]
                 l = [(self.starti + x, self.startj + y) for x in li for y in li if 0 <= self.starti+x < 5 and 0 <= self.startj+y < 5 and abs(x * y) != 1]
-                self.endi, self.endj = int((event.x()-10)/66.5), int((event.y()-15)/66.5)
+                self.endi, self.endj = int((event.y()-10)/66.5), int((event.x()-15)/66.5)
 
                 if (self.endi, self.endj) in l:
                     self.selectValid = True

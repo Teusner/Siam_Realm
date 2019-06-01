@@ -144,6 +144,7 @@ class testRegles(unittest.TestCase):
         self.m = GameMap()
 
 
+
 if __name__ == '__main__':
     unittest.main()
     #suite = unittest.TestLoader().loadTestsFromTestCase(testGameMap)

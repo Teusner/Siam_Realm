@@ -186,7 +186,7 @@ class GameMap (list):
                 y.append(0)
             self.append(y)
         for k in range(3):  # Setting up the 3 Boulders
-            self[1+k][2] = Boulder(2, 1+k)
+            self[2][1+k] = Boulder(2, 1+k)
             self.nb_boulders += 1
 
     @property
@@ -296,9 +296,9 @@ class GameMap (list):
             print(compteur)
             return compteur
         elif isinstance(self[x+cx][y+cy], Animal):
-            if cx * self[x+cx][y+cy].direction[1] + cy * self[x+cx][y+cy].direction[0] == 1:
+            if cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == 1:
                 compteur += 1
-            elif cx * self[x+cx][y+cy].direction[1] + cy * self[x+cx][y+cy].direction[0] == -1:
+            elif cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == -1:
                 compteur -= 2
 
         elif isinstance(self[x+cx][y+cy], Boulder):
@@ -333,7 +333,7 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[0] == cy):
+        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
             c = self.push_counter(x, y, cx, cy, 1)[0]
             k = self.push_counter(x, y, cx, cy, 1)[1]
             if c >= 0:
@@ -406,12 +406,12 @@ class GameMap (list):
 # append à la liste correspondante
 # parcourrir les listes et créer ligne par ligne le texte
 
-    def load(self, fichier):
+    def load(self, file):
         for i in range(5):
             for j in range(5):
                 self[i][j] = 0
 
-        f = fichier.readlines()
+        f = file.readlines()
         k = 0
         while k < len(f) and "Boulder {" not in f[k]:
             k += 1
