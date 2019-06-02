@@ -371,7 +371,7 @@ class GameMap (list):
                 ani = False
                 if self[i][j] == 0:
                    s += ' 0  '
-                elif self[i][j].species == 'Elephant' :
+                elif self[i][j].species == 'Elephant':
                     s += ' E'
                     ani = True
                 elif self[i][j].species == 'Rhinoceros':
@@ -391,20 +391,20 @@ class GameMap (list):
                     s += d
             s += '\n \n'
         return s
-"""
-    def save(self, fichier):
-        fichier.write("player_turn {\n" + self.Player_turn + "\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
-                          "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
-                          "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
-                          "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
-                          "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
-        fichier.close()
-"""
+    """
+        def save(self, fichier):
+            fichier.write("player_turn {\n" + self.Player_turn + "\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
+                              "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
+                              "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
+                              "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
+                              "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
+            fichier.close()
+    """
 
-# créer une liste de boulders, une de rhino, une d'éléphants:
-# stocker chaine de car correspondant à coords+dir
-# append à la liste correspondante
-# parcourrir les listes et créer ligne par ligne le texte
+    # créer une liste de boulders, une de rhino, une d'éléphants:
+    # stocker chaine de car correspondant à coords+dir
+    # append à la liste correspondante
+    # parcourrir les listes et créer ligne par ligne le texte
 
     def load(self, file):
         for i in range(5):
