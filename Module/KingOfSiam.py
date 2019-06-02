@@ -10,7 +10,6 @@ __license__ = "GPL"
 __version__ = "1.0"
 __email__ = ["quentin.brateau@ensta-bretagne.org", "luca.farolfi@ensta-bretagne.org"]
 
-
 # Importing modules
 import numpy as np
 
@@ -34,8 +33,9 @@ class Animal:
         .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
         .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
     """
+
     def __init__(self, x, y, dir, species):
-        self.__coords = x,y
+        self.__coords = x, y
         self.__direction = dir
         self.__species = species
 
@@ -52,7 +52,7 @@ class Animal:
             .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
         """
         dira, dirb = self.direction, animal.direction
-        return dira , dirb
+        return dira, dirb
 
     @property
     def coords(self):
@@ -82,7 +82,7 @@ class Animal:
 
             :param ncoords (tuple): which are the new coords of the animal.
         """
-        nx,ny=ncoords
+        nx, ny = ncoords
         if 0 <= nx <= 4 and 0 <= ny <= 4:
             self.__coords = nx, ny
 
@@ -114,7 +114,7 @@ class Animal:
 
             :param ndir (numpy.array): which is the new direction of the animal.
         """
-        if np.sqrt(ndir[0]**2+ndir[1]**2) == 1 and (ndir[0] == 0 or ndir[1] == 0) and ndir.size == 2:
+        if np.sqrt(ndir[0] ** 2 + ndir[1] ** 2) == 1 and (ndir[0] == 0 or ndir[1] == 0) and ndir.size == 2:
             self.__direction = ndir
 
     @property
@@ -158,7 +158,7 @@ class Animal:
         return self.__species + ' : [Position = ' + str(self.coords) + ' ; Direction = ' + str(self.direction) + ']\n'
 
 
-class GameMap (list):
+class GameMap(list):
     """
         The Gamemap module
         ==================
@@ -172,6 +172,7 @@ class GameMap (list):
 
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
     """
+
     def __init__(self):
         super().__init__()
         self.xmax = 5
@@ -186,7 +187,7 @@ class GameMap (list):
                 y.append(0)
             self.append(y)
         for k in range(3):  # Setting up the 3 Boulders
-            self[2][1+k] = Boulder(2, 1+k)
+            self[1 + k][2] = Boulder(1 + k, 2)
             self.nb_boulders += 1
 
     @property
@@ -255,10 +256,12 @@ class GameMap (list):
             .. info:: ...
         """
         x, y = animal.coords
-        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and \
+                self[x][y] == 0:
             self[x][y] = animal
             self.__nb_elephants += 1
-        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and \
+                self[x][y] == 0:
             self[x][y] = animal
             self.__nb_rhinoceros += 1
         else:
@@ -289,24 +292,22 @@ class GameMap (list):
             return False
 
     def push_counter(self, x, y, cx, cy, compteur=1, k=0):
-        k+=1
+        k += 1
         print('compteur=', k)
-        #on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
+        # on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
         if self[x + cx][y + cy] == 0:
             print(compteur)
             return compteur
-        elif isinstance(self[x+cx][y+cy], Animal):
-            if cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == 1:
+        elif isinstance(self[x + cx][y + cy], Animal):
+            if cx * self[x + cx][y + cy].direction[1] + cy * self[x + cx][y + cy].direction[0] == 1:
                 compteur += 1
-            elif cx * self[x+cx][y+cy].direction[0] + cy * self[x+cx][y+cy].direction[1] == -1:
+            elif cx * self[x + cx][y + cy].direction[1] + cy * self[x + cx][y + cy].direction[0] == -1:
                 compteur -= 2
 
-        elif isinstance(self[x+cx][y+cy], Boulder):
+        elif isinstance(self[x + cx][y + cy], Boulder):
             compteur -= 1
 
         return compteur, k, self.push_counter(x + cx, y + cy, cx, cy, compteur)
-
-
 
     def move(self, animal, ncoords, ndir):
         """
@@ -323,8 +324,8 @@ class GameMap (list):
                     .. info:: ...
                 """
         x, y = animal.coords
-        (nx,ny) = ncoords
-        cx, cy = nx-x, ny-y
+        (nx, ny) = ncoords
+        cx, cy = nx - x, ny - y
         if abs(cx) > 1 or abs(cy) > 1:
             return False
         elif (self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0)) or (nx == x and ny == y):
@@ -333,17 +334,18 @@ class GameMap (list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
+        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (
+                animal.direction[0] == cx and animal.direction[0] == cy):
             c = self.push_counter(x, y, cx, cy, 1)[0]
             k = self.push_counter(x, y, cx, cy, 1)[1]
             if c >= 0:
                 "move tous les elmts de 1 selon cx ou cy"
 
                 for i in range(k, -1, -1):
-                    if not (0 <= (x+(i+1)*cx) <= 4 and 0 <= (y+(i+1)*cy) <= 4):
+                    if not (0 <= (x + (i + 1) * cx) <= 4 and 0 <= (y + (i + 1) * cy) <= 4):
                         "l'élément en bout de poussée sort du plateau"
-                        if isinstance(self[x+cx][y+cy], Animal):
-                            self[x + (i+1) * cx][y + (i+1) * cy] = animal
+                        if isinstance(self[x + cx][y + cy], Animal):
+                            self[x + (i + 1) * cx][y + (i + 1) * cy] = animal
                             if animal.species == 'Elephant':
                                 self.__nb_elephants -= 1
                             elif animal.species == 'Rhinoceros':
@@ -351,12 +353,11 @@ class GameMap (list):
                         else:
                             return 'Victoire!'
                     else:
-                        self[x + (i+1) * cx][y + (i+1) * cy] = self[x+i*cx][y+i*cy]
-                        self[x+i*cx][y+i*cy] = 0
+                        self[x + (i + 1) * cx][y + (i + 1) * cy] = self[x + i * cx][y + i * cy]
+                        self[x + i * cx][y + i * cy] = 0
 
         else:
             return False
-
 
     def __str__(self):
         """
@@ -365,12 +366,12 @@ class GameMap (list):
             :return: the string with the characteristics of the board
             :rtype: str
         """
-        s=''
+        s = ''
         for i in range(5):
             for j in range(5):
                 ani = False
                 if self[i][j] == 0:
-                   s += ' 0  '
+                    s += ' 0  '
                 elif self[i][j].species == 'Elephant':
                     s += ' E'
                     ani = True
@@ -391,76 +392,96 @@ class GameMap (list):
                     s += d
             s += '\n \n'
         return s
-    """
-        def save(self, fichier):
-            fichier.write("player_turn {\n" + self.Player_turn + "\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
-                              "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
-                              "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
-                              "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
-                              "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
-            fichier.close()
-    """
 
-    # créer une liste de boulders, une de rhino, une d'éléphants:
-    # stocker chaine de car correspondant à coords+dir
-    # append à la liste correspondante
-    # parcourrir les listes et créer ligne par ligne le texte
-
-    def load(self, file):
+    def save(self, fichier):
+        boulders = []
+        elephants = []
+        rhinos = []
         for i in range(5):
             for j in range(5):
-                self[i][j] = 0
+                piece = self[i][j]
+                if piece.species == 'Elephant':
+                    elephants.append([(i, j), np.array(piece.direction)])
+                elif piece.species == "Rhinoceros":
+                    rhinos.append([(i, j), np.array(piece.direction)])
+                elif isinstance(self[i][j], Boulder):
+                    boulders.append([i, j])
+        fichier.write("Boulder {")
+        for k in range(len(boulders)):
+            fichier.write("\n", boulders[k], ";\n")
+        fichier.write("}\n\nElephant {")
+        for k in range(len(elephants)/2):
+            fichier.write("\n", elephants[2*k], " : ", elephants[2*k+1],";\n")
 
-        f = file.readlines()
-        k = 0
-        while k < len(f) and "Boulder {" not in f[k]:
-            k += 1
-        k += 1
-        while ";" in f[k] :
-            coords = f[k][5:8].split(",")
-            x, y = int(coords[0]), int(coords[1])
-            self[x][y] = Boulder(x, y)
-            k += 1
 
-        while k < len(f) and "Elephant {" not in f[k]:
-            k += 1
-        k += 1
-        while ":" in f[k] and ";" in f[k]:
-            coords = f[k][5:8].split(",")
-            x, y = int(coords[0]), int(coords[1])
-            d = f[k][22:].split("]")[0].split(",")
-            xdir, ydir = 0, 0
-            if d[0] == "1":
-                xdir = 1
-            elif d[0] == "-1":
-                xdir = -1
-            if d[1] == "1":
-                ydir = 1
-            elif d[1] == "-1":
-                ydir = -1
-            direction = np.array([xdir, ydir])
-            self[x][y] = Animal(x, y, direction, 'Elephant')
-            k += 1
+        fichier.write("player_turn {\n" + self.Player_turn + "\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
+                                                             "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
+                                                             "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
+                                                             "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
+                                                             "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
+        fichier.close()
 
-        while k < len(f) and "Rhinoceros {" not in f[k]:
-            k += 1
+
+# créer une liste de boulders, une de rhino, une d'éléphants:
+# stocker chaine de car correspondant à coords+dir
+# append à la liste correspondante
+# parcourrir les listes et créer ligne par ligne le texte
+
+def load(self, fichier):
+    for i in range(5):
+        for j in range(5):
+            self[i][j] = 0
+
+    f = fichier.readlines()
+    k = 0
+    while k < len(f) and "Boulder {" not in f[k]:
         k += 1
-        while ":" in f[k] and ";" in f[k]:
-            coords = f[k][5:8].split(",")
-            x, y = int(coords[0]), int(coords[1])
-            d = f[k][22:].split("]")[0].split(",")
-            xdir, ydir = 0, 0
-            if d[0] == "1":
-                xdir = 1
-            elif d[0] == "-1":
-                xdir = -1
-            if d[1] == "1":
-                ydir = 1
-            elif d[1] == "-1":
-                ydir = -1
-            direction = np.array([xdir, ydir])
-            self[x][y] = Animal(x, y, direction, 'Rhinoceros')
-            k += 1
+    k += 1
+    while ";" in f[k]:
+        coords = f[k][5:8].split(",")
+        x, y = int(coords[0]), int(coords[1])
+        self[x][y] = Boulder(x, y)
+        k += 1
+
+    while k < len(f) and "Elephant {" not in f[k]:
+        k += 1
+    k += 1
+    while ":" in f[k] and ";" in f[k]:
+        coords = f[k][5:8].split(",")
+        x, y = int(coords[0]), int(coords[1])
+        d = f[k][22:].split("]")[0].split(",")
+        xdir, ydir = 0, 0
+        if d[0] == "1":
+            xdir = 1
+        elif d[0] == "-1":
+            xdir = -1
+        if d[1] == "1":
+            ydir = 1
+        elif d[1] == "-1":
+            ydir = -1
+        direction = np.array([xdir, ydir])
+        self[x][y] = Animal(x, y, direction, 'Elephant')
+        k += 1
+
+    while k < len(f) and "Rhinoceros {" not in f[k]:
+        k += 1
+    k += 1
+    while ":" in f[k] and ";" in f[k]:
+        coords = f[k][5:8].split(",")
+        x, y = int(coords[0]), int(coords[1])
+        d = f[k][22:].split("]")[0].split(",")
+        xdir, ydir = 0, 0
+        if d[0] == "1":
+            xdir = 1
+        elif d[0] == "-1":
+            xdir = -1
+        if d[1] == "1":
+            ydir = 1
+        elif d[1] == "-1":
+            ydir = -1
+        direction = np.array([xdir, ydir])
+        self[x][y] = Animal(x, y, direction, 'Rhinoceros')
+        k += 1
 
 
 class Boulder:
@@ -481,6 +502,7 @@ class Boulder:
         .. warning:: The coordinates should be on the 5x5 board game.
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Cross()`
     """
+
     def __init__(self, x, y):
         self.coords = (x, y)
         self.species = 'Boulder'
@@ -504,6 +526,7 @@ class Cross:
         .. warning:: The coordinates should be on the 5x5 board game.
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`
     """
+
     def __init__(self, x, y):
         self.coords = (x, y)
         self.species = 'Cross'
@@ -511,7 +534,7 @@ class Cross:
 
 if __name__ == '__main__':
     g = GameMap()
-    g.add(Animal(0,1,(1,0),'Elephant'))
-    #faire plein de tests
+    g.add(Animal(0, 1, (1, 0), 'Elephant'))
+    # faire plein de tests
     print(g)
- # "faire des tests dans test_Kingof... avec setup et voir si différentes fonctions marchent"
+# "faire des tests dans test_Kingof... avec setup et voir si différentes fonctions marchent"
