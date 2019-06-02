@@ -299,9 +299,9 @@ class GameMap(list):
             print(compteur)
             return compteur
         elif isinstance(self[x + cx][y + cy], Animal):
-            if cx * self[x + cx][y + cy].direction[1] + cy * self[x + cx][y + cy].direction[0] == 1:
+            if cx * self[x + cx][y + cy].direction[0] + cy * self[x + cx][y + cy].direction[1] == 1:
                 compteur += 1
-            elif cx * self[x + cx][y + cy].direction[1] + cy * self[x + cx][y + cy].direction[0] == -1:
+            elif cx * self[x + cx][y + cy].direction[0] + cy * self[x + cx][y + cy].direction[1] == -1:
                 compteur -= 2
 
         elif isinstance(self[x + cx][y + cy], Boulder):
@@ -327,6 +327,7 @@ class GameMap(list):
         (nx, ny) = ncoords
         cx, cy = nx - x, ny - y
         if abs(cx) > 1 or abs(cy) > 1:
+            print("Out")
             return False
         elif (self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0)) or (nx == x and ny == y):
             animal.coords = (nx, ny)
@@ -334,12 +335,13 @@ class GameMap(list):
             self[x][y] = 0
             self[nx][ny] = animal
 
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (
-                animal.direction[0] == cx and animal.direction[0] == cy):
-            c = self.push_counter(x, y, cx, cy, 1)[0]
-            k = self.push_counter(x, y, cx, cy, 1)[1]
+        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
+            res= self.push_counter(x, y, cx, cy, 1)
+            c = res[0]
+            k = res[1]
             if c >= 0:
                 "move tous les elmts de 1 selon cx ou cy"
+                print("Move")
 
                 for i in range(k, -1, -1):
                     if not (0 <= (x + (i + 1) * cx) <= 4 and 0 <= (y + (i + 1) * cy) <= 4):
@@ -357,6 +359,7 @@ class GameMap(list):
                         self[x + i * cx][y + i * cy] = 0
 
         else:
+            print("Nope")
             return False
 
     def __str__(self):
@@ -406,19 +409,21 @@ class GameMap(list):
                     rhinos.append([(i, j), np.array(piece.direction)])
                 elif isinstance(self[i][j], Boulder):
                     boulders.append([i, j])
+        fichier.write("player_turn {\n", self.Player_turn)
         fichier.write("Boulder {")
         for k in range(len(boulders)):
-            fichier.write("\n", boulders[k], ";\n")
+            fichier.write("\n", boulders[k], "; \n")
         fichier.write("}\n\nElephant {")
         for k in range(len(elephants)/2):
-            fichier.write("\n", elephants[2*k], " : ", elephants[2*k+1],";\n")
+            fichier.write("\n", elephants[2 * k], " : ", elephants[2 * k + 1], ";\n")
+        if len(elephants)<5:
+            for k in range(5-len(elephants)):
+                fichier.write("...")
+        fichier.write("}\n\nRhinoceros {")
+        for k in range(len(elephants) / 2):
+            fichier.write("\n", elephants[2 * k], " : ", elephants[2 * k + 1], ";\n")
+        fichier.write("}")
 
-
-        fichier.write("player_turn {\n" + self.Player_turn + "\n}\n\nBoulder {\n    (2,1);\n    (2,2);\n    (2,3);\n}"
-                                                             "\n\nElephant {\n    (0,0) : np.array([0,1]);\n    (0,1) : np.array([0,-1]);\n  "
-                                                             "  (0,2) : np.array([-1,0]);\n (0,3) : np.array([0,1]);\n    (0,4) : np.array([1,0]);\n}\n\n"
-                                                             "Rhinoceros {\n    (1,0) : np.array([0,1]);\n    (1,1) : np.array([0,-1]);\n    (1,2) : "
-                                                             "np.array([-1,0]);\n    (1,3) : np.array([0,1]);\n    (1,4) : np.array([1,0]);\n}")
         fichier.close()
 
 
