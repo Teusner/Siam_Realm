@@ -139,24 +139,81 @@ class testCross(unittest.TestCase):
         self.assertEqual(self.c.coords, (1, 2))
 
 
-class testRegles(unittest.TestCase):
-    def setUp(self):
-        self.m =GameMap()
-
-    def pushBoulder(self):
-        pass
-
-
 class testRegle(unittest.TestCase):
     def setUp(self):
-        self.m = GameMap()
+        self.g = GameMap()
 
-    def pushBoulder(self):
+    def testPushBoulder(self):
         a = Animal(1, 1, np.array([1, 0]), "Elephant")
-        self.m[1][1] = a
-        self.m.move(a, (2, 1), np.array([1, 0]))
+        self.g[1][1] = a
+        self.g.move(a, (2, 1), np.array([1, 0]))
         self.assertIsInstance(self.g[2][1], Animal)
         self.assertIsInstance(self.g[2][2], Boulder)
+
+    def testPushAnimalNeutral(self):
+        e = Animal(1, 1, np.array([1, 0]), "Elephant")
+        r = Animal(1, 2, np.array([0, -1]), "Rhinoceros")
+        self.g[1][1] = e
+        self.g[1][2] = r
+        self.g.move(r, (1, 1), np.array([1, 0])) # Changing the direction during a push do not have any effect if the bearing was good before the push
+
+        # Test for the Elephant
+        self.assertIsInstance(self.g[1][0], Animal)
+        self.assertEqual(self.g[1][0].species, 'Elephant')
+        self.assertEqual(self.g[1][0].coords[0], 1)
+        self.assertEqual(self.g[1][0].coords[1], 0)
+        self.assertEqual(self.g[1][0].direction[0], 1)
+        self.assertEqual(self.g[1][0].direction[1], 0)
+
+        # Test for the Rhinoceros
+        self.assertIsInstance(self.g[1][1], Animal)
+        self.assertEqual(self.g[1][1].species, 'Rhinoceros')
+        self.assertEqual(self.g[1][1].coords[0], 1)
+        self.assertEqual(self.g[1][1].coords[1], 1)
+        self.assertEqual(self.g[1][1].direction[0], 0)
+        self.assertEqual(self.g[1][1].direction[1], -1)
+
+    def testPushAnimalOpponent(self):
+        e = Animal(1, 1, np.array([0, 1]), "Elephant")
+        r = Animal(1, 2, np.array([0, -1]), "Rhinoceros")
+        self.g[1][1] = e
+        self.g[1][2] = r
+        self.g.move(e, (1, 2), np.array([1, 0])) # Changing the direction during a push do not have any effect if the bearing was good before the push
+
+        # Test for the Elephant
+        self.assertIsInstance(self.g[1][1], Animal)
+        self.assertEqual(self.g[1][1].species, 'Elephant')
+        self.assertEqual(self.g[1][1].coords[0], 1)
+        self.assertEqual(self.g[1][1].coords[1], 1)
+        self.assertEqual(self.g[1][1].direction[0], 0)
+        self.assertEqual(self.g[1][1].direction[1], 1)
+
+        # Test for the Rhinoceros
+        self.assertIsInstance(self.g[1][2], Animal)
+        self.assertEqual(self.g[1][2].species, 'Rhinoceros')
+        self.assertEqual(self.g[1][2].coords[0], 1)
+        self.assertEqual(self.g[1][2].coords[1], 2)
+        self.assertEqual(self.g[1][2].direction[0], 0)
+        self.assertEqual(self.g[1][2].direction[1], -1)
+
+    def testPushHeavy(self):
+        e = Animal(2, 0, np.array([0, 1]), "Elephant")
+        self.g[2][0] = e
+        print(self.g)
+        self.g.move(e, (2, 1), np.array([1, 0])) # Changing the direction during a push do not have any effect if the bearing was good before the push
+        print(self.g)
+        # Test for the Elephant
+        self.assertIsInstance(self.g[2][0], Animal)
+        self.assertEqual(self.g[2][0].species, 'Elephant')
+        self.assertEqual(self.g[2][0].coords[0], 2)
+        self.assertEqual(self.g[2][0].coords[1], 0)
+        self.assertEqual(self.g[2][0].direction[0], 0)
+        self.assertEqual(self.g[2][0].direction[1], 1)
+
+        # Test for the Boulder
+        self.assertIsInstance(self.g[2][1], Boulder)
+        self.assertEqual(self.g[2][1].coords[0], 2)
+        self.assertEqual(self.g[2][1].coords[1], 1)
 
 
 if __name__ == '__main__':
