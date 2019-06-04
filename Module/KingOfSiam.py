@@ -256,10 +256,10 @@ class GameMap(list):
             .. info:: ...
         """
         x, y = animal.coords
-        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+        if animal.species == 'Elephant' and self.__nb_elephants < 5: #and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
             self.__nb_elephants += 1
-        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5: # and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
             self.__nb_rhinoceros += 1
         else:
@@ -324,6 +324,9 @@ class GameMap(list):
         x, y = animal.coords
         (nx, ny) = ncoords
         cx, cy = nx - x, ny - y
+        print("x,y:",x,y)
+        print("nx,ny:",nx,ny)
+        print("cx,cy:",cx,cy)
         if abs(cx) > 1 or abs(cy) > 1:
             print("Out")
             return False
@@ -341,7 +344,7 @@ class GameMap(list):
                 "move tous les elmts de 1 selon cx ou cy"
                 print("Move")
 
-                for i in range(k, -1, -1):
+                for i in range(k+1, -1, -1):
                     if not (0 <= (x + (i + 1) * cx) <= 4 and 0 <= (y + (i + 1) * cy) <= 4):
                         "l'élément en bout de poussée sort du plateau"
                         if isinstance(self[x + cx][y + cy], Animal):
@@ -353,8 +356,10 @@ class GameMap(list):
                         else:
                             return 'Victoire!'
                     else:
+
                         self[x + (i + 1) * cx][y + (i + 1) * cy] = self[x + i * cx][y + i * cy]
                         self[x + i * cx][y + i * cy] = 0
+                        self[x + (i + 1) * cx][y + (i + 1) * cy].coords = (x + (i + 1) * cx, y + (i + 1) * cy)
 
         else:
             print("Nope")
@@ -539,10 +544,13 @@ class Cross:
 
 if __name__ == '__main__':
     g = GameMap()
-    a=Animal(0, 1, np.array([0,1]), "Elephant")
-    b=Animal(1, 1, np.array([0,1]), "Rhinoceros")
+    a=Animal(0, 0, np.array([1,0]), "Elephant")
+    b=Animal(1, 0, np.array([0,1]), "Rhinoceros")
+    c=Animal(2, 0, np.array([0,1]), "Rhinoceros")
     g.add(a)
     g.add(b)
+    g.add(c)
+    g.move(a, (1, 0), np.array([1, 0]))
     fichier=open("new.kos", "w")
     g.save(fichier)
     fichier.close()
