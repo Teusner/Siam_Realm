@@ -1,0 +1,13 @@
+player_turn {
+ElephantBoulder {
+(2,1);
+(2,2);
+(2,3);
+}
+
+Elephant {;
+(0,1) : np.array([0,1])
+}
+
+Rhinoceros {
+}
