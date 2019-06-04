@@ -143,6 +143,13 @@ class testRegles(unittest.TestCase):
     def setUp(self):
         self.m = GameMap()
 
+    def pushBoulder(self):
+        a = Animal(1, 1, np.array([1, 0]), "Elephant")
+        self.m[1][1] = a
+        self.m.move(a, (2, 1), np.array([1, 0]))
+        self.assertIsInstance(self.g[2][1], Animal)
+        self.assertIsInstance(self.g[2][2], Boulder)
+
 
 if __name__ == '__main__':
     unittest.main()
