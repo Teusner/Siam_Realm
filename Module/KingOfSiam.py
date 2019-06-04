@@ -300,11 +300,11 @@ class GameMap(list):
 
     def push_counter(self, x, y, cx, cy, compteur=1, k=0):
         k += 1
-        print('compteur=', k)
+        print('kp=', k)
         # on étudie cas par cas selon la direction de la poussée, à simplifier car rien ne change sauf 2 premières lignes
         if self[x + cx][y + cy] == 0:
-            print(compteur)
-            return compteur
+            print("compteur=",compteur)
+            return compteur, k
         elif isinstance(self[x + cx][y + cy], Animal):
             if cx * self[x + cx][y + cy].direction[0] + cy * self[x + cx][y + cy].direction[1] == 1:
                 compteur += 1
@@ -314,7 +314,7 @@ class GameMap(list):
         elif isinstance(self[x + cx][y + cy], Boulder):
             compteur -= 1
 
-        return compteur, k, self.push_counter(x + cx, y + cy, cx, cy, compteur)
+        return self.push_counter(x + cx, y + cy, cx, cy, compteur,k)
 
     def move(self, animal, ncoords, ndir):
         """
@@ -347,28 +347,31 @@ class GameMap(list):
 
         elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
             res= self.push_counter(x, y, cx, cy, 1)
+            print("res =", res)
             c = res[0]
             k = res[1]
             if c >= 0:
                 "move tous les elmts de 1 selon cx ou cy"
-                print("Move")
-
-                for i in range(k+1, -1, -1):
-                    if not (0 <= (x + (i + 1) * cx) <= 4 and 0 <= (y + (i + 1) * cy) <= 4):
+                print("Move", "k =",k)
+                for i in range(k, 0, -1):
+                    if not (0 <= (x + i * cx) <= 4 and 0 <= (y + i * cy) <= 4):
                         "l'élément en bout de poussée sort du plateau"
-                        if isinstance(self[x + cx][y + cy], Animal):
-                            self[x + (i + 1) * cx][y + (i + 1) * cy] = animal
+                        if isinstance(self[x + k*cx][y + k*cy], Animal):
+                            self[x + k * cx][y + k * cy] = animal
                             if animal.species == 'Elephant':
                                 self.__nb_elephants -= 1
+                                self[x + k * cx][y + k * cy] = 0
                             elif animal.species == 'Rhinoceros':
                                 self.__nb_rhinoceros -= 1
+                                self[x + k * cx][y + k * cy] = 0
                         else:
                             return 'Victoire!'
                     else:
+                        print("species", self[x + (i - 1) * cx][y + (i - 1) * cy])
+                        self[x + i * cx][y + i * cy] = self[x + (i - 1) * cx][y + (i - 1) * cy]
+                        self[x + (i - 1) * cx][y + (i - 1) * cy] = 0
+                        self[x + i * cx][y + i * cy].coords = (x + i * cx, y + i * cy)
 
-                        self[x + (i + 1) * cx][y + (i + 1) * cy] = self[x + i * cx][y + i * cy]
-                        self[x + i * cx][y + i * cy] = 0
-                        self[x + (i + 1) * cx][y + (i + 1) * cy].coords = (x + (i + 1) * cx, y + (i + 1) * cy)
                 if self.playerTurn == "Elephant":
                     self.playerTurn = "Rhinoceros"
                 elif self.playerTurn == "Rhinoceros":
