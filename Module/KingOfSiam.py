@@ -256,11 +256,11 @@ class GameMap(list):
             .. info:: ...
         """
         x, y = animal.coords
-        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and \
+        if animal.species == 'Elephant' and self.__nb_elephants < 5: #and (x == 0 or x == 4 or y == 0 or y == 4) and \
                 self[x][y] == 0:
             self[x][y] = animal
             self.__nb_elephants += 1
-        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and \
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5: #and (x == 0 or x == 4 or y == 0 or y == 4) and \
                 self[x][y] == 0:
             self[x][y] = animal
             self.__nb_rhinoceros += 1
@@ -404,15 +404,16 @@ class GameMap(list):
             for j in range(5):
                 if self[i][j]!= 0:
                     piece = self[i][j]
-                    L=[]
-                    L.append(self[i][j].direction[0])
-                    L.append(self[i][j].direction[1])
+                    L = []
+                    if not isinstance(self[i][j], Boulder):
+                        L.append(self[i][j].direction[0])
+                        L.append(self[i][j].direction[1])
                     if piece.species == "Elephant":
-                        elephants.append("("+str(i)+","+ str(j)+ ") : np.array("+str(L[0],L[1])+")")
+                        elephants.append("(" + str(i) + "," + str(j)+ ") : np.array(["+str(L[0])+ "," + str(L[1])+"])")
                     elif piece.species == "Rhinoceros":
                         rhinos.append("("+str(i)+"," +str(j)+ " ) : np.array("+str(piece.direction)+")")
                     elif isinstance(piece, Boulder):
-                        boulders.append("("+str(i) + "," + str(j)+")")
+                        boulders.append("(" + str(i) + "," + str(j) + ")")
         #fichier.write("player_turn {\n" + str(self.Player_turn))
         fichier.write("Boulder {")
         for k in range(len(boulders)):
@@ -540,7 +541,10 @@ class Cross:
 
 if __name__ == '__main__':
     g = GameMap()
-    g.add(Animal(0, 1, (1, 0), 'Elephant'))
+    a=Animal(0, 1, np.array([0,1]), "Elephant")
+    b=Animal(1, 1, np.array([0,1]), "Rhinoceros")
+    g.add(a)
+    g.add(b)
     fichier=open("new.kos", "w")
     g.save(fichier)
     fichier.close()
