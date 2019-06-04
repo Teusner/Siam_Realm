@@ -181,6 +181,7 @@ class GameMap(list):
         self.__nb_rhinoceros = 0
         self.nb_boulders = 0
         self.nb_crosses = 0
+        self.playerTurn = "Elephant"
         for k in range(self.ymax):
             y = []
             for i in range(self.ymax):
@@ -412,7 +413,7 @@ class GameMap(list):
                         rhinos.append("("+str(i)+"," +str(j)+ " ) : np.array("+str(piece.direction)+")")
                     elif isinstance(piece, Boulder):
                         boulders.append("(" + str(i) + "," + str(j) + ")")
-        #fichier.write("player_turn {\n" + str(self.Player_turn))
+        fichier.write("player_turn {\n" + str(self.playerTurn))
         fichier.write("Boulder {")
         for k in range(len(boulders)):
             fichier.write("\n" + boulders[k] + ";")
@@ -426,67 +427,61 @@ class GameMap(list):
 
         fichier.close()
 
+    def load(self, fichier):
+        for i in range(5):
+            for j in range(5):
+                self[i][j] = 0
 
-# créer une liste de boulders, une de rhino, une d'éléphants:
-# stocker chaine de car correspondant à coords+dir
-# append à la liste correspondante
-# parcourrir les listes et créer ligne par ligne le texte
+        f = fichier.readlines()
+        k = 0
+        while k < len(f) and "Boulder {" not in f[k]:
+            k += 1
+        k += 1
+        while ";" in f[k]:
+            coords = f[k][5:8].split(",")
+            x, y = int(coords[0]), int(coords[1])
+            self[x][y] = Boulder(x, y)
+            k += 1
 
-def load(self, fichier):
-    for i in range(5):
-        for j in range(5):
-            self[i][j] = 0
+        while k < len(f) and "Elephant {" not in f[k]:
+            k += 1
+        k += 1
+        while ":" in f[k] and ";" in f[k]:
+            coords = f[k][5:8].split(",")
+            x, y = int(coords[0]), int(coords[1])
+            d = f[k][22:].split("]")[0].split(",")
+            xdir, ydir = 0, 0
+            if d[0] == "1":
+                xdir = 1
+            elif d[0] == "-1":
+                xdir = -1
+            if d[1] == "1":
+                ydir = 1
+            elif d[1] == "-1":
+                ydir = -1
+            direction = np.array([xdir, ydir])
+            self[x][y] = Animal(x, y, direction, 'Elephant')
+            k += 1
 
-    f = fichier.readlines()
-    k = 0
-    while k < len(f) and "Boulder {" not in f[k]:
+        while k < len(f) and "Rhinoceros {" not in f[k]:
+            k += 1
         k += 1
-    k += 1
-    while ";" in f[k]:
-        coords = f[k][5:8].split(",")
-        x, y = int(coords[0]), int(coords[1])
-        self[x][y] = Boulder(x, y)
-        k += 1
-
-    while k < len(f) and "Elephant {" not in f[k]:
-        k += 1
-    k += 1
-    while ":" in f[k] and ";" in f[k]:
-        coords = f[k][5:8].split(",")
-        x, y = int(coords[0]), int(coords[1])
-        d = f[k][22:].split("]")[0].split(",")
-        xdir, ydir = 0, 0
-        if d[0] == "1":
-            xdir = 1
-        elif d[0] == "-1":
-            xdir = -1
-        if d[1] == "1":
-            ydir = 1
-        elif d[1] == "-1":
-            ydir = -1
-        direction = np.array([xdir, ydir])
-        self[x][y] = Animal(x, y, direction, 'Elephant')
-        k += 1
-
-    while k < len(f) and "Rhinoceros {" not in f[k]:
-        k += 1
-    k += 1
-    while ":" in f[k] and ";" in f[k]:
-        coords = f[k][5:8].split(",")
-        x, y = int(coords[0]), int(coords[1])
-        d = f[k][22:].split("]")[0].split(",")
-        xdir, ydir = 0, 0
-        if d[0] == "1":
-            xdir = 1
-        elif d[0] == "-1":
-            xdir = -1
-        if d[1] == "1":
-            ydir = 1
-        elif d[1] == "-1":
-            ydir = -1
-        direction = np.array([xdir, ydir])
-        self[x][y] = Animal(x, y, direction, 'Rhinoceros')
-        k += 1
+        while ":" in f[k] and ";" in f[k]:
+            coords = f[k][5:8].split(",")
+            x, y = int(coords[0]), int(coords[1])
+            d = f[k][22:].split("]")[0].split(",")
+            xdir, ydir = 0, 0
+            if d[0] == "1":
+                xdir = 1
+            elif d[0] == "-1":
+                xdir = -1
+            if d[1] == "1":
+                ydir = 1
+            elif d[1] == "-1":
+                ydir = -1
+            direction = np.array([xdir, ydir])
+            self[x][y] = Animal(x, y, direction, 'Rhinoceros')
+            k += 1
 
 
 class Boulder:
