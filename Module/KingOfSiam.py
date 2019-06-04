@@ -402,27 +402,28 @@ class GameMap(list):
         rhinos = []
         for i in range(5):
             for j in range(5):
-                piece = self[i][j]
-                if piece.species == 'Elephant':
-                    elephants.append([(i, j), np.array(piece.direction)])
-                elif piece.species == "Rhinoceros":
-                    rhinos.append([(i, j), np.array(piece.direction)])
-                elif isinstance(self[i][j], Boulder):
-                    boulders.append([i, j])
-        fichier.write("player_turn {\n", self.Player_turn)
+                if self[i][j]!= 0:
+                    piece = self[i][j]
+                    L=[]
+                    L.append(self[i][j].direction[0])
+                    L.append(self[i][j].direction[1])
+                    if piece.species == "Elephant":
+                        elephants.append("("+str(i)+","+ str(j)+ ") : np.array("+str(L[0],L[1])+")")
+                    elif piece.species == "Rhinoceros":
+                        rhinos.append("("+str(i)+"," +str(j)+ " ) : np.array("+str(piece.direction)+")")
+                    elif isinstance(piece, Boulder):
+                        boulders.append("("+str(i) + "," + str(j)+")")
+        #fichier.write("player_turn {\n" + str(self.Player_turn))
         fichier.write("Boulder {")
         for k in range(len(boulders)):
-            fichier.write("\n", boulders[k], "; \n")
-        fichier.write("}\n\nElephant {")
-        for k in range(len(elephants)/2):
-            fichier.write("\n", elephants[2 * k], " : ", elephants[2 * k + 1], ";\n")
-        if len(elephants)<5:
-            for k in range(5-len(elephants)):
-                fichier.write("...")
-        fichier.write("}\n\nRhinoceros {")
-        for k in range(len(elephants) / 2):
-            fichier.write("\n", elephants[2 * k], " : ", elephants[2 * k + 1], ";\n")
-        fichier.write("}")
+            fichier.write("\n" + boulders[k] + ";")
+        fichier.write("\n}\n\nElephant {")
+        for elt in elephants:
+            fichier.write(";\n"+ elt)
+        fichier.write("\n}\n\nRhinoceros {")
+        for elt in rhinos:
+            fichier.write("\n" + elt)
+        fichier.write("\n}")
 
         fichier.close()
 
@@ -540,6 +541,14 @@ class Cross:
 if __name__ == '__main__':
     g = GameMap()
     g.add(Animal(0, 1, (1, 0), 'Elephant'))
+    fichier=open("new.kos", "w")
+    g.save(fichier)
+    fichier.close()
+    fichier=open("new.kos", "r")
+    k=fichier.read()
+    print(k)
+    fichier.close()
+
     # faire plein de tests
     print(g)
 # "faire des tests dans test_Kingof... avec setup et voir si différentes fonctions marchent"
