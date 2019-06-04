@@ -305,8 +305,8 @@ class Game(QtWidgets.QDialog):
         self.buttonLoad.setGeometry(15, 365, 300, 40)
         self.buttonLoad.clicked.connect(lambda: self.loadFile())
 
-        self.buttonLoad = QtWidgets.QPushButton('Save', self)
-        self.buttonLoad.setStyleSheet("QPushButton {"
+        self.buttonSave = QtWidgets.QPushButton('Save', self)
+        self.buttonSave.setStyleSheet("QPushButton {"
                                       "height: 30px; font-size: 18px; color: white; margin-top: 6px;"
                                       "text-align: center; background: #1abc9c; border: 0;"
                                       "border-bottom: 3px solid #16a085; border-right: 3px solid #16a085;}"
@@ -315,8 +315,8 @@ class Game(QtWidgets.QDialog):
                                       "QPushButton:!enabled {"
                                       "background-color: #353b48; border: 0;"
                                       "border-bottom: 3px solid #2f3640; border-right: 3px solid #2f3640;}")
-        self.buttonLoad.setGeometry(330, 365, 300, 40)
-        self.buttonLoad.clicked.connect(lambda: self.loadFile())
+        self.buttonSave.setGeometry(330, 365, 300, 40)
+        self.buttonSave.clicked.connect(lambda: self.saveFile())
 
     def loadFile(self):
         fname = QtWidgets.QFileDialog.getOpenFileName(self, 'Open King of Siam save', '/home')
@@ -326,7 +326,10 @@ class Game(QtWidgets.QDialog):
             self.refresh()
 
     def saveFile(self):
-        pass
+        fname = QtWidgets.QFileDialog.getSaveFileName(self, 'Save King of Siam save', '/home')
+        if fname[0]:
+            file = open(fname[0], 'w')
+            self.g.save(file)
 
     def TLeft90(self):
         dirs = [np.array([1, 0]), np.array([0, -1]), np.array([-1, 0]), np.array([0, 1])]
