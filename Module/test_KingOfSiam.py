@@ -141,6 +141,14 @@ class testCross(unittest.TestCase):
 
 class testRegles(unittest.TestCase):
     def setUp(self):
+        self.m =GameMap()
+
+    def pushBoulder(self):
+        pass
+
+
+class testRegle(unittest.TestCase):
+    def setUp(self):
         self.m = GameMap()
 
     def pushBoulder(self):
@@ -153,5 +161,3 @@ class testRegles(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    #suite = unittest.TestLoader().loadTestsFromTestCase(testGameMap)
-    #unittest.TextTestRunner(verbosity=0).run(suite)
