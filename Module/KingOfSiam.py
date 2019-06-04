@@ -182,6 +182,7 @@ class GameMap(list):
         self.nb_boulders = 0
         self.nb_crosses = 0
         self.playerTurn = "Elephant"
+        self.winner = ""
         for k in range(self.ymax):
             y = []
             for i in range(self.ymax):
@@ -257,12 +258,15 @@ class GameMap(list):
             .. info:: ...
         """
         x, y = animal.coords
-        if animal.species == 'Elephant' and self.__nb_elephants < 5: #and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+        if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
             self.__nb_elephants += 1
-        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5: # and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
+            self.playerTurn = "Rhinoceros"
+
+        elif animal.species == 'Rhinoceros' and self.__nb_rhinoceros < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
             self.__nb_rhinoceros += 1
+            self.playerTurn = "Elephant"
         else:
             return False
 
@@ -287,6 +291,10 @@ class GameMap(list):
                 self.__nb_elephants -= 1
             elif animal.species == 'Rhinoceros':
                 self.__nb_rhinoceros -= 1
+            if self.playerTurn == "Elephant":
+                self.playerTurn = "Rhinoceros"
+            elif self.playerTurn == "Rhinoceros":
+                self.playerTurn = "Elephant"
         else:
             return False
 
@@ -361,7 +369,10 @@ class GameMap(list):
                         self[x + (i + 1) * cx][y + (i + 1) * cy] = self[x + i * cx][y + i * cy]
                         self[x + i * cx][y + i * cy] = 0
                         self[x + (i + 1) * cx][y + (i + 1) * cy].coords = (x + (i + 1) * cx, y + (i + 1) * cy)
-
+                if self.playerTurn == "Elephant":
+                    self.playerTurn = "Rhinoceros"
+                elif self.playerTurn == "Rhinoceros":
+                    self.playerTurn = "Elephant"
         else:
             print("Nope")
             return False
