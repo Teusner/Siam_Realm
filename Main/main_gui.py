@@ -77,10 +77,12 @@ class Game(QtWidgets.QDialog):
         self.namePlayer1 = Player1
         self.namePlayer2 = Player2
 
-        self.currentPlayer1 = True
-
         # Game setup
         self.g = GameMap()
+        if self.g.playerTurn == 'Elephant':
+            self.currentPlayer1 = True
+        else:
+            self.currentPlayer1 = False
         self.ndir = np.array([1, 0])
         self.ndirDeg = 0
 
@@ -215,7 +217,6 @@ class Game(QtWidgets.QDialog):
         self.button90r.setDisabled(True)
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
-        self.currentPlayer1 = not self.currentPlayer1
         self.refresh()
 
     def validButton(self):
@@ -252,7 +253,6 @@ class Game(QtWidgets.QDialog):
         self.button90r.setDisabled(True)
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
-        self.currentPlayer1 = not self.currentPlayer1
 
         print(self.g)
 
@@ -483,6 +483,11 @@ class Game(QtWidgets.QDialog):
                         self.tile[i][j].setPixmap(Pixmap)
                 self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
                 self.tile[i][j].show()
+
+        if self.g.playerTurn == 'Elephant':
+            self.currentPlayer1 = True
+        else:
+            self.currentPlayer1 = False
 
 
 if __name__ == '__main__':
