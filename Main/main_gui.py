@@ -217,7 +217,6 @@ class Game(QtWidgets.QDialog):
         self.button90r.setDisabled(True)
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
-        self.currentPlayer1 = not self.currentPlayer1
         self.refresh()
 
     def validButton(self):
@@ -254,7 +253,6 @@ class Game(QtWidgets.QDialog):
         self.button90r.setDisabled(True)
         self.playerTile.setStyleSheet("background-color: #353b48")
         self.playerTile.clear()
-        self.currentPlayer1 = not self.currentPlayer1
 
         print(self.g)
 
