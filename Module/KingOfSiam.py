@@ -315,7 +315,6 @@ class GameMap(list):
                     .. info:: An animal placed sideways does not impact a push, an opponent's animal in the right direction helps the push.
                 """
         k += 1
-        print(k)
         if not (0 <= (x+cx) <= 4 and 0 <= y+cy <= 4):
             return compteur, k
 
@@ -377,7 +376,6 @@ class GameMap(list):
                             for k in range(5):
                                 piece=self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy]
                                 if isinstance(self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy],Animal) and self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].direction == [cx,cy]:
-                                    print((self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy]).direction)
                                     self.winner=self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].species
                                     print("winner is", self.winner)
                                     break
@@ -395,7 +393,6 @@ class GameMap(list):
                 return (False)
         elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
             "cas ou il se déplace vers une case vide"
-            print("easy")
             animal.coords = (nx, ny)
             animal.direction = ndir
             self[x][y] = 0
