@@ -466,16 +466,13 @@ class GameMap(list):
 
         fichier.close()
 
-    def load(self, fichier):
+    def load(self, file):
         """
             This method load a KingOfSiam file with the .kos extension in a GameMap object.
             It return the scalar product between the two direction vector of each animal.
 
             :Args:
-                :param x (int): is the abscissa of the animal,
-                :param y (int): is the ordinate of the animal,
-                :param dir (numpy.array): is the direction of the animal,
-                :param species (str): is the species of the animal. It can take only the values "Elephant" or "Rhinoceros".
+                :param file (file object): is file to load.
 
             :Example:
                 >>> g = GameMap()
@@ -488,7 +485,7 @@ class GameMap(list):
             for j in range(5):
                 self[i][j] = 0
 
-        f = fichier.readlines()
+        f = file.readlines()
         k = 0
         while k < len(f) and "Boulder {" not in f[k]:
             k += 1
