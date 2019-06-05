@@ -41,7 +41,7 @@
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
             
-                <li><a href="https://github.com/Teusner/SiamRealm">GitHub</a></li>
+                <li><a href="https://github.com/Teusner/Siam_Realm">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -121,7 +121,7 @@ are implemented :</p>
 <hr class="docutils" />
 <span class="target" id="module-KingOfSiam"></span><dl class="class">
 <dt id="KingOfSiam.Animal">
-<em class="property">class </em><code class="descclassname">KingOfSiam.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>direction</em>, <em>species</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.Animal" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">KingOfSiam.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>dir</em>, <em>species</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.Animal" title="Permalink to this definition">¶</a></dt>
 <dd><p>This module creates an animal with a position and a direction.</p>
 <dl class="field-list">
 <dt class="field-odd">Args</dt>
@@ -156,9 +156,19 @@ are implemented :</p>
 <dd><p>This method get the orientation of an animal relative to another.
 It return the scalar product between the two direction vector of each animal.</p>
 <dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param animal (Animal)</dt>
+<dd class="field-odd"><p>the animal for the bearing.</p>
+</dd>
+<dt class="field-even">returns scalar product (int)</dt>
+<dd class="field-even"><p>the scalar product between the two animals direction</p>
+</dd>
+</dl>
+</dd>
 <dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="s2">&quot;Rhinoceros&quot;</span><span class="p">)</span>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="s2">&quot;Rhinoceros&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">bearing</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -358,11 +368,18 @@ It return the scalar product between the two direction vector of each animal.</p
 <dl class="method">
 <dt id="KingOfSiam.GameMap.add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method introduces a new animal onto the board, letting you decide the position and orientation
+<dd><p>This method add a new animal onto the board, with position and orientation
 It returns whether the placement was possible or not.</p>
 <dl class="field-list">
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param animal (Animal)</dt>
+<dd class="field-odd"><p>the animal to add on the GameMap.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
@@ -377,8 +394,7 @@ It returns whether the placement was possible or not.</p>
 <p class="admonition-title">Warning</p>
 <p>if the location of the insertion is already taken by another piece, add calls upon move to see</p>
 </div>
-<p>if insertion is possible
-.. info:: …</p>
+<p>if insertion is possible</p>
 </dd></dl>
 
 <dl class="method">
@@ -387,8 +403,15 @@ It returns whether the placement was possible or not.</p>
 <dd><p>This method removes an animal from the board
 It reduces by one the number of animals of that species</p>
 <dl class="field-list">
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param animal (Animal)</dt>
+<dd class="field-odd"><p>the animal to delete.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
@@ -406,10 +429,39 @@ It reduces by one the number of animals of that species</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="KingOfSiam.GameMap.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method load a KingOfSiam file with the .kos extension in a GameMap object.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param file (file object)</dt>
+<dd class="field-odd"><p>is file to load.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;save.kos&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this method take in argument a file object.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="KingOfSiam.GameMap.move">
 <code class="descname">move</code><span class="sig-paren">(</span><em>animal</em>, <em>ncoords</em>, <em>ndir</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method moves an animal from on the board, as well as turns it
 If the coords to which the animal is moving are taken, the the animal pushes</p>
+<p>:param : param animal (Animal): the animal to move,
+:param : param ncoords (Animal): the new coordinates of the animal,
+:param : param ndir (Animal): the new direction of the animal.</p>
 <dl class="field-list">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
@@ -421,11 +473,11 @@ If the coords to which the animal is moving are taken, the the animal pushes</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>coords outside the board, it removes</p>
+<p>player turn does not change if move is not possible</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>error if push is not possible</p>
+<p>…</p>
 </div>
 </dd></dl>
 
@@ -486,25 +538,59 @@ If the coords to which the animal is moving are taken, the the animal pushes</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="KingOfSiam.GameMap.rotate">
-<code class="descname">rotate</code><span class="sig-paren">(</span><em>animal</em>, <em>ndir</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.rotate" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method turns an animal without moving it</p>
+<dt id="KingOfSiam.GameMap.push_counter">
+<code class="descname">push_counter</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>cx</em>, <em>cy</em>, <em>counter=1</em>, <em>k=0</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.push_counter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This recursive method determines if a push move is possible by counting the elements having to be pushed,
+and taking into account their orientation.
+It returns the number of pieces that are being pushed aswell as a counter. If the counter not negative, the push occurs.</p>
+<p>:param : param x (int): is the abscissa of the current pawn,
+:param : param y (int): is the ordinate of the current pawn,
+:param : param cx (int): the direction of the move following the x-axis,
+:param : param cy (int): the direction of the move following the y-axis,
+:param : param counter (int): the sum of the scalar product of each animals in a row,
+:param : param k (int): the counter of pawns in a row.</p>
 <dl class="field-list">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">push_counter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>…</p>
+<p>The function has a double use, as without it “move” wouldn’t know how many pieces to move</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>if coords don’t correspond to a direction, it returns an error</p>
+<p>…</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="KingOfSiam.GameMap.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>fichier</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method save a GameMap in a KingOfSiam file with the .kos extension.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param file (file object)</dt>
+<dd class="field-odd"><p>is file in which to write.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;save.kos&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this method take in argument a file object.</p>
 </div>
 </dd></dl>
 

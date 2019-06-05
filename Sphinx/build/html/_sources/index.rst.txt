@@ -11,7 +11,7 @@ are implemented :
 
 ....
 
-.. inheritance-diagram:: KingOfSiam
+.. inheritance-diagram:: Module.KingOfSiam
    :parts: 1
 
 ....

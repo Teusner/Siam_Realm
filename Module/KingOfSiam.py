@@ -264,7 +264,6 @@ class GameMap(list):
             .. warning:: if the location of the insertion is already taken by another piece, add calls upon move to see
             if insertion is possible
         """
-        print("add")
         x, y = animal.coords
         if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
             self[x][y] = animal
@@ -308,43 +307,56 @@ class GameMap(list):
         else:
             return False
 
-    def push_counter(self, x, y, cx, cy, compteur=1, k=0):
+    def push_counter(self, x, y, cx, cy, counter = 1, k = 0):
         """
-                    This recursive method determines if a push move is possible by counting the elements having to be pushed,
-                    and taking into account their orientation.
-                    It returns the number of pieces that are being pushed aswell as a counter. If the counter not negative, the push occurs.
+            This recursive method determines if a push move is possible by counting the elements having to be pushed,
+            and taking into account their orientation.
+            It returns the number of pieces that are being pushed aswell as a counter. If the counter not negative, the push occurs.
 
-                    :Example:
-                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap()
-                        >>> g.push_counter(0,1,1,0,np.array([0,1]))
+            Args:
+                :param x (int): is the abscissa of the current pawn,
+                :param y (int): is the ordinate of the current pawn,
+                :param cx (int): the direction of the move following the x-axis,
+                :param cy (int): the direction of the move following the y-axis,
+                :param counter (int): the sum of the scalar product of each animals in a row,
+                :param k (int): the counter of pawns in a row.
 
-                    .. note:: The function has a double use, as without it "move" wouldn't know how many pieces to move
-                    .. warning:: ...
-                    .. info:: An animal placed sideways does not impact a push, an opponent's animal in the right direction helps the push.
-                """
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> g = GameMap()
+                >>> g.push_counter(0, 1, 1, 0)
+
+            .. note:: The function has a double use, as without it "move" wouldn't know how many pieces to move
+            .. warning:: ...
+            .. info:: An animal placed sideways does not impact a push, an opponent's animal in the right direction helps the push.
+        """
         k += 1
         if not (0 <= (x+cx) <= 4 and 0 <= y+cy <= 4):
-            return compteur, k
+            return counter, k
 
         elif self[x + cx][y + cy] == 0:
-            return compteur, k
+            return counter, k
 
         elif isinstance(self[x + cx][y + cy], Animal):
             if self[x + cx][y + cy].direction @ + np.array([cx, cy]) == 1:
-                compteur += 1
+                counter += 1
             elif self[x + cx][y + cy].direction @ + np.array([cx, cy]) == -1:
-                compteur -= 2
+                counter -= 2
 
         elif isinstance(self[x + cx][y + cy], Boulder):
-            compteur -= 1
+            counter -= 1
 
-        return self.push_counter(x + cx, y + cy, cx, cy, compteur, k)
+        return self.push_counter(x + cx, y + cy, cx, cy, counter, k)
 
     def move(self, animal, ncoords, ndir):
         """
             This method moves an animal from on the board, as well as turns it
             If the coords to which the animal is moving are taken, the the animal pushes
+
+            Args:
+                :param animal (Animal): the animal to move,
+                :param ncoords (Animal): the new coordinates of the animal,
+                :param ndir (Animal): the new direction of the animal.
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
@@ -358,18 +370,15 @@ class GameMap(list):
         x, y = animal.coords
         (nx, ny) = ncoords
         cx, cy = nx - x, ny - y
-        print(cx)
-        print(cy)
         if abs(cx) > 1 or abs(cy) > 1:
             return False
         elif self[nx][ny] != 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
-            res = self.push_counter(x, y, cx, cy, 1)                                        #cas ou le pion doit pousser
+            res = self.push_counter(x, y, cx, cy, 1)
             c = res[0]
             k = res[1]
             if c >= 0:
-                for i in range(k, 0, -1):                                         #on déplace tous les pions de cx ou cy
-                    if (x + i * cx) == -1 or (x + i * cx) == 5 or (y + i * cy) == -1 or (y + i * cy) == 5 :
-                                                                    #cas où l'élément en bout de poussée sort du plateau
+                for i in range(k, 0, -1):
+                    if (x + i * cx) == -1 or (x + i * cx) == 5 or (y + i * cy) == -1 or (y + i * cy) == 5:
                         if isinstance(self[x + (i-1)*cx][y + (i-1)*cy], Animal):
                             self[x + (i-1)*cx][y + (i-1)*cy] = animal
                             if animal.species == 'Elephant':
@@ -398,7 +407,7 @@ class GameMap(list):
                 print("Push not possible")
                 return (False)
         elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
-            animal.coords = (nx, ny)                                           #cas ou il se déplace vers une case vide
+            animal.coords = (nx, ny)
             animal.direction = ndir
             self[x][y] = 0
             self[nx][ny] = animal
@@ -444,6 +453,19 @@ class GameMap(list):
         return s
 
     def save(self, fichier):
+        """
+            This method save a GameMap in a KingOfSiam file with the .kos extension.
+
+            :Args:
+                :param file (file object): is file in which to write.
+
+            :Example:
+                >>> g = GameMap()
+                >>> file = open('save.kos', 'r')
+                >>> g.load(file)
+
+            .. note:: this method take in argument a file object.
+        """
         boulders = []
         elephants = []
         rhinos = []
@@ -478,7 +500,6 @@ class GameMap(list):
     def load(self, file):
         """
             This method load a KingOfSiam file with the .kos extension in a GameMap object.
-            It return the scalar product between the two direction vector of each animal.
 
             :Args:
                 :param file (file object): is file to load.
@@ -611,6 +632,4 @@ if __name__ == '__main__':
     print(k)
     fichier.close()
 
-    # faire plein de tests
     print(g)
-# "faire des tests dans test_Kingof... avec setup et voir si différentes fonctions marchent"

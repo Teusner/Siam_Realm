@@ -64,7 +64,7 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        ("GitHub", "https://github.com/Teusner/SiamRealm", True),
+        ("GitHub", "https://github.com/Teusner/Siam_Realm", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
