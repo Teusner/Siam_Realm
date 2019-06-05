@@ -351,20 +351,16 @@ class GameMap(list):
         cx, cy = nx - x, ny - y
         print(cx)
         print(cy)
-        if abs(cx) > 1 or abs(cy) > 1:                                                       # Pas de print ni de return
-            print("Out")
+        if abs(cx) > 1 or abs(cy) > 1:
             return False
         elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
-            print("push")
-            res = self.push_counter(x, y, cx, cy, 1)
+            res = self.push_counter(x, y, cx, cy, 1)                                        #cas ou le pion doit pousser
             c = res[0]
             k = res[1]
             if c >= 0:
-                "move tous les elmts de 1 selon cx ou cy"
-                print("Move", "k =",k)
-                for i in range(k, 0, -1):
+                for i in range(k, 0, -1):                                         #on déplace tous les pions de cx ou cy
                     if (x + i * cx) == -1 or (x + i * cx) == 5 or (y + i * cy) == -1 or (y + i * cy) == 5 :
-                        "cas où l'élément en bout de poussée sort du plateau"
+                                                                    #cas où l'élément en bout de poussée sort du plateau
                         if isinstance(self[x + (i-1)*cx][y + (i-1)*cy], Animal):
                             self[x + (i-1)*cx][y + (i-1)*cy] = animal
                             if animal.species == 'Elephant':
@@ -376,8 +372,7 @@ class GameMap(list):
                         else:
                             self[x + (i - 1) * cx][y + (i - 1) * cy] = 0
                             for k in range(5):
-                                piece=self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy]
-                                if isinstance(self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy],Animal) and self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].direction == [cx,cy]:
+                                if isinstance(self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy], Animal) and [self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].direction[0], self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].direction[1]] == [cx, cy]:
                                     self.winner=self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].species
                                     print("winner is", self.winner)
                                     break
@@ -395,9 +390,7 @@ class GameMap(list):
                 print("Push not possible")
                 return (False)
         elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
-            "cas ou il se déplace vers une case vide"                                       # a supprimer
-            print("easy")
-            animal.coords = (nx, ny)
+            animal.coords = (nx, ny)                                           #cas ou il se déplace vers une case vide
             animal.direction = ndir
             self[x][y] = 0
             self[nx][ny] = animal
@@ -406,8 +399,7 @@ class GameMap(list):
             elif self.playerTurn == "Rhinoceros":
                 self.playerTurn = "Elephant"
         else:
-            print("Nope")
-            return False                                                                      #Pas de print ni de return
+            return False
 
     def __str__(self):
         """
