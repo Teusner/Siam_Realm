@@ -239,10 +239,14 @@ class Game(QtWidgets.QDialog):
             for i in range(5):
                 self.tile[i][j].setStyleSheet("background-color: rgba(0, 0, 0, 0%);")
 
-        if self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4) and self.starti == self.endi and self.startj == self.endj:
-            self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
-        elif not self.currentPlayer1 and (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4) and (self.endi == 0 or self.endi == 4 or self.endj == 0 or self.endj == 4) and self.starti == self.endi and self.startj == self.endj:
-            self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
+        if self.starti == self.endi and self.startj == self.endj:
+            if self.g[self.starti][self.startj] != 0:
+                self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj), self.ndir)
+            elif (self.starti == 0 or self.starti == 4 or self.startj == 0 or self.startj == 4):
+                if self.currentPlayer1:
+                    self.g.add(Animal(self.endi, self.endj, self.ndir, "Elephant"))
+                else:
+                    self.g.add(Animal(self.endi, self.endj, self.ndir, "Rhinoceros"))
         else:  
             self.g.move(self.g[self.starti][self.startj], (self.endi, self.endj), self.ndir)
 
