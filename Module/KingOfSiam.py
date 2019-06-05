@@ -351,18 +351,8 @@ class GameMap(list):
         if abs(cx) > 1 or abs(cy) > 1:
             print("Out")
             return False
-        elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
-            print("easy")
-            animal.coords = (nx, ny)
-            animal.direction = ndir
-            self[x][y] = 0
-            self[nx][ny] = animal
-            if self.playerTurn == "Elephant":
-                self.playerTurn = "Rhinoceros"
-            elif self.playerTurn == "Rhinoceros":
-                self.playerTurn = "Elephant"
-
         elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
+            print("push")
             res= self.push_counter(x, y, cx, cy, 1)
             print("res =", res)
             c = res[0]
@@ -398,6 +388,17 @@ class GameMap(list):
                     self.playerTurn = "Rhinoceros"
                 elif self.playerTurn == "Rhinoceros":
                     self.playerTurn = "Elephant"
+        elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
+            "cas ou il se déplace vers une case vide"
+            print("easy")
+            animal.coords = (nx, ny)
+            animal.direction = ndir
+            self[x][y] = 0
+            self[nx][ny] = animal
+            if self.playerTurn == "Elephant":
+                self.playerTurn = "Rhinoceros"
+            elif self.playerTurn == "Rhinoceros":
+                self.playerTurn = "Elephant"
         else:
             print("Nope")
             return False
@@ -454,16 +455,16 @@ class GameMap(list):
                         rhinos.append("("+str(i)+"," +str(j)+ " ) : np.array("+str(piece.direction)+")")
                     elif isinstance(piece, Boulder):
                         boulders.append("(" + str(i) + "," + str(j) + ")")
-        fichier.write("player_turn {\n" + str(self.playerTurn))
+        fichier.write("player_turn {\n    " + self.playerTurn + "\n}\n\n")
         fichier.write("Boulder {")
         for k in range(len(boulders)):
-            fichier.write("\n" + boulders[k] + ";")
+            fichier.write("\n    " + boulders[k] + ";")
         fichier.write("\n}\n\nElephant {")
         for elt in elephants:
-            fichier.write(";\n"+ elt)
+            fichier.write(";\n    "+ elt + ";")
         fichier.write("\n}\n\nRhinoceros {")
         for elt in rhinos:
-            fichier.write("\n" + elt)
+            fichier.write("\n    " + elt + ";")
         fichier.write("\n}")
 
         fichier.close()
