@@ -504,11 +504,11 @@ class Game(QtWidgets.QDialog):
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    #login = Login()
+    login = Login()
 
-    #if login.exec_() == QtWidgets.QDialog.Accepted:
-        #eName, rName = login.eName.text(), login.rName.text()
-    eName, rName = "Teusner", "Faroluca"
+    if login.exec_() == QtWidgets.QDialog.Accepted:
+        eName, rName = login.eName.text(), login.rName.text()
+
     gwin = Game(eName, rName)
     gwin.show()
     sys.exit(app.exec_())
