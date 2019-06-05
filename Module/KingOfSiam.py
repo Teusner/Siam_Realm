@@ -344,7 +344,10 @@ class GameMap(list):
             animal.direction = ndir
             self[x][y] = 0
             self[nx][ny] = animal
-
+            if self.playerTurn == "Elephant":
+                self.playerTurn = "Rhinoceros"
+            elif self.playerTurn == "Rhinoceros":
+                self.playerTurn = "Elephant"
         elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
             res= self.push_counter(x, y, cx, cy, 1)
             print("res =", res)
