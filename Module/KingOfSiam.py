@@ -334,18 +334,18 @@ class GameMap(list):
 
     def move(self, animal, ncoords, ndir):
         """
-                    This method moves an animal from on the board, as well as turns it
-                    If the coords to which the animal is moving are taken, the the animal pushes
+            This method moves an animal from on the board, as well as turns it
+            If the coords to which the animal is moving are taken, the the animal pushes
 
-                    :Example:
-                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap()
-                        >>> g.move(a,(1,1),np.array([0,1]))
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> g = GameMap()
+                >>> g.move(a,(1,1),np.array([0,1]))
 
-                    .. note:: player turn does not change if move is not possible
-                    .. warning:: ...
-                    .. info:: it is possible to both rotate and move to another position in the same turn
-                """
+            .. note:: player turn does not change if move is not possible
+            .. warning:: ...
+            .. info:: it is possible to both rotate and move to another position in the same turn
+        """
         x, y = animal.coords
         (nx, ny) = ncoords
         cx, cy = nx - x, ny - y
@@ -467,6 +467,23 @@ class GameMap(list):
         fichier.close()
 
     def load(self, fichier):
+        """
+            This method load a KingOfSiam file with the .kos extension in a GameMap object.
+            It return the scalar product between the two direction vector of each animal.
+
+            :Args:
+                :param x (int): is the abscissa of the animal,
+                :param y (int): is the ordinate of the animal,
+                :param dir (numpy.array): is the direction of the animal,
+                :param species (str): is the species of the animal. It can take only the values "Elephant" or "Rhinoceros".
+
+            :Example:
+                >>> g = GameMap()
+                >>> file = open('save.kos', 'r')
+                >>> g.load(file)
+
+            .. note:: this method take in argument a file object.
+        """
         for i in range(5):
             for j in range(5):
                 self[i][j] = 0
