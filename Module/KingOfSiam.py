@@ -44,6 +44,10 @@ class Animal:
             This method get the orientation of an animal relative to another.
             It return the scalar product between the two direction vector of each animal.
 
+            :Args:
+                :param animal (Animal): the animal for the bearing.
+                :returns scalar product (int): the scalar product between the two animals direction
+
             :Example:
                 >>> a = Animal(0, 1, np.array([0, 1]), "Elephant")
                 >>> b = Animal(0, 2, np.array([-1, 0]), "Rhinoceros")
@@ -248,6 +252,9 @@ class GameMap(list):
             This method add a new animal onto the board, with position and orientation
             It returns whether the placement was possible or not.
 
+            :Args:
+                :param animal (Animal): the animal to add on the GameMap.
+
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> g = GameMap()
@@ -256,7 +263,6 @@ class GameMap(list):
             .. note:: the turn does not count if the insertion was not possible
             .. warning:: if the location of the insertion is already taken by another piece, add calls upon move to see
             if insertion is possible
-            .. info:: ...
         """
         print("add")
         x, y = animal.coords
@@ -274,17 +280,19 @@ class GameMap(list):
 
     def delete(self, animal):
         """
-                    This method removes an animal from the board
-                    It reduces by one the number of animals of that species
+            This method removes an animal from the board
+            It reduces by one the number of animals of that species
 
-                    :Example:
-                        >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                        >>> g = GameMap()
-                        >>> g.delete(a)
+            :Args:
+                :param animal (Animal): the animal to delete.
 
-                    .. note:: if removal of a boulder, game ends?
-                    .. warning:: error if piece is not on the edge
-                    .. info:: ...
+            :Example:
+                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
+                >>> g = GameMap()
+                >>> g.delete(a)
+
+            .. note:: if removal of a boulder, game ends?
+            .. warning:: error if piece is not on the edge
         """
         x, y = animal.coords
         if x == 0 or x == 4 or y == 0 or y == 4:
@@ -354,7 +362,7 @@ class GameMap(list):
         print(cy)
         if abs(cx) > 1 or abs(cy) > 1:
             return False
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
+        elif self[nx][ny] != 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
             res = self.push_counter(x, y, cx, cy, 1)                                        #cas ou le pion doit pousser
             c = res[0]
             k = res[1]
