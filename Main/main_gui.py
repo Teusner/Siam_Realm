@@ -84,7 +84,7 @@ class Game(QtWidgets.QDialog):
         else:
             self.currentPlayer1 = False
         self.ndir = np.array([1, 0])
-        self.ndirDeg = 0
+        self.ndirDeg = 270
 
         self.startpoint = True
         self.selectValid = False
