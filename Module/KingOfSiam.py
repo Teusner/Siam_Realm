@@ -315,7 +315,10 @@ class GameMap(list):
                     .. info:: An animal placed sideways does not impact a push, an opponent's animal in the right direction helps the push.
                 """
         k += 1
-        if self[x + cx][y + cy] == 0:
+        if not (0 <= (x+cx) <= 4 and 0 <= y+cy <= 4):
+            return compteur, k
+
+        elif self[x + cx][y + cy] == 0:
             return compteur, k
 
         elif isinstance(self[x + cx][y + cy], Animal):
@@ -353,21 +356,15 @@ class GameMap(list):
             return False
         elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
             print("push")
-            res= self.push_counter(x, y, cx, cy, 1)
-            print("res =", res)
+            res = self.push_counter(x, y, cx, cy, 1)
             c = res[0]
             k = res[1]
             if c >= 0:
                 "move tous les elmts de 1 selon cx ou cy"
                 print("Move", "k =",k)
                 for i in range(k, 0, -1):
-                    print(x + i * cx)
-                    print(x + i * cx)
-                    print(y + i * cy)
-                    print(y + i * cy)
                     if (x + i * cx) == -1 or (x + i * cx) == 5 or (y + i * cy) == -1 or (y + i * cy) == 5 :
                         "cas où l'élément en bout de poussée sort du plateau"
-                        print("nice try")
                         if isinstance(self[x + (i-1)*cx][y + (i-1)*cy], Animal):
                             self[x + (i-1)*cx][y + (i-1)*cy] = animal
                             if animal.species == 'Elephant':
@@ -376,8 +373,14 @@ class GameMap(list):
                             elif animal.species == 'Rhinoceros':
                                 self.__nb_rhinoceros -= 1
                                 self[x + (i - 1) * cx][y + (i - 1) * cy] = 0
-                        else:                                                               # Ici c'est pas else mais plutot elif Insinstance(..., Boulder)
-                            return 'Victoire!'                                              # Pas de Return mais self.winner = "..." a faire en fonction du premier animal a etre dans la bonne direction
+                        else:
+                            self[x + (i - 1) * cx][y + (i - 1) * cy] = 0
+                            for k in range(5):
+                                piece=self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy]
+                                if isinstance(self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy],Animal) and self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].direction == [cx,cy]:
+                                    self.winner=self[x + (i - 1 - k) * cx][y + (i - 1 - k) * cy].species
+                                    print("winner is", self.winner)
+                                    break
                     else:
                         print("species", self[x + (i - 1) * cx][y + (i - 1) * cy])          # Pas de print
                         self[x + i * cx][y + i * cy] = self[x + (i - 1) * cx][y + (i - 1) * cy]
@@ -388,6 +391,9 @@ class GameMap(list):
                     self.playerTurn = "Rhinoceros"
                 elif self.playerTurn == "Rhinoceros":
                     self.playerTurn = "Elephant"
+            else:
+                print("Push not possible")
+                return (False)
         elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
             "cas ou il se déplace vers une case vide"                                       # a supprimer
             print("easy")
@@ -455,7 +461,7 @@ class GameMap(list):
                         rhinos.append("("+str(i)+"," +str(j)+ " ) : np.array("+str(piece.direction)+")")
                     elif isinstance(piece, Boulder):
                         boulders.append("(" + str(i) + "," + str(j) + ")")
-        fichier.write("player_turn {\n    " + self.playerTurn + "\n}\n\n")
+        fichier.write("# King of Siam GameFile \n\nplayer_turn {\n    " + self.playerTurn + "\n}\n\n")
         fichier.write("Boulder {")
         for k in range(len(boulders)):
             fichier.write("\n    " + boulders[k] + ";")
