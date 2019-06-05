@@ -351,22 +351,16 @@ class GameMap(list):
         if abs(cx) > 1 or abs(cy) > 1:
             print("Out")
             return False
-        elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
-            if 0 <= nx <= 4 and 0 <= nx <= 4:
-                if self[nx][ny] == 0 :
-                    print("easy")
-                    animal.coords = (nx, ny)
-                    animal.direction = ndir
-                    self[x][y] = 0
-                    self[nx][ny] = animal
-                    if self.playerTurn == "Elephant":
-                        self.playerTurn = "Rhinoceros"
-                    elif self.playerTurn == "Rhinoceros":
-                        self.playerTurn = "Elephant"
-                else:
-                    # pas forcément utile, à toi de voir qi tu en as besoin, mais c'est le cas ou on est dans la gamemap et que la case sur laquelle on veut move n'est pas vide
-            else:
-                #on est dans le cas ou les coordonnées sont en dehors de la gamemap
+        elif self[nx][ny] == 0 and (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) or (cx == 0 and cy == 0):
+            print("easy")
+            animal.coords = (nx, ny)
+            animal.direction = ndir
+            self[x][y] = 0
+            self[nx][ny] = animal
+            if self.playerTurn == "Elephant":
+                self.playerTurn = "Rhinoceros"
+            elif self.playerTurn == "Rhinoceros":
+                self.playerTurn = "Elephant"
 
         elif (cx == 0 and abs(cy) == 1 or abs(cx) == 1 and cy == 0) and (animal.direction[0] == cx and animal.direction[1] == cy):
             res= self.push_counter(x, y, cx, cy, 1)
