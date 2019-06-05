@@ -377,7 +377,6 @@ class GameMap(list):
                                     print("winner is", self.winner)
                                     break
                     else:
-                        print("species", self[x + (i - 1) * cx][y + (i - 1) * cy])          # Pas de print
                         self[x + i * cx][y + i * cy] = self[x + (i - 1) * cx][y + (i - 1) * cy]
                         self[x + (i - 1) * cx][y + (i - 1) * cy] = 0
                         self[x + i * cx][y + i * cy].coords = (x + i * cx, y + i * cy)
