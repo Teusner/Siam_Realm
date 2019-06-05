@@ -449,7 +449,7 @@ class GameMap(list):
                     if piece.species == "Elephant":
                         elephants.append("(" + str(i) + "," + str(j)+ ") : np.array(["+str(L[0])+ "," + str(L[1])+"])")
                     elif piece.species == "Rhinoceros":
-                        rhinos.append("("+str(i)+"," +str(j)+ ") : np.array("+str(piece.direction)+")")
+                        rhinos.append("("+str(i)+"," +str(j)+ ") : np.array(["+str(L[0]) + "," + str(L[1])+"])")
                     elif isinstance(piece, Boulder):
                         boulders.append("(" + str(i) + "," + str(j) + ")")
         fichier.write("# King of Siam GameFile \n\nplayer_turn {\n    " + self.playerTurn + "\n}\n\n")
