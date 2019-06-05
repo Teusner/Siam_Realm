@@ -52,7 +52,7 @@ class Animal:
             .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
         """
         dira, dirb = self.direction, animal.direction
-        return dira, dirb
+        return dira @ dirb
 
     @property
     def coords(self):
