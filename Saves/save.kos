@@ -1,6 +1,6 @@
 # King of Siam GameFile edited on %date at %time
 
-player_turn {
+playerTurn {
     elephant
 }
 
