@@ -493,6 +493,14 @@ class Game(QtWidgets.QDialog):
         else:
             self.currentPlayer1 = False
 
+        if self.g.winner != "":
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            if self.g.winner == "Elephant":
+                msg.setText("The winner is " + self.namePlayer1)
+            else:
+                msg.setText("The winner is " + self.namePlayer2)
+
 
 if __name__ == '__main__':
     import sys
