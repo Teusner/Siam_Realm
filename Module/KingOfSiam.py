@@ -45,8 +45,8 @@ class Animal:
             It return the scalar product between the two direction vector of each animal.
 
             :Example:
-                >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
-                >>> b = Animal(0, 2, np.array([-1,0]), "Rhinoceros")
+                >>> a = Animal(0, 1, np.array([0, 1]), "Elephant")
+                >>> b = Animal(0, 2, np.array([-1, 0]), "Rhinoceros")
                 >>> c = a.bearing(b)
 
             .. note:: this method return a number in  {-1, 0, 1}. 0 is when the vectors are orthogonal, 1 is when the animals are in the same direction and -1 is when the animals are facing each other.
@@ -171,6 +171,7 @@ class GameMap(list):
             >>> m = GameMap()
 
         .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
+        .. moduleauthor:: Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
     """
 
     def __init__(self):
@@ -244,7 +245,7 @@ class GameMap(list):
 
     def add(self, animal):
         """
-            This method introduces a new animal onto the board, letting you decide the position and orientation
+            This method add a new animal onto the board, with position and orientation
             It returns whether the placement was possible or not.
 
             :Example:
