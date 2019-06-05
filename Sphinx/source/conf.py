@@ -65,6 +65,7 @@ html_theme_options = {
     # an arbitrary url.
     'navbar_links': [
         ("GitHub", "https://github.com/Teusner/Siam_Realm", True),
+        ("Coverage", "../../../Module/coverage_html_report/index.html", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
