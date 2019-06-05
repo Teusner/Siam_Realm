@@ -252,6 +252,7 @@ class Game(QtWidgets.QDialog):
 
         self.startpoint = True
         self.buttonCancel.setDisabled(True)
+        self.buttonDelete.setDisabled(True)
         self.buttonValid.setDisabled(True)
         self.button90l.setDisabled(True)
         self.button90r.setDisabled(True)
