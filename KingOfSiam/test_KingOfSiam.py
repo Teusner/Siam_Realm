@@ -200,9 +200,7 @@ class testRegle(unittest.TestCase):
     def testPushHeavy(self):
         e = Animal(2, 0, np.array([0, 1]), "Elephant")
         self.g[2][0] = e
-        print(self.g)
         self.g.move(e, (2, 1), np.array([1, 0])) # Changing the direction during a push do not have any effect if the bearing was good before the push
-        print(self.g)
         # Test for the Elephant
         self.assertIsInstance(self.g[2][0], Animal)
         self.assertEqual(self.g[2][0].species, 'Elephant')

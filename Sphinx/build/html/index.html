@@ -42,7 +42,7 @@
           <ul class="nav navbar-nav">
             
                 <li><a href="https://github.com/Teusner/Siam_Realm">GitHub</a></li>
-                <li><a href="../../../Module/coverage_html_report/index.html">Coverage</a></li>
+                <li><a href="../../../KingOfSiam/coverage_html_report/index.html">Coverage</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -54,21 +54,6 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"></ul>
-</li>
-              
-                <li class="dropdown">
-  <a role="button"
-     id="dLabelLocalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="#">Page <b class="caret"></b></a>
-  <ul class="dropdown-menu localtoc"
-      role="menu"
-      aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Welcome to the King of Siam’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-</ul>
 </li>
               
             
@@ -108,21 +93,293 @@
       
   <div class="section" id="welcome-to-the-king-of-siam-s-documentation">
 <h1>Welcome to the King of Siam’s documentation!<a class="headerlink" href="#welcome-to-the-king-of-siam-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>This <a class="reference internal" href="#module-KingOfSiam" title="KingOfSiam"><code class="xref py py-mod docutils literal notranslate"><span class="pre">KingOfSiam</span></code></a> module is created to play at the King of Siam game. There is 4 classes which
+<p>This <code class="xref py py-mod docutils literal notranslate"><span class="pre">KingOfSiam</span></code> module is created to play at the King of Siam game. There is 4 classes which
 are implemented :</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="#KingOfSiam.GameMap" title="KingOfSiam.GameMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.GameMap</span></code></a> : which is the game board.</p></li>
-<li><p><a class="reference internal" href="#KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal</span></code></a> : which can be “Elephant” or “Rhinoceros”.</p></li>
-<li><p><a class="reference internal" href="#KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder</span></code></a> : which are the boulders on the game board.</p></li>
-<li><p><a class="reference internal" href="#KingOfSiam.Cross" title="KingOfSiam.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Cross</span></code></a> : which are the crosses we can set up to stop some moves.</p></li>
+<li><p><a class="reference internal" href="#GameMap.GameMap" title="GameMap.GameMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameMap.GameMap</span></code></a> : which is the game board.</p></li>
+<li><p><a class="reference internal" href="#GamePieces.Animal" title="GamePieces.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Animal</span></code></a> : which can be “Elephant” or “Rhinoceros”.</p></li>
+<li><p><a class="reference internal" href="#GamePieces.Boulder" title="GamePieces.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Boulder</span></code></a> : which are the boulders on the game board.</p></li>
+<li><p><a class="reference internal" href="#GamePieces.Cross" title="GamePieces.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Cross</span></code></a> : which are the crosses we can set up to stop some moves.</p></li>
 </ul>
 </div></blockquote>
 <hr class="docutils" />
-<hr class="docutils" />
-<span class="target" id="module-KingOfSiam"></span><dl class="class">
-<dt id="KingOfSiam.Animal">
-<em class="property">class </em><code class="descclassname">KingOfSiam.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>dir</em>, <em>species</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.Animal" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-GameMap"></span><dl class="class">
+<dt id="GameMap.GameMap">
+<em class="property">class </em><code class="descclassname">GameMap.</code><code class="descname">GameMap</code><a class="headerlink" href="#GameMap.GameMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating the Gamemap.</p>
+<p>This creates the 5x5 gamemap with the moves and position of the gamepieces to play at the King of Siam. It is inherited from a list.</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#GamePieces.Animal" title="GamePieces.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Animal()</span></code></a>, <a class="reference internal" href="#GamePieces.Boulder" title="GamePieces.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Boulder()</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Crosses()</span></code></p>
+</div>
+<dl class="method">
+<dt id="GameMap.GameMap.add">
+<code class="descname">add</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#GameMap.GameMap.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method add a new animal onto the board, with position and orientation
+It returns whether the placement was possible or not.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param animal (Animal)</dt>
+<dd class="field-odd"><p>the animal to add on the GameMap.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the turn does not count if the insertion was not possible</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>if the location of the insertion is already taken by another piece, add calls upon move to see</p>
+</div>
+<p>if insertion is possible</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameMap.GameMap.delete">
+<code class="descname">delete</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#GameMap.GameMap.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method removes an animal from the board
+It reduces by one the number of animals of that species</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param animal (Animal)</dt>
+<dd class="field-odd"><p>the animal to delete.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if removal of a boulder, game ends?</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>error if piece is not on the edge</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameMap.GameMap.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#GameMap.GameMap.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method load a KingOfSiam file with the .kos extension in a GameMap object.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param file (file object)</dt>
+<dd class="field-odd"><p>is file to load.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;save.kos&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this method take in argument a file object.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameMap.GameMap.move">
+<code class="descname">move</code><span class="sig-paren">(</span><em>animal</em>, <em>ncoords</em>, <em>ndir</em><span class="sig-paren">)</span><a class="headerlink" href="#GameMap.GameMap.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method moves an animal from on the board, as well as turns it
+If the coords to which the animal is moving are taken, the the animal pushes</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param animal (Animal)</dt>
+<dd class="field-odd"><p>the animal to move,</p>
+</dd>
+<dt class="field-even">param ncoords (tuple)</dt>
+<dd class="field-even"><p>the new coordinates of the animal,</p>
+</dd>
+<dt class="field-odd">param ndir (np.array)</dt>
+<dd class="field-odd"><p>the new direction of the animal.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>player turn does not change if move is not possible</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>…</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GameMap.GameMap.nb_elephants">
+<code class="descname">nb_elephants</code><a class="headerlink" href="#GameMap.GameMap.nb_elephants" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the number of elephant on the gamemap.</p>
+<dl class="field-list">
+<dt class="field-odd">Getter</dt>
+<dd class="field-odd"><p>Return the number of elephant on the gamemap.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Getter’s example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ne</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">nb_elephants</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The elephant’s number can not exceed 5.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the number of elephant can’t be changed by hand.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GameMap.GameMap.nb_rhinoceros">
+<code class="descname">nb_rhinoceros</code><a class="headerlink" href="#GameMap.GameMap.nb_rhinoceros" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the number of rinoceros on the gamemap.</p>
+<dl class="field-list">
+<dt class="field-odd">Getter</dt>
+<dd class="field-odd"><p>Return the number of rhinoceros on the gamemap.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Getter’s example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nr</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">nb_rhinoceros</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The rhinoceros’s number can not exceed 5.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>the number of rhinoceros can’t be changed by hand.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameMap.GameMap.push_counter">
+<code class="descname">push_counter</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>cx</em>, <em>cy</em>, <em>counter=1</em>, <em>k=0</em><span class="sig-paren">)</span><a class="headerlink" href="#GameMap.GameMap.push_counter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This recursive method determines if a push move is possible by counting the elements having to be pushed,
+and taking into account their orientation.
+It returns the number of pieces that are being pushed aswell as a counter. If the counter not negative, the push occurs.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param x (int)</dt>
+<dd class="field-odd"><p>is the abscissa of the current GamePiece,</p>
+</dd>
+<dt class="field-even">param y (int)</dt>
+<dd class="field-even"><p>is the ordinate of the current GamePiece,</p>
+</dd>
+<dt class="field-odd">param cx (int)</dt>
+<dd class="field-odd"><p>the direction of the move following the x-axis,</p>
+</dd>
+<dt class="field-even">param cy (int)</dt>
+<dd class="field-even"><p>the direction of the move following the y-axis,</p>
+</dd>
+<dt class="field-odd">param counter (int)</dt>
+<dd class="field-odd"><p>the sum of the scalar product of each animals in a row,</p>
+</dd>
+<dt class="field-even">param k (int)</dt>
+<dd class="field-even"><p>the counter of pawns in a row.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">push_counter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function has a double use, as without it “move” wouldn’t know how many pieces to move</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>…</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="GameMap.GameMap.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>fichier</em><span class="sig-paren">)</span><a class="headerlink" href="#GameMap.GameMap.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method save a GameMap in a KingOfSiam file with the .kos extension.</p>
+<dl class="field-list">
+<dt class="field-odd">Args</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">param file (file object)</dt>
+<dd class="field-odd"><p>is file in which to write.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;save.kos&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this method take in argument a file object.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-GamePieces"></span><dl class="class">
+<dt id="GamePieces.Animal">
+<em class="property">class </em><code class="descclassname">GamePieces.</code><code class="descname">Animal</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>dir</em>, <em>species</em><span class="sig-paren">)</span><a class="headerlink" href="#GamePieces.Animal" title="Permalink to this definition">¶</a></dt>
 <dd><p>This module creates an animal with a position and a direction.</p>
 <dl class="field-list">
 <dt class="field-odd">Args</dt>
@@ -149,11 +406,11 @@ are implemented :</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a>, <a class="reference internal" href="#KingOfSiam.Cross" title="KingOfSiam.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Cross()</span></code></a></p>
+<p><a class="reference internal" href="#GamePieces.Boulder" title="GamePieces.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Boulder()</span></code></a>, <a class="reference internal" href="#GamePieces.Cross" title="GamePieces.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Cross()</span></code></a></p>
 </div>
 <dl class="method">
-<dt id="KingOfSiam.Animal.bearing">
-<code class="descname">bearing</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.Animal.bearing" title="Permalink to this definition">¶</a></dt>
+<dt id="GamePieces.Animal.bearing">
+<code class="descname">bearing</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#GamePieces.Animal.bearing" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method get the orientation of an animal relative to another.
 It return the scalar product between the two direction vector of each animal.</p>
 <dl class="field-list">
@@ -182,8 +439,8 @@ It return the scalar product between the two direction vector of each animal.</p
 </dd></dl>
 
 <dl class="attribute">
-<dt id="KingOfSiam.Animal.coords">
-<code class="descname">coords</code><a class="headerlink" href="#KingOfSiam.Animal.coords" title="Permalink to this definition">¶</a></dt>
+<dt id="GamePieces.Animal.coords">
+<code class="descname">coords</code><a class="headerlink" href="#GamePieces.Animal.coords" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the coordinates of the animal in a tuple.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
@@ -215,8 +472,8 @@ It return the scalar product between the two direction vector of each animal.</p
 </dd></dl>
 
 <dl class="attribute">
-<dt id="KingOfSiam.Animal.direction">
-<code class="descname">direction</code><a class="headerlink" href="#KingOfSiam.Animal.direction" title="Permalink to this definition">¶</a></dt>
+<dt id="GamePieces.Animal.direction">
+<code class="descname">direction</code><a class="headerlink" href="#GamePieces.Animal.direction" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the direction of the animal in a numpy.array. The direction is a unitary vector with a null coordinate.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
@@ -248,8 +505,8 @@ It return the scalar product between the two direction vector of each animal.</p
 </dd></dl>
 
 <dl class="attribute">
-<dt id="KingOfSiam.Animal.species">
-<code class="descname">species</code><a class="headerlink" href="#KingOfSiam.Animal.species" title="Permalink to this definition">¶</a></dt>
+<dt id="GamePieces.Animal.species">
+<code class="descname">species</code><a class="headerlink" href="#GamePieces.Animal.species" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the species of the animal. It should be “Elephant” or “Rhinoceros”.</p>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
@@ -283,8 +540,8 @@ It return the scalar product between the two direction vector of each animal.</p
 </dd></dl>
 
 <dl class="class">
-<dt id="KingOfSiam.Boulder">
-<em class="property">class </em><code class="descclassname">KingOfSiam.</code><code class="descname">Boulder</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.Boulder" title="Permalink to this definition">¶</a></dt>
+<dt id="GamePieces.Boulder">
+<em class="property">class </em><code class="descclassname">GamePieces.</code><code class="descname">Boulder</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#GamePieces.Boulder" title="Permalink to this definition">¶</a></dt>
 <dd><p>This module creates a boulder at a position.</p>
 <dl class="field-list">
 <dt class="field-odd">Args</dt>
@@ -312,13 +569,13 @@ It return the scalar product between the two direction vector of each animal.</p
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#KingOfSiam.Cross" title="KingOfSiam.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Cross()</span></code></a></p>
+<p><a class="reference internal" href="#GamePieces.Animal" title="GamePieces.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Animal()</span></code></a>, <a class="reference internal" href="#GamePieces.Cross" title="GamePieces.Cross"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Cross()</span></code></a></p>
 </div>
 </dd></dl>
 
 <dl class="class">
-<dt id="KingOfSiam.Cross">
-<em class="property">class </em><code class="descclassname">KingOfSiam.</code><code class="descname">Cross</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.Cross" title="Permalink to this definition">¶</a></dt>
+<dt id="GamePieces.Cross">
+<em class="property">class </em><code class="descclassname">GamePieces.</code><code class="descname">Cross</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#GamePieces.Cross" title="Permalink to this definition">¶</a></dt>
 <dd><p>This module creates a cross at a position.</p>
 <dl class="field-list">
 <dt class="field-odd">Args</dt>
@@ -346,255 +603,8 @@ It return the scalar product between the two direction vector of each animal.</p
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a></p>
+<p><a class="reference internal" href="#GamePieces.Animal" title="GamePieces.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Animal()</span></code></a>, <a class="reference internal" href="#GamePieces.Boulder" title="GamePieces.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">GamePieces.Boulder()</span></code></a></p>
 </div>
-</dd></dl>
-
-<dl class="class">
-<dt id="KingOfSiam.GameMap">
-<em class="property">class </em><code class="descclassname">KingOfSiam.</code><code class="descname">GameMap</code><a class="headerlink" href="#KingOfSiam.GameMap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creating the Gamemap.</p>
-<p>This creates the 5x5 gamemap with the moves and position of the gamepieces to play at the King of Siam. It is inherited from a list.</p>
-<dl class="field-list">
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#KingOfSiam.Animal" title="KingOfSiam.Animal"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Animal()</span></code></a>, <a class="reference internal" href="#KingOfSiam.Boulder" title="KingOfSiam.Boulder"><code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Boulder()</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">KingOfSiam.Crosses()</span></code></p>
-</div>
-<dl class="method">
-<dt id="KingOfSiam.GameMap.add">
-<code class="descname">add</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method add a new animal onto the board, with position and orientation
-It returns whether the placement was possible or not.</p>
-<dl class="field-list">
-<dt class="field-odd">Args</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">param animal (Animal)</dt>
-<dd class="field-odd"><p>the animal to add on the GameMap.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Example</dt>
-<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>the turn does not count if the insertion was not possible</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>if the location of the insertion is already taken by another piece, add calls upon move to see</p>
-</div>
-<p>if insertion is possible</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="KingOfSiam.GameMap.delete">
-<code class="descname">delete</code><span class="sig-paren">(</span><em>animal</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method removes an animal from the board
-It reduces by one the number of animals of that species</p>
-<dl class="field-list">
-<dt class="field-odd">Args</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">param animal (Animal)</dt>
-<dd class="field-odd"><p>the animal to delete.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Example</dt>
-<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>if removal of a boulder, game ends?</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>error if piece is not on the edge</p>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="KingOfSiam.GameMap.load">
-<code class="descname">load</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method load a KingOfSiam file with the .kos extension in a GameMap object.</p>
-<dl class="field-list">
-<dt class="field-odd">Args</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">param file (file object)</dt>
-<dd class="field-odd"><p>is file to load.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Example</dt>
-<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;save.kos&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>this method take in argument a file object.</p>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="KingOfSiam.GameMap.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>animal</em>, <em>ncoords</em>, <em>ndir</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.move" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method moves an animal from on the board, as well as turns it
-If the coords to which the animal is moving are taken, the the animal pushes</p>
-<p>:param : param animal (Animal): the animal to move,
-:param : param ncoords (Animal): the new coordinates of the animal,
-:param : param ndir (Animal): the new direction of the animal.</p>
-<dl class="field-list">
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">,(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>player turn does not change if move is not possible</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>…</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="KingOfSiam.GameMap.nb_elephants">
-<code class="descname">nb_elephants</code><a class="headerlink" href="#KingOfSiam.GameMap.nb_elephants" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the number of elephant on the gamemap.</p>
-<dl class="field-list">
-<dt class="field-odd">Getter</dt>
-<dd class="field-odd"><p>Return the number of elephant on the gamemap.</p>
-</dd>
-<dt class="field-even">Type</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">Getter’s example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ne</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">nb_elephants</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The elephant’s number can not exceed 5.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>the number of elephant can’t be changed by hand.</p>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="KingOfSiam.GameMap.nb_rhinoceros">
-<code class="descname">nb_rhinoceros</code><a class="headerlink" href="#KingOfSiam.GameMap.nb_rhinoceros" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the number of rinoceros on the gamemap.</p>
-<dl class="field-list">
-<dt class="field-odd">Getter</dt>
-<dd class="field-odd"><p>Return the number of rhinoceros on the gamemap.</p>
-</dd>
-<dt class="field-even">Type</dt>
-<dd class="field-even"><p>int</p>
-</dd>
-<dt class="field-odd">Getter’s example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">nr</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">nb_rhinoceros</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The rhinoceros’s number can not exceed 5.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>the number of rhinoceros can’t be changed by hand.</p>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="KingOfSiam.GameMap.push_counter">
-<code class="descname">push_counter</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>cx</em>, <em>cy</em>, <em>counter=1</em>, <em>k=0</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.push_counter" title="Permalink to this definition">¶</a></dt>
-<dd><p>This recursive method determines if a push move is possible by counting the elements having to be pushed,
-and taking into account their orientation.
-It returns the number of pieces that are being pushed aswell as a counter. If the counter not negative, the push occurs.</p>
-<p>:param : param x (int): is the abscissa of the current pawn,
-:param : param y (int): is the ordinate of the current pawn,
-:param : param cx (int): the direction of the move following the x-axis,
-:param : param cy (int): the direction of the move following the y-axis,
-:param : param counter (int): the sum of the scalar product of each animals in a row,
-:param : param k (int): the counter of pawns in a row.</p>
-<dl class="field-list">
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;Elephant&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">push_counter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The function has a double use, as without it “move” wouldn’t know how many pieces to move</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>…</p>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="KingOfSiam.GameMap.save">
-<code class="descname">save</code><span class="sig-paren">(</span><em>fichier</em><span class="sig-paren">)</span><a class="headerlink" href="#KingOfSiam.GameMap.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method save a GameMap in a KingOfSiam file with the .kos extension.</p>
-<dl class="field-list">
-<dt class="field-odd">Args</dt>
-<dd class="field-odd"><dl class="field-list simple">
-<dt class="field-odd">param file (file object)</dt>
-<dd class="field-odd"><p>is file in which to write.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Example</dt>
-<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GameMap</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;save.kos&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>this method take in argument a file object.</p>
-</div>
-</dd></dl>
-
 </dd></dl>
 
 <hr class="docutils" />

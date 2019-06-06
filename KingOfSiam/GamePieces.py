@@ -10,6 +10,7 @@ __license__ = "GPL"
 __version__ = "1.0"
 __email__ = ["quentin.brateau@ensta-bretagne.org", "luca.farolfi@ensta-bretagne.org"]
 
+
 # Importing modules
 import numpy as np
 
@@ -30,8 +31,9 @@ class Animal:
         :Example:
             >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
 
-        .. seealso:: :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Cross()`
         .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
+
+        .. seealso:: :class:`GamePieces.Boulder()`, :class:`GamePieces.Cross()`
     """
 
     def __init__(self, x, y, dir, species):
@@ -177,8 +179,10 @@ class Boulder:
         :Example:
             >>> b = Boulder(1, 2)
 
+        .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
+
         .. warning:: The coordinates should be on the 5x5 board game.
-        .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Cross()`
+        .. seealso:: :class:`GamePieces.Animal()`, :class:`GamePieces.Cross()`
     """
 
     def __init__(self, x, y):
@@ -201,8 +205,10 @@ class Cross:
         :Example:
             >>> b = Cross(1, 2)
 
+        .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
+
         .. warning:: The coordinates should be on the 5x5 board game.
-        .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`
+        .. seealso:: :class:`GamePieces.Animal()`, :class:`GamePieces.Boulder()`
     """
 
     def __init__(self, x, y):

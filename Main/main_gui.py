@@ -1,3 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+__author__ = "Brateaqu, Farolflu"
+__copyright__ = "Copyright 2019"
+__credits__ = ["Quentin BRATEAU", "Luca FAROLFI"]
+
+__license__ = "GPL"
+__version__ = "1.0"
+__email__ = ["quentin.brateau@ensta-bretagne.org", "luca.farolfi@ensta-bretagne.org"]
+
+
+# Importing modules
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import Qt
 import sys

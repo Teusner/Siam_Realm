@@ -10,6 +10,7 @@ __license__ = "GPL"
 __version__ = "1.0"
 __email__ = ["quentin.brateau@ensta-bretagne.org", "luca.farolfi@ensta-bretagne.org"]
 
+
 # Importing modules
 import numpy as np
 from GamePieces import Animal, Boulder
@@ -27,8 +28,8 @@ class GameMap(list):
         :Example:
             >>> m = GameMap()
 
-        .. seealso:: :class:`KingOfSiam.Animal()`, :class:`KingOfSiam.Boulder()`, :class:`KingOfSiam.Crosses()`
-        .. moduleauthor:: Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
+        .. seealso:: :class:`GamePieces.Animal()`, :class:`GamePieces.Boulder()`, :class:`GamePieces.Crosses()`
+        .. moduleauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>, Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
     """
 
     def __init__(self):
@@ -116,6 +117,8 @@ class GameMap(list):
             .. note:: the turn does not count if the insertion was not possible
             .. warning:: if the location of the insertion is already taken by another piece, add calls upon move to see
             if insertion is possible
+
+            .. sectionauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
         """
         x, y = animal.coords
         if animal.species == 'Elephant' and self.__nb_elephants < 5 and (x == 0 or x == 4 or y == 0 or y == 4) and self[x][y] == 0:
@@ -143,6 +146,8 @@ class GameMap(list):
                 >>> g = GameMap()
                 >>> g.delete(a)
 
+            .. sectionauthor:: Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
+
             .. note:: if removal of a boulder, game ends?
             .. warning:: error if piece is not on the edge
         """
@@ -166,9 +171,9 @@ class GameMap(list):
             and taking into account their orientation.
             It returns the number of pieces that are being pushed aswell as a counter. If the counter not negative, the push occurs.
 
-            Args:
-                :param x (int): is the abscissa of the current pawn,
-                :param y (int): is the ordinate of the current pawn,
+            :Args:
+                :param x (int): is the abscissa of the current GamePiece,
+                :param y (int): is the ordinate of the current GamePiece,
                 :param cx (int): the direction of the move following the x-axis,
                 :param cy (int): the direction of the move following the y-axis,
                 :param counter (int): the sum of the scalar product of each animals in a row,
@@ -178,6 +183,8 @@ class GameMap(list):
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> g = GameMap()
                 >>> g.push_counter(0, 1, 1, 0)
+
+            .. sectionauthor:: Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
 
             .. note:: The function has a double use, as without it "move" wouldn't know how many pieces to move
             .. warning:: ...
@@ -206,15 +213,18 @@ class GameMap(list):
             This method moves an animal from on the board, as well as turns it
             If the coords to which the animal is moving are taken, the the animal pushes
 
-            Args:
+            :Args:
                 :param animal (Animal): the animal to move,
-                :param ncoords (Animal): the new coordinates of the animal,
-                :param ndir (Animal): the new direction of the animal.
+                :param ncoords (tuple): the new coordinates of the animal,
+                :param ndir (np.array): the new direction of the animal.
 
             :Example:
                 >>> a = Animal(0, 1, np.array([0,1]), "Elephant")
                 >>> g = GameMap()
                 >>> g.move(a,(1,1),np.array([0,1]))
+
+            .. sectionauthor:: Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
+
 
             .. note:: player turn does not change if move is not possible
             .. warning:: ...
@@ -305,7 +315,7 @@ class GameMap(list):
             s += '\n \n'
         return s
 
-    def save(self, fichier):
+    def save(self, file):
         """
             This method save a GameMap in a KingOfSiam file with the .kos extension.
 
@@ -316,6 +326,9 @@ class GameMap(list):
                 >>> g = GameMap()
                 >>> file = open('save.kos', 'r')
                 >>> g.load(file)
+
+            .. sectionauthor:: Luca FAROLFI <luca.farolfi@ensta-bretagne.org>
+
 
             .. note:: this method take in argument a file object.
         """
@@ -336,19 +349,19 @@ class GameMap(list):
                         rhinos.append("("+str(i)+"," +str(j)+ ") : np.array(["+str(L[0]) + "," + str(L[1])+"])")
                     elif isinstance(piece, Boulder):
                         boulders.append("(" + str(i) + "," + str(j) + ")")
-        fichier.write("# King of Siam GameFile \n\nplayer_turn {\n    " + self.playerTurn + "\n}\n\n")
-        fichier.write("Boulder {")
+        file.write("# King of Siam GameFile \n\nplayer_turn {\n    " + self.playerTurn + "\n}\n\n")
+        file.write("Boulder {")
         for k in range(len(boulders)):
-            fichier.write("\n    " + boulders[k] + ";")
-        fichier.write("\n}\n\nElephant {")
+            file.write("\n    " + boulders[k] + ";")
+        file.write("\n}\n\nElephant {")
         for elt in elephants:
-            fichier.write("\n    " + elt + ";")
-        fichier.write("\n}\n\nRhinoceros {")
+            file.write("\n    " + elt + ";")
+        file.write("\n}\n\nRhinoceros {")
         for elt in rhinos:
-            fichier.write("\n    " + elt + ";")
-        fichier.write("\n}")
+            file.write("\n    " + elt + ";")
+        file.write("\n}")
 
-        fichier.close()
+        file.close()
 
     def load(self, file):
         """
@@ -361,6 +374,8 @@ class GameMap(list):
                 >>> g = GameMap()
                 >>> file = open('save.kos', 'r')
                 >>> g.load(file)
+
+            .. sectionauthor:: Quentin BRATEAU <quentin.brateau@ensta-bretagne.org>
 
             .. note:: this method take in argument a file object.
         """
@@ -418,6 +433,9 @@ class GameMap(list):
             direction = np.array([xdir, ydir])
             self[x][y] = Animal(x, y, direction, 'Rhinoceros')
             k += 1
+
+        file.close()
+
 
 if __name__ == '__main__':
     g = GameMap()
