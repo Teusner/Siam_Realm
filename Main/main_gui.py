@@ -513,7 +513,6 @@ if __name__ == '__main__':
 
     if login.exec_() == QtWidgets.QDialog.Accepted:
         eName, rName = login.eName.text(), login.rName.text()
-
-    gwin = Game(eName, rName)
-    gwin.show()
-    sys.exit(app.exec_())
+        gwin = Game(eName, rName)
+        gwin.show()
+        sys.exit(app.exec_())
