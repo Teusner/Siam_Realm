@@ -1,7 +1,12 @@
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import Qt
+import sys
 
-from Module.KingOfSiam import *
+# Adding the KingOfSiam Packeage to path to import Modules
+sys.path.append("../KingOfSiam")
+
+from GameMap import GameMap
+from GamePieces import Animal, Boulder, Cross
 import numpy as np
 
 

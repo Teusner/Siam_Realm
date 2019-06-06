@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../Module'))
+sys.path.insert(0, os.path.abspath('../../KingOfSiam'))
 
 
 # -- Project information -----------------------------------------------------
@@ -65,7 +65,7 @@ html_theme_options = {
     # an arbitrary url.
     'navbar_links': [
         ("GitHub", "https://github.com/Teusner/Siam_Realm", True),
-        ("Coverage", "../../../Module/coverage_html_report/index.html", True),
+        ("Coverage", "../../../KingOfSiam/coverage_html_report/index.html", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)

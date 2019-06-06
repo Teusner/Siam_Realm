@@ -13,7 +13,8 @@ __email__ = ["quentin.brateau@ensta-bretagne.org", "luca.farolfi@ensta-bretagne.
 
 # Importing Modules
 import unittest
-from KingOfSiam import GameMap, Animal, Boulder, Cross
+from GameMap import GameMap
+from GamePieces import Animal, Boulder, Cross
 import numpy as np
 
 

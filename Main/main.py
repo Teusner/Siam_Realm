@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import numpy as np
-from Module import GameMap as gm
-from Module import Animal
+from KingOfSiam import GameMap as gm
+from KingOfSiam import Animal
 
 
 
